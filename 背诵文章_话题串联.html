@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语背诵 · 六篇话题串联文章（覆盖30话题）</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#2f6fdb; --accent-soft:#eaf1fd;
+  --en:#1a3c66; --zh:#57606a; --ph:#9a3412; --ph-bg:#fff3bf;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+
+/* ── 工具栏 ── */
+.toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.toolbar h1{font-size:17px;margin:0 14px 0 0;white-space:nowrap}
+.toolbar h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 13px;
+  font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1280px;margin:0 auto;align-items:flex-start}
+nav.toc{position:sticky;top:56px;width:235px;flex:none;padding:18px 8px 30px 14px;
+  max-height:calc(100vh - 56px);overflow-y:auto;font-size:13px}
+nav.toc .g{font-weight:600;color:var(--accent);margin:12px 0 4px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:3px 6px;border-radius:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+main{flex:1;min-width:0;padding:20px 26px 60px}
+
+/* ── 说明卡 ── */
+.howto{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;
+  margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.howto h2{font-size:16px;margin:0 0 8px}
+.howto ol{margin:6px 0 0;padding-left:22px;color:var(--zh)}
+.howto b.k{color:var(--ph)}
+
+/* ── 文章卡 ── */
+article.story{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow:hidden}
+article.story>header{padding:18px 24px 14px;background:linear-gradient(180deg,#fbfcfd,#f3f6fa);
+  border-bottom:1px solid var(--line)}
+article.story>header .num{display:inline-flex;width:40px;height:40px;border-radius:10px;
+  background:var(--accent);color:#fff;font-weight:700;font-size:18px;
+  align-items:center;justify-content:center;vertical-align:middle;margin-right:12px}
+article.story>header h2{display:inline;font-size:21px;vertical-align:middle;margin:0}
+article.story>header h2 small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:2px}
+.badges{margin:10px 0 0}
+.badge{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:20px;
+  padding:2px 11px;font-size:12px;margin:2px 4px 2px 0}
+.pc{float:right;color:var(--muted);font-size:12.5px;margin-top:10px}
+.story-body{padding:8px 26px 20px}
+
+/* ── 段落 ── */
+p.para{margin:14px 0}
+p.para .en{font-family:Georgia,"Times New Roman",serif;font-size:16.5px;line-height:1.85;color:var(--en);
+  display:block}
+p.para .zh{display:none;color:var(--zh);font-size:14px;line-height:1.75;
+  border-left:3px solid var(--line);padding:2px 0 2px 12px;margin-top:6px}
+body.tr p.para .zh{display:block}
+
+/* ── 重点短语 ── */
+.ph{font-weight:700;color:var(--ph);background:var(--ph-bg);border-radius:3px;padding:0 3px;
+  cursor:pointer;position:relative}
+.ph:hover::after{content:attr(data-zh);position:absolute;left:50%;transform:translateX(-50%);
+  top:calc(100% + 4px);background:#24292f;color:#fff;font-size:12px;font-weight:400;
+  font-family:"Microsoft YaHei",sans-serif;padding:3px 10px;border-radius:5px;white-space:nowrap;
+  z-index:30;pointer-events:none}
+body.nohl .ph{font-weight:inherit;color:inherit;background:none;padding:0}
+body.blank .ph{color:transparent;background:#ffe9a8;user-select:none}
+body.blank .ph.rv{color:var(--ph)}
+body.blank .ph:hover::after{content:none}
+
+/* ── 短语清单 ── */
+details.plist{margin:16px 0 6px;border:1px solid var(--line);border-radius:8px;background:#fbfcfd}
+details.plist summary{cursor:pointer;padding:10px 16px;font-weight:600;color:var(--accent);font-size:14px}
+details.plist table{width:100%;border-collapse:collapse;font-size:13.5px;margin:4px 0 12px}
+details.plist th{background:#f0f3f7;text-align:left;padding:6px 14px;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);font-size:13px}
+details.plist td{padding:5px 14px;border-bottom:1px solid #eef1f4;vertical-align:top}
+details.plist td.p{font-family:Georgia,serif;font-weight:700;color:var(--ph)}
+details.plist td.t{color:var(--muted);white-space:nowrap}
+.foot{color:var(--muted);font-size:12.5px;text-align:center;padding:20px 0 40px}
+@media(max-width:900px){nav.toc{display:none}}
+@media print{.toolbar,nav.toc,.howto{display:none}p.para .zh{display:block}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>话题串联背诵文章<small>六篇 · 覆盖全部30话题</small></h1>
+  <button class="btn" id="btn-tr">📝 显示译文</button>
+  <button class="btn on" id="btn-hl">🖍 短语高亮</button>
+  <button class="btn" id="btn-blank">🧩 挖空自测</button>
+  <span style="color:var(--muted);font-size:13px;margin-left:auto" id="total"></span>
+</div>
+
+<div class="wrap">
+<nav class="toc">
+  <div class="g">使用说明</div>
+  <a href="#howto">📍 三种背诵模式</a>
+  <div class="g">六篇串联文章</div>
+  <a href="#a1">1 · Escape from the Daily Grind</a>
+  <a href="#a2">2 · A Healthier Me</a>
+  <a href="#a3">3 · The Bookworm Who…</a>
+  <a href="#a4">4 · Breaking New Ground</a>
+  <a href="#a5">5 · A Greener City, a Kinder…</a>
+  <a href="#a6">6 · Home Sweet Home</a>
+  <div class="g">话题链</div>
+  <a href="#a1">工作→压力→休闲→假期→天气→交通</a>
+  <a href="#a2">习惯→饮食→外食→疗法→园艺</a>
+  <a href="#a3">性格→阅读→恐惧→幽默→梦想</a>
+  <a href="#a4">电脑→创新→新闻→迷信</a>
+  <a href="#a5">环保→污染→交通→贫困→艺术</a>
+  <a href="#a6">家电→家具→房间→社区→时尚→游乐</a>
+</nav>
+
+<main>
+
+<div class="howto" id="howto">
+  <h2>📍 背诵使用说明</h2>
+  <ol>
+    <li><b class="k">🖍 短语高亮</b>（默认开启）：橙色标记为各话题核心短语/考点词，<b>鼠标悬停</b>显示中文释义，先通读理解。</li>
+    <li><b class="k">📝 显示译文</b>：逐段显示中文对照，检查自己理解是否准确。</li>
+    <li><b class="k">🧩 挖空自测</b>：所有重点短语变成黄色空块，<b>点击空块</b> reveal 答案 —— 用来检验短语是否真的记住了（建议第三轮使用）。</li>
+    <li>每篇文章末尾有<b>短语清单</b>（可折叠），背诵完成后遮住右列自检。</li>
+    <li>建议节奏：每篇文章朗读 3 遍 → 看清单自检 → 隔天挖空重测。</li>
+  </ol>
+</div>
+
+<!-- ═══════════════ ARTICLE 1 ═══════════════ -->
+<article class="story" id="a1">
+<header>
+  <span class="num">1</span>
+  <h2>Escape from the Daily Grind<small>逃离朝九晚五 · 记叙文 · 约420词</small></h2>
+  <span class="pc"></span>
+  <div class="badges">
+    <span class="badge">01 工作</span><span class="badge">02 压力</span><span class="badge">11 休闲</span>
+    <span class="badge">15 假期</span><span class="badge">16 天气</span><span class="badge">08 交通</span>
+  </div>
+</header>
+<div class="story-body">
+
+<p class="para"><span class="en">My cousin Maya used to earn <b class="ph" data-zh="一大笔钱">big bucks</b> as a software engineer at a <b class="ph" data-zh="科技巨头">tech giant</b>. On paper, she had it all: she had been <b class="ph" data-zh="升职 get promoted">promoted</b> twice, <b class="ph" data-zh="涨薪">got a raise</b> almost every year, and everyone assumed she would <b class="ph" data-zh="攀登职场阶梯">climb the corporate ladder</b> and become the <b class="ph" data-zh="一把手、大人物">top dog</b> of her department one day. But behind the impressive title, she was just another <b class="ph" data-zh="工作狂">workaholic</b> trapped in <b class="ph" data-zh="激烈的都市竞争">the rat race</b>.</span>
+<span class="zh">我的表姐玛雅曾是某科技巨头的软件工程师，赚着一大笔钱。纸面上，她什么都有：升过两次职，几乎年年涨薪，大家都以为她会一路爬上职场阶梯，有朝一日成为部门的一把手。但在光鲜的头衔背后，她不过是又一个困在激烈竞争里的工作狂。</span></p>
+
+<p class="para"><span class="en">Her <b class="ph" data-zh="朝九晚五">nine-to-five</b> job was never really nine to five. She <b class="ph" data-zh="加班">worked overtime</b> almost every evening, ate <b class="ph" data-zh="即食的">ready-to-eat</b> meals at her desk, and kept answering emails on her <b class="ph" data-zh="笔记本电脑">laptop</b> until midnight. Her <b class="ph" data-zh="工作量">workload</b> was enormous. Whenever a <b class="ph" data-zh="截止日期">deadline</b> approached, she grew <b class="ph" data-zh="紧绷的">tense</b> and <b class="ph" data-zh="焦虑的">anxious</b>; when several deadlines piled up, she became truly <b class="ph" data-zh="焦虑疲惫、绷不住">stressed out</b>; and by the end of the quarter she felt <b class="ph" data-zh="不堪重负">overwhelmed</b> and completely <b class="ph" data-zh="倦怠、累垮 burn out">burned out</b>. "I'm <b class="ph" data-zh="谋生">making a living</b>," she told me, "but I'm not really living."</span>
+<span class="zh">她那份朝九晚五的工作从来就不是真正的朝九晚五。她几乎每晚加班，在工位上吃即食食品，直到半夜还在笔记本电脑上回邮件。她的工作量巨大：截止日期临近，她就变得紧绷焦虑；几个截止日期堆在一起，她就真的压力爆表；到了季度末，她整个人不堪重负、彻底累垮。"我是在谋生，"她告诉我，"但我并没有真正生活。"</span></p>
+
+<p class="para"><span class="en">The warning signs were impossible to ignore. She couldn't fall asleep, she snapped at her <b class="ph" data-zh="同事">colleagues</b>, and even a quiet walk no longer helped her <b class="ph" data-zh="缓解压力">relieve stress</b>. Her doctor was blunt: "You are <b class="ph" data-zh="在(过大)压力下 under pressure">under too much pressure</b>. <b class="ph" data-zh="休一段时间假 time off">Take some time off</b> before your body files the complaint for you." So Maya <b class="ph" data-zh="申请休假 apply for leave">applied for two weeks' leave</b>, and for the first time in years she allowed herself to dream about a real <b class="ph" data-zh="家庭度假">family holiday</b> — not a weekend <b class="ph" data-zh="宅度假">staycation</b> at home, but a proper trip to the sea.</span>
+<span class="zh">警告信号已无法忽视：她睡不着觉，动辄冲同事发火，连安静的散步也无法再帮她缓解压力。医生说得很直白："你压力太大了。趁身体还没替你'投诉'，赶紧休段时间假吧。"于是玛雅申请了两周的假，多年来第一次让自己梦想一场真正的家庭度假——不是周末在家宅度假，而是一场像样的海边之旅。</span></p>
+
+<p class="para"><span class="en">Escaping the city, of course, had its own price. She left home in the middle of <b class="ph" data-zh="高峰时段">rush hour</b>, and the traffic was already <b class="ph" data-zh="(车)一辆贴一辆">bumper-to-bumper</b>; a minor <b class="ph" data-zh="事故">accident</b> on the ring road had turned the morning <b class="ph" data-zh="通勤">commute</b> into total <b class="ph" data-zh="完全堵死">gridlock</b>. She finally reached the airport, exhausted — only to hear that <b class="ph" data-zh="极冷的">freezing</b> weather had <b class="ph" data-zh="使滞留(新闻高频词)">stranded</b> hundreds of passengers overnight. But when her plane finally took off, the clouds began to <b class="ph" data-zh="(天气)放晴">clear up</b>. She landed in the sunny south, where the air was <b class="ph" data-zh="温和的(不冷不热)">mild</b>, a light <b class="ph" data-zh="毛毛细雨">drizzle</b> hung over the mountains, and a soft <b class="ph" data-zh="微风">breeze</b> followed her all the way to the hotel.</span>
+<span class="zh">当然，逃离城市也有它的代价。她在高峰时段出门，路上早已车挨着车；环线上一场小事故把早高峰通勤变成了彻底的僵局。她疲惫地赶到机场，却听到广播说严寒天气已让数百名乘客滞留过夜。不过当飞机终于起飞，云层渐渐放晴。她降落在阳光明媚的南方：那里空气温和，山间飘着毛毛细雨，一路伴随她到酒店的，还有轻柔的微风。</span></p>
+
+<p class="para"><span class="en">That trip changed her. She swam in the sea, hiked in the hills, and <b class="ph" data-zh="小睡(白天)">took a nap</b> every afternoon. She learned to <b class="ph" data-zh="放松、松弛">unwind</b> without feeling guilty, and discovered that laughing with strangers during <b class="ph" data-zh="酒吧饮品打折时段">happy hour</b> could <b class="ph" data-zh="发泄、减压">blow off steam</b> better than any app. Regular exercise <b class="ph" data-zh="使恢复活力 revitalize">revitalized</b> her body; slow, unhurried mornings <b class="ph" data-zh="充电回血">recharged her batteries</b>. By the time she flew home, she felt entirely <b class="ph" data-zh="无压力的">stress-free</b>.</span>
+<span class="zh">那次旅行改变了她。她下海游泳、上山徒步，每天午后小睡一会儿。她学会了不带负罪感地放松，还发现和陌生人在酒吧特价时段大笑一场，比任何软件都能发泄减压。规律运动让她的身体恢复了活力；慢悠悠的清晨给她重新充了电。等飞回家时，她整个人毫无压力，焕然一新。</span></p>
+
+<p class="para"><span class="en">Nowadays Maya works as a <b class="ph" data-zh="自由职业者">freelancer</b>. Last winter, when the company <b class="ph" data-zh="裁员 lay off">laid off</b> half her department, her former colleagues escaped through <b class="ph" data-zh="跳槽">job-hopping</b>; Maya chose a third road and quit for good. She earns much less now — her old teammates tease her that she used to make big bucks and now works for <b class="ph" data-zh="一小笔钱(与big bucks反义)">chicken feed</b> — but she finally has a real <b class="ph" data-zh="工作与生活的平衡">work-life balance</b>. She has time to <b class="ph" data-zh="和朋友出去玩">hang out with friends</b>, to <b class="ph" data-zh="追剧">binge-watch</b> her favorite shows, to enjoy proper <b class="ph" data-zh="属于自己的时间">me time</b>, and to visit our uncle, who <b class="ph" data-zh="退休">retired</b> last spring and now teaches <b class="ph" data-zh="冥想">meditation</b> in the park. "Working too much might make you wealthy," she says, "but balance gives you the greatest wealth of all — good health. No <b class="ph" data-zh="升职 promotion">promotion</b> is worth <b class="ph" data-zh="累垮(反)">burning out</b> for."</span>
+<span class="zh">如今玛雅做自由职业。去年冬天公司裁掉了她部门一半的人，前同事们纷纷靠跳槽脱身，玛雅则选了第三条路：彻底辞职。她现在挣得少多了——老同事打趣说，她从赚大钱变成了挣"鸡食钱"——但她终于拥有了真正的工作与生活的平衡。她有时间和朋友出去玩，追喜欢的剧，享受属于自己的时间，还能去看望去年春天退休、如今在公园教冥想的舅舅。"工作太多也许让人富有，"她说，"但平衡给你最大的财富——健康。任何升职都不值得把自己累垮。"</span></p>
+
+<p class="para"><span class="en">Will she ever go back to the <b class="ph" data-zh="日常苦差、单调工作">daily grind</b> of corporate life? "Never say never," she laughed when I asked. "But if I do, it will be on my terms. When the right chance comes along, I'll <b class="ph" data-zh="抓住机会">grab the opportunity</b> — after checking, of course, that it won't bury me in deadlines again. Until then, I'm <b class="ph" data-zh="放轻松 take it easy">taking it easy</b>. Life is too short to spend it stressed out."</span>
+<span class="zh">她还会回到职场的日常苦差中去吗？"永远别说永远，"被问到时她笑了，"但如果回去，那也得按我的条件来。合适的机会一旦出现，我会抓住它——当然，得先确认它不会再次把我埋进截止日期堆里。在那之前，我悠着点来。人生苦短，别把时间都耗在焦虑崩溃上。"</span></p>
+
+<details class="plist"><summary>📋 短语清单（遮住右列自检 · 点击展开/收起）</summary>
+<table><tr><th>短语</th><th>释义</th><th>话题</th></tr>
+<tr><td class="p">big bucks</td><td>一大笔钱</td><td class="t">01</td></tr>
+<tr><td class="p">tech giant</td><td>科技巨头</td><td class="t">07</td></tr>
+<tr><td class="p">get promoted</td><td>升职</td><td class="t">01</td></tr>
+<tr><td class="p">get a raise</td><td>涨薪</td><td class="t">01</td></tr>
+<tr><td class="p">climb the corporate ladder</td><td>攀登职场阶梯</td><td class="t">01</td></tr>
+<tr><td class="p">top dog</td><td>一把手、大人物</td><td class="t">01</td></tr>
+<tr><td class="p">workaholic</td><td>工作狂</td><td class="t">01</td></tr>
+<tr><td class="p">the rat race</td><td>激烈的都市竞争</td><td class="t">01</td></tr>
+<tr><td class="p">nine-to-five</td><td>朝九晚五</td><td class="t">01</td></tr>
+<tr><td class="p">work overtime</td><td>加班</td><td class="t">01</td></tr>
+<tr><td class="p">ready-to-eat</td><td>即食的</td><td class="t">03</td></tr>
+<tr><td class="p">laptop</td><td>笔记本电脑</td><td class="t">06</td></tr>
+<tr><td class="p">workload</td><td>工作量</td><td class="t">02</td></tr>
+<tr><td class="p">deadline</td><td>截止日期</td><td class="t">02</td></tr>
+<tr><td class="p">tense</td><td>紧绷的</td><td class="t">02</td></tr>
+<tr><td class="p">anxious</td><td>焦虑的</td><td class="t">02</td></tr>
+<tr><td class="p">stressed out</td><td>焦虑疲惫、绷不住</td><td class="t">02</td></tr>
+<tr><td class="p">overwhelmed</td><td>不堪重负</td><td class="t">02</td></tr>
+<tr><td class="p">burn out / burned out</td><td>累垮、倦怠</td><td class="t">02</td></tr>
+<tr><td class="p">make a living</td><td>谋生</td><td class="t">01</td></tr>
+<tr><td class="p">colleague</td><td>同事</td><td class="t">01</td></tr>
+<tr><td class="p">relieve stress</td><td>缓解压力</td><td class="t">02</td></tr>
+<tr><td class="p">under (too much) pressure</td><td>在（过大）压力下</td><td class="t">02</td></tr>
+<tr><td class="p">take some time off</td><td>休一段时间假</td><td class="t">15</td></tr>
+<tr><td class="p">apply for leave</td><td>申请休假</td><td class="t">15</td></tr>
+<tr><td class="p">family holiday</td><td>家庭度假</td><td class="t">15</td></tr>
+<tr><td class="p">staycation</td><td>宅度假</td><td class="t">15</td></tr>
+<tr><td class="p">rush hour</td><td>高峰时段</td><td class="t">08</td></tr>
+<tr><td class="p">bumper-to-bumper</td><td>（车）一辆贴一辆</td><td class="t">08</td></tr>
+<tr><td class="p">accident</td><td>事故</td><td class="t">08</td></tr>
+<tr><td class="p">commute</td><td>通勤</td><td class="t">08</td></tr>
+<tr><td class="p">gridlock</td><td>完全堵死</td><td class="t">08</td></tr>
+<tr><td class="p">freezing</td><td>极冷的（低于冰点）</td><td class="t">16</td></tr>
+<tr><td class="p">strand</td><td>使滞留（新闻高频）</td><td class="t">16</td></tr>
+<tr><td class="p">clear up</td><td>（天气）放晴</td><td class="t">16</td></tr>
+<tr><td class="p">mild</td><td>温和的（不冷不热）</td><td class="t">16</td></tr>
+<tr><td class="p">drizzle</td><td>毛毛细雨</td><td class="t">16</td></tr>
+<tr><td class="p">breeze</td><td>微风</td><td class="t">16</td></tr>
+<tr><td class="p">take a nap</td><td>小睡（尤指白天）</td><td class="t">02</td></tr>
+<tr><td class="p">unwind</td><td>放松、松弛</td><td class="t">11</td></tr>
+<tr><td class="p">happy hour</td><td>酒吧饮品打折时段</td><td class="t">01</td></tr>
+<tr><td class="p">blow off steam</td><td>发泄、减压</td><td class="t">02</td></tr>
+<tr><td class="p">revitalize</td><td>使恢复活力</td><td class="t">11</td></tr>
+<tr><td class="p">recharge your batteries</td><td>充电回血</td><td class="t">15</td></tr>
+<tr><td class="p">stress-free</td><td>无压力的</td><td class="t">11</td></tr>
+<tr><td class="p">freelancer</td><td>自由职业者</td><td class="t">01</td></tr>
+<tr><td class="p">lay off</td><td>裁员</td><td class="t">01</td></tr>
+<tr><td class="p">job-hopping</td><td>跳槽</td><td class="t">01</td></tr>
+<tr><td class="p">chicken feed</td><td>一小笔钱（↔big bucks）</td><td class="t">01</td></tr>
+<tr><td class="p">work-life balance</td><td>工作与生活的平衡</td><td class="t">11</td></tr>
+<tr><td class="p">hang out with friends</td><td>和朋友出去玩</td><td class="t">11</td></tr>
+<tr><td class="p">binge-watch</td><td>追剧</td><td class="t">11</td></tr>
+<tr><td class="p">me time</td><td>属于自己的时间</td><td class="t">11</td></tr>
+<tr><td class="p">retire</td><td>退休</td><td class="t">02</td></tr>
+<tr><td class="p">meditation</td><td>冥想</td><td class="t">05</td></tr>
+<tr><td class="p">daily grind</td><td>日常苦差、单调工作</td><td class="t">01</td></tr>
+<tr><td class="p">grab the opportunity</td><td>抓住机会</td><td class="t">14</td></tr>
+<tr><td class="p">take it easy</td><td>放轻松</td><td class="t">11</td></tr>
+</table></details>
+</div>
+</article>
+
+<!-- ═══════════════ ARTICLE 2 ═══════════════ -->
+<article class="story" id="a2">
+<header>
+  <span class="num">2</span>
+  <h2>A Healthier Me<small>更健康的我 · 第一人称记叙 · 约480词</small></h2>
+  <span class="pc"></span>
+  <div class="badges">
+    <span class="badge">10 习惯</span><span class="badge">04 饮食</span><span class="badge">03 外食</span>
+    <span class="badge">05 另类疗法</span><span class="badge">17 园艺</span>
+  </div>
+</header>
+<div class="story-body">
+
+<p class="para"><span class="en">At last year's health check, my doctor looked at me over her glasses and gave me a friendly warning: I had <b class="ph" data-zh="增重、长胖">put on weight</b>, my blood pressure was creeping up, and years of poor <b class="ph" data-zh="营养">nutrition</b> were starting to show. Like many office workers, I had slipped into one bad habit after another — and as the saying goes, <b class="ph" data-zh="旧习难改">bad habits die hard</b>.</span>
+<span class="zh">去年体检时，医生扶了扶眼镜，友好地警告我：我长胖了，血压在悄悄攀升，多年糟糕的营养状况开始显形。像很多上班族一样，我一个个地滑进了坏习惯里——俗话说得好，旧习难改。</span></p>
+
+<p class="para"><span class="en">Let me be honest about my old <b class="ph" data-zh="例行事项、日常安排">routine</b>. I had <b class="ph" data-zh="有做…的习惯 have a habit of">a habit of</b> <b class="ph" data-zh="不吃(正餐) skip meals">skipping breakfast</b>, <b class="ph" data-zh="随便吃点">grabbing a bite</b> of <b class="ph" data-zh="垃圾食品">junk food</b> at noon, and comforting myself with <b class="ph" data-zh="治愈系食物">comfort food</b> at midnight. I lived on <b class="ph" data-zh="即食的">ready-to-eat</b> meals and <b class="ph" data-zh="加工食品">processed food</b> — salty snacks, sugary drinks, whatever was fastest. Whenever a <b class="ph" data-zh="(对食物的)强烈渴望">craving</b> struck, I simply gave in to it; my friends joked that I could <b class="ph" data-zh="吃得很多">eat like a horse</b> at midnight yet <b class="ph" data-zh="吃得很少">eat like a bird</b> at proper meals. Not surprisingly, I kept putting on weight, and my <b class="ph" data-zh="新陈代谢">metabolism</b> seemed to slow down every year.</span>
+<span class="zh">坦白说说我的旧日常吧：我有不吃早餐的习惯，中午随便扒两口垃圾食品，深夜再用"治愈系美食"安慰自己。我靠即食食品和加工食品过活——咸零食、含糖饮料，什么快吃什么。食欲一来我就缴械投降；朋友们笑我半夜能"吃得像匹马"，正经吃饭却"吃得像只鸟"。不出所料，我体重一路上涨，新陈代谢仿佛一年慢过一年。</span></p>
+
+<p class="para"><span class="en">So I made up my mind to <b class="ph" data-zh="戒掉习惯 break the habit">break those habits</b> for good. I didn't <b class="ph" data-zh="突然彻底戒">quit cold turkey</b> — small steps last longer — but I <b class="ph" data-zh="减少摄入">cut down on</b> sugar and salt, <b class="ph" data-zh="戒掉 give up">gave up</b> fried food entirely, and <b class="ph" data-zh="养成…习惯 get into the habit of">got into the habit of</b> cooking for myself. Within a month, a <b class="ph" data-zh="均衡饮食">balanced diet</b> full of vegetables and fruit, plus plenty of water, had become part of my <b class="ph" data-zh="日常惯例(按顺序)">daily routine</b>; three months later it felt like <b class="ph" data-zh="第二天性">second nature</b>. It took real <b class="ph" data-zh="意志力">willpower</b> at the beginning, but I <b class="ph" data-zh="坚持 stick to">stuck to</b> it, and <b class="ph" data-zh="长远来看">in the long run</b> the healthy choice became the easy one.</span>
+<span class="zh">于是我下定决心，永远戒掉这些习惯。我没有"火鸡式"骤戒——小步子才走得远——但我减少了糖和盐的摄入，彻底告别油炸食品，养成了自己做饭的习惯。不出一个月，充满蔬果的均衡饮食加上充足的饮水，就成了我日常的一部分；三个月后，这简直成了我的第二天性。起初确实需要意志力，但我坚持了下来——长远看，健康的选择变成了容易的选择。</span></p>
+
+<p class="para"><span class="en"><b class="ph" data-zh="出去吃饭">Eating out</b> was my biggest <b class="ph" data-zh="障碍">obstacle</b>, because my friends and I all love restaurants. But we have learned to order wisely. We <b class="ph" data-zh="订位 book/reserve a table">book a table</b> in advance instead of queuing; we never order too much, because we hate to <b class="ph" data-zh="浪费食物">waste food</b>; and although my boyfriend loves announcing "<b class="ph" data-zh="我请客">My treat!</b>", we usually <b class="ph" data-zh="AA制、各付各的">go Dutch</b> and <b class="ph" data-zh="分摊账单">split the bill</b> to keep things fair. When the service is excellent, we leave a generous <b class="ph" data-zh="小费">tip</b>; when we are too tired to go out, we simply order <b class="ph" data-zh="外卖(美 takeout)">takeaway</b>. Yes, I still have <b class="ph" data-zh="爱吃甜食">a sweet tooth</b> — but nowadays I satisfy it with fruit instead of cake. Little by little, eating well stopped being a <b class="ph" data-zh="节食 go on a diet">diet</b> and became a lifestyle.</span>
+<span class="zh">出去吃饭是我最大的障碍，因为我和朋友们都是餐馆爱好者。但我们学会了聪明点餐：提前订位而不去排队；绝不点多，因为我们讨厌浪费食物；虽然男朋友喜欢宣布"我请客！"，我们通常还是AA制、分摊账单，这样才公平。服务出色时，我们会给丰厚的小费；太累不想出门时，就直接点外卖。没错，我仍然爱吃甜食——但如今我用水果而不是蛋糕来满足它。一点一点地，好好吃饭不再是"节食"，而成了一种生活方式。</span></p>
+
+<p class="para"><span class="en">Movement came next — and, surprisingly, so did <b class="ph" data-zh="另类/替代疗法">alternative medicine</b>. I <b class="ph" data-zh="对…持怀疑态度(E2/H2句型)">was skeptical of</b> it at first, wondering whether the benefits were just the <b class="ph" data-zh="安慰剂效应">placebo effect</b>. But my grandmother <b class="ph" data-zh="深信 swear by">swears by</b> <b class="ph" data-zh="草药疗法">herbal remedies</b> for colds, so I kept an open mind. Now I practice <b class="ph" data-zh="瑜伽">yoga</b> every morning to keep my body and mind in <b class="ph" data-zh="平衡">equilibrium</b>; I go for a <b class="ph" data-zh="按摩">massage</b> once a month to relieve stress; and I have even tried <b class="ph" data-zh="针灸">acupuncture</b> for my stiff shoulder. Unlike many modern drugs, these gentle therapies have almost no <b class="ph" data-zh="副作用">side effects</b>, and they seem to <b class="ph" data-zh="缓解">alleviate</b> my <b class="ph" data-zh="慢性的">chronic</b> neck pain better than painkillers. My doctor approves of all this, by the way. As she likes to say, "<b class="ph" data-zh="预防胜于治疗">Prevention is better than cure</b> — and <b class="ph" data-zh="睡眠充足是最好的药">getting enough sleep is the best medicine</b>."</span>
+<span class="zh">运动是第二步——出乎意料的是，另类疗法也来了。起初我对它持怀疑态度，怀疑那些效果不过是安慰剂效应。但我祖母对治感冒的草药疗法深信不疑，于是我保持着开放的心态。现在，我每天早晨练瑜伽，让身心保持平衡；每月去做一次按摩缓解压力；甚至为僵硬的肩膀试过针灸。和许多现代药物不同，这些温和的疗法几乎没有副作用，而且缓解我的慢性脖子疼比止痛药还管用。顺便说一句，医生很赞成这些。正如她爱说的："预防胜于治疗——而充足的睡眠是最好的药。"</span></p>
+
+<p class="para"><span class="en">The happiest discovery, though, was <b class="ph" data-zh="园艺">gardening</b>. Last spring I started <b class="ph" data-zh="自种蔬菜">growing my own vegetables</b> on the balcony — tomatoes, peppers, and a pot of strawberries. At first it was a constant <b class="ph" data-zh="与…作斗争 battle against">battle against</b> <b class="ph" data-zh="杂草">weeds</b>; I had to learn when to <b class="ph" data-zh="给植物浇水">water the plants</b>, how to <b class="ph" data-zh="修枝(促生长)">prune</b> the tomatoes, and how to add <b class="ph" data-zh="肥料">fertilizer</b> to the <b class="ph" data-zh="土壤">soil</b> without burning the <b class="ph" data-zh="幼苗">seedlings</b>. My grandfather, whose <b class="ph" data-zh="花坛">flowerbed</b> is the pride of the whole street, still <b class="ph" data-zh="割草坪 mow the lawn">mows the lawn</b> every Sunday and <b class="ph" data-zh="修剪树篱(剪整齐)">trims the hedge</b> twice a summer. My friends say I <b class="ph" data-zh="有园艺天赋(英 green fingers)">have a green thumb</b>; honestly, anyone can do it. Gardening is <b class="ph" data-zh="治愈的">therapeutic</b> and deeply <b class="ph" data-zh="有成就感的">rewarding</b> — watching a seedling push through the soil feels <b class="ph" data-zh="难以置信(H2串)">beyond belief</b>, and it <b class="ph" data-zh="使恢复活力">revitalizes</b> me more than any <b class="ph" data-zh="保健品">supplement</b> could.</span>
+<span class="zh">不过最令人欣喜的发现是园艺。去年春天，我开始在自家阳台种菜——番茄、辣椒，还有一盆草莓。起初这是一场与杂草的持久战；我得学会什么时候浇水、怎么给番茄修枝、怎么往土里施肥又不烧坏幼苗。我祖父的花坛是整条街的骄傲，他至今每周日割草坪，每夏天修剪两次树篱。朋友们说我有"绿手指"（园艺天赋）；说实话，谁都能做到。园艺很治愈，也极有成就感——看着幼苗破土而出简直难以置信，它比任何保健品都更能让我恢复活力。</span></p>
+
+<p class="para"><span class="en">One year later, I have <b class="ph" data-zh="瘦了很多">lost a lot of weight</b>, my doctor is delighted, and I feel stronger than I have in years. My secret is not a strict <b class="ph" data-zh="(饮食)养生计划">dietary regimen</b>, and it is certainly not magic pills. It is simply this: good habits, good <b class="ph" data-zh="滋养、养料">nourishment</b>, daily movement — and a small patch of green of my own. Health, it turns out, is not something you buy. It is something you grow.</span>
+<span class="zh">一年后的今天，我瘦了很多，医生很高兴，我也觉得多年来从未如此有活力。我的秘诀不是严格的饮食养生法，更不是什么神奇药丸，只有这几样：好习惯、好的滋养、每天动一动——外加一小片属于自己的绿色。事实证明，健康不是买来的，而是种出来的。</span></p>
+
+<details class="plist"><summary>📋 短语清单（遮住右列自检 · 点击展开/收起）</summary>
+<table><tr><th>短语</th><th>释义</th><th>话题</th></tr>
+<tr><td class="p">put on weight</td><td>增重、长胖</td><td class="t">04</td></tr>
+<tr><td class="p">nutrition</td><td>营养</td><td class="t">04</td></tr>
+<tr><td class="p">bad habits die hard</td><td>旧习难改</td><td class="t">10</td></tr>
+<tr><td class="p">routine</td><td>例行事项、日常安排</td><td class="t">10</td></tr>
+<tr><td class="p">have a habit of doing</td><td>有做…的习惯</td><td class="t">10</td></tr>
+<tr><td class="p">skip meals / breakfast</td><td>不吃饭 / 不吃早餐</td><td class="t">04</td></tr>
+<tr><td class="p">grab a bite</td><td>随便吃点</td><td class="t">03</td></tr>
+<tr><td class="p">junk food</td><td>垃圾食品</td><td class="t">04</td></tr>
+<tr><td class="p">comfort food</td><td>治愈系食物</td><td class="t">04</td></tr>
+<tr><td class="p">ready-to-eat</td><td>即食的</td><td class="t">03</td></tr>
+<tr><td class="p">processed food</td><td>加工食品</td><td class="t">04</td></tr>
+<tr><td class="p">craving</td><td>（对食物的）强烈渴望</td><td class="t">03</td></tr>
+<tr><td class="p">eat like a horse</td><td>吃得很多</td><td class="t">03</td></tr>
+<tr><td class="p">eat like a bird</td><td>吃得很少</td><td class="t">03</td></tr>
+<tr><td class="p">metabolism</td><td>新陈代谢</td><td class="t">04</td></tr>
+<tr><td class="p">break the habit</td><td>戒掉习惯</td><td class="t">10</td></tr>
+<tr><td class="p">quit cold turkey</td><td>突然彻底戒掉</td><td class="t">10</td></tr>
+<tr><td class="p">cut down on</td><td>减少摄入</td><td class="t">04</td></tr>
+<tr><td class="p">give up</td><td>戒掉</td><td class="t">04</td></tr>
+<tr><td class="p">get into the habit of</td><td>养成…的习惯</td><td class="t">10</td></tr>
+<tr><td class="p">balanced diet</td><td>均衡饮食</td><td class="t">04</td></tr>
+<tr><td class="p">daily routine</td><td>日常惯例</td><td class="t">10</td></tr>
+<tr><td class="p">second nature</td><td>第二天性</td><td class="t">10</td></tr>
+<tr><td class="p">willpower</td><td>意志力</td><td class="t">10</td></tr>
+<tr><td class="p">stick to</td><td>坚持</td><td class="t">10</td></tr>
+<tr><td class="p">in the long run</td><td>长远来看</td><td class="t">10</td></tr>
+<tr><td class="p">eating out</td><td>外食</td><td class="t">03</td></tr>
+<tr><td class="p">obstacle</td><td>障碍</td><td class="t">14</td></tr>
+<tr><td class="p">book a table</td><td>订位</td><td class="t">03</td></tr>
+<tr><td class="p">waste food</td><td>浪费食物</td><td class="t">03</td></tr>
+<tr><td class="p">my treat</td><td>我请客</td><td class="t">03</td></tr>
+<tr><td class="p">go Dutch</td><td>AA制、各付各的</td><td class="t">03</td></tr>
+<tr><td class="p">split the bill</td><td>分摊账单</td><td class="t">03</td></tr>
+<tr><td class="p">tip</td><td>小费</td><td class="t">03</td></tr>
+<tr><td class="p">takeaway</td><td>外卖（美式 takeout）</td><td class="t">03</td></tr>
+<tr><td class="p">a sweet tooth</td><td>爱吃甜食</td><td class="t">03</td></tr>
+<tr><td class="p">diet</td><td>节食</td><td class="t">04</td></tr>
+<tr><td class="p">alternative medicine</td><td>另类/替代疗法</td><td class="t">05</td></tr>
+<tr><td class="p">be skeptical of</td><td>对…持怀疑态度</td><td class="t">05/24</td></tr>
+<tr><td class="p">placebo effect</td><td>安慰剂效应</td><td class="t">05</td></tr>
+<tr><td class="p">swear by</td><td>深信</td><td class="t">05</td></tr>
+<tr><td class="p">herbal remedies</td><td>草药疗法</td><td class="t">05</td></tr>
+<tr><td class="p">yoga</td><td>瑜伽</td><td class="t">05</td></tr>
+<tr><td class="p">equilibrium</td><td>平衡</td><td class="t">05</td></tr>
+<tr><td class="p">massage</td><td>按摩</td><td class="t">05</td></tr>
+<tr><td class="p">acupuncture</td><td>针灸</td><td class="t">05</td></tr>
+<tr><td class="p">side effects</td><td>副作用</td><td class="t">05</td></tr>
+<tr><td class="p">alleviate</td><td>缓解</td><td class="t">05</td></tr>
+<tr><td class="p">chronic</td><td>慢性的</td><td class="t">05</td></tr>
+<tr><td class="p">prevention is better than cure</td><td>预防胜于治疗</td><td class="t">05</td></tr>
+<tr><td class="p">gardening</td><td>园艺</td><td class="t">17</td></tr>
+<tr><td class="p">grow your own vegetables</td><td>自种蔬菜</td><td class="t">17</td></tr>
+<tr><td class="p">battle against weeds</td><td>与杂草作斗争</td><td class="t">17</td></tr>
+<tr><td class="p">water the plants</td><td>给植物浇水</td><td class="t">17</td></tr>
+<tr><td class="p">prune</td><td>修枝（为促生长）</td><td class="t">17</td></tr>
+<tr><td class="p">fertilizer</td><td>肥料</td><td class="t">17</td></tr>
+<tr><td class="p">soil</td><td>土壤</td><td class="t">17</td></tr>
+<tr><td class="p">seedling</td><td>幼苗</td><td class="t">17</td></tr>
+<tr><td class="p">flowerbed</td><td>花坛</td><td class="t">17</td></tr>
+<tr><td class="p">mow the lawn</td><td>割草坪</td><td class="t">17</td></tr>
+<tr><td class="p">trim the hedge</td><td>修剪树篱</td><td class="t">17</td></tr>
+<tr><td class="p">have a green thumb</td><td>有园艺天赋</td><td class="t">17</td></tr>
+<tr><td class="p">therapeutic</td><td>治愈的</td><td class="t">17</td></tr>
+<tr><td class="p">rewarding</td><td>有成就感的</td><td class="t">17</td></tr>
+<tr><td class="p">beyond belief</td><td>难以置信</td><td class="t">24</td></tr>
+<tr><td class="p">revitalize</td><td>使恢复活力</td><td class="t">11</td></tr>
+<tr><td class="p">supplement</td><td>保健品</td><td class="t">04</td></tr>
+<tr><td class="p">lose a lot of weight</td><td>瘦了很多</td><td class="t">04</td></tr>
+<tr><td class="p">dietary regimen</td><td>（饮食）养生计划</td><td class="t">04</td></tr>
+<tr><td class="p">nourishment</td><td>滋养、养料</td><td class="t">04</td></tr>
+</table></details>
+</div>
+</article>
+<!-- ═══════════════ ARTICLE 3 ═══════════════ -->
+<article class="story" id="a3">
+<header>
+  <span class="num">3</span>
+  <h2>The Bookworm Who Learned to Speak<small>学会开口的书虫 · 成长记叙 · 约530词</small></h2>
+  <span class="pc"></span>
+  <div class="badges">
+    <span class="badge">12 性格</span><span class="badge">13 阅读</span><span class="badge">25 恐惧</span>
+    <span class="badge">23 幽默</span><span class="badge">14 梦想目标</span>
+  </div>
+</header>
+<div class="story-body">
+
+<p class="para"><span class="en">If you had met me in college, you would have seen a typical <b class="ph" data-zh="书虫、爱读书的人">bookworm</b>: quiet, <b class="ph" data-zh="内向的">introverted</b>, and more than a little <b class="ph" data-zh="内敛的、矜持的">reserved</b>. My <b class="ph" data-zh="性情、脾气">disposition</b> was sweet but shy — or so my friends kindly put it. I was happiest alone in the library with <b class="ph" data-zh="让人爱不释手的书">a page-turner</b>; at parties I hid in the corner; in class I never raised my hand. I was the opposite of <b class="ph" data-zh="社交达人">a people person</b>. And as for speaking in public — just the thought of it gave me <b class="ph" data-zh="心里发慌(紧张)">butterflies in my stomach</b>.</span>
+<span class="zh">如果你见过大学时代的我，会看到一个典型的书虫：安静、内向，还相当闷。用朋友们客气的话说，我"性情温和但害羞"。独自在图书馆里捧着一本让人爱不释手的书，是我最快乐的时刻；派对上我躲在角落，课堂上从不举手——妥妥的社交达人的反面。至于公开演讲——光是想想，我心里就发慌。</span></p>
+
+<p class="para"><span class="en">Books were my refuge. I could <b class="ph" data-zh="如饥似渴地读">devour</b> three novels a week, and once I started a good thriller, I simply <b class="ph" data-zh="爱不释手">couldn't put it down</b>. I loved <b class="ph" data-zh="沉浸在书中">losing myself in a book</b> on rainy afternoons, following every twist of the <b class="ph" data-zh="情节">plot</b>. <b class="ph" data-zh="阅读开阔视野、丰富词汇">Reading broadened my horizons and enriched my vocabulary</b> — but it was a private joy. I knew my favorite characters' <b class="ph" data-zh="优点与缺点">strengths and weaknesses</b> by heart, yet I had no idea how to talk to actual people.</span>
+<span class="zh">书是我的避难所。我一周能如饥似渴地读完三本小说，一旦翻开一本好看的惊悚小说，就根本放不下来。雨天午后，我最爱沉浸在书里，追随情节的每一次转折。阅读开阔了我的视野、丰富了我的词汇——但那只是一个人的快乐。我能背出最爱角色的种种优缺点，却不知道该怎么和真人交谈。</span></p>
+
+<p class="para"><span class="en">Then, in my final year, my dream job appeared on a company website, and I <b class="ph" data-zh="做白日梦">daydreamed</b> about it for weeks. But there was an <b class="ph" data-zh="障碍">obstacle</b> I could not ignore: the final interview required a ten-minute speech in English. For someone with <b class="ph" data-zh="…恐惧症 phobia">a phobia of</b> <b class="ph" data-zh="公开演讲">public speaking</b>, that felt like being asked to jump off a cliff. Whenever I imagined the interview, <b class="ph" data-zh="恐惧被加剧 heighten">my fear was heightened</b>: my <b class="ph" data-zh="心跳加速">heart raced</b>, my <b class="ph" data-zh="手心出汗">hands got sweaty</b>, and I would simply <b class="ph" data-zh="吓呆、僵住">freeze</b>. I was <b class="ph" data-zh="吓僵的(scare高分替换)">petrified</b> — and, worse, tempted to give up before even trying.</span>
+<span class="zh">大四那年，我梦想的工作出现在公司网站上，我为此做了好几周的白日梦。但有一个无法忽视的障碍：终面要求用英语做十分钟演讲。对一个有演讲恐惧症的人来说，这简直像被要求跳崖。每当想象面试现场，我的恐惧就会被放大：心跳加速、手心出汗、整个人僵在原地。我吓僵了——更糟的是，我还没尝试就想放弃。</span></p>
+
+<p class="para"><span class="en">My roommate Lily refused to let me. She is <b class="ph" data-zh="外向的">outgoing</b> and <b class="ph" data-zh="随和的">easygoing</b>, <b class="ph" data-zh="相处融洽">gets along well with</b> almost everyone, and has a fabulous <b class="ph" data-zh="幽默感">sense of humor</b> — in short, everything I was not. "Don't <b class="ph" data-zh="以表判断人的品格">judge a person's character</b> by how loud they are," she said, "and don't let fear <b class="ph" data-zh="妨碍、挡道">get in the way</b> of your dream. <b class="ph" data-zh="走出舒适区">Getting out of your comfort zone</b> is the first step to growth. So let's <b class="ph" data-zh="设定目标">set a goal</b>, and you'd better <b class="ph" data-zh="埋头苦干">buckle down</b>."</span>
+<span class="zh">我的室友莉莉不允许我这样做。她外向又随和，几乎和所有人都处得来，还有绝佳的幽默感——总之，是我的反面。"不要用说话声音大小来判断一个人的品格，"她说，"也别让恐惧挡了梦想的路。走出舒适区是成长的第一步。来，我们定个目标，然后你就埋头苦干吧。"</span></p>
+
+<p class="para"><span class="en">So I did. I practiced in front of the mirror, recorded myself, and joined the campus speaking club. My first attempt was <b class="ph" data-zh="极好笑的">hilarious</b> — though not in the way I had hoped. My voice shook so badly that the audience would <b class="ph" data-zh="突然大笑">burst out laughing</b> at the wrong moments; once I even tried to <b class="ph" data-zh="讲笑话">crack a joke</b> to relax, and it failed so completely that, for the first time, people laughed for the right reason. I wanted to disappear. "Every <b class="ph" data-zh="挫折">setback</b> is a chance to learn something new," Lily said, refusing to let me quit. "<b class="ph" data-zh="坚持不懈 persevere">Persevere</b>. <b class="ph" data-zh="成功不会一夜之间到来">Success doesn't come overnight</b> — it takes patience."</span>
+<span class="zh">于是我照做了。我对着镜子练习、给自己录音，还加入了校园演讲社。我的第一次尝试"好笑极了"——虽然不是我希望的那种好笑。我声音抖得厉害，观众总在不该笑的点上哄堂大笑；有一次我甚至想讲个笑话缓和气氛，结果败得如此彻底，以至于大家头一回笑对了地方。我真想找个地缝钻进去。"每一次挫折都是学到新东西的机会，"莉莉不许我放弃，"坚持下去。成功不会一夜之间到来——它需要耐心。"</span></p>
+
+<p class="para"><span class="en">Little by little, it worked. I learned to slow down, to breathe, to smile at the audience instead of staring at my notes. I discovered that a little <b class="ph" data-zh="机智(witty 机智风趣的)">wit</b> breaks the ice better than perfect grammar, and that listeners forgive everything except insincerity. Almost without noticing, I built a quiet <b class="ph" data-zh="内在力量">inner strength</b> — the kind that helps you <b class="ph" data-zh="应对失败与挫折 deal with">deal with failures and setbacks</b> long after the fear itself has faded. Speech by speech, what once terrified me became familiar; speech by speech, it even became fun.</span>
+<span class="zh">一点一点地，起作用了。我学会了放慢语速、深呼吸、对听众微笑，而不是死盯讲稿。我发现一点机智比完美的语法更能打破僵局，而听众可以原谅一切，唯独不能原谅不真诚。几乎在不知不觉间，我攒起了一种安静的内在力量——即使恐惧早已消退，它仍帮你应对失败与挫折。一场演讲又一场演讲，曾经吓坏我的东西变得熟悉起来，甚至开始变得有趣。</span></p>
+
+<p class="para"><span class="en">On the day of the interview I was still nervous, but this time I knew how to <b class="ph" data-zh="应对(cope with必带宾语)">cope with</b> it: three deep breaths, a smile, and a small joke whispered to myself. I walked in and delivered the best speech of my life. Afterwards, one of the interviewers leaned forward and said, "You know, you have a quiet <b class="ph" data-zh="感召力、个人魅力(不只是外貌!)">charisma</b>. Don't ever let anyone talk over you." I <b class="ph" data-zh="抓住机会">grabbed the opportunity</b> with both hands, and I got the job.</span>
+<span class="zh">面试那天我依然紧张，但这一次我知道怎么应对：三次深呼吸，一个微笑，再悄悄给自己讲个小笑话。我走进考场，做了一生中最好的演讲。结束后，一位面试官凑向前说："你知道吗，你有一种安静的感召力。别让任何人打断你。"我双手抓住了这个机会——我拿到了那份工作。</span></p>
+
+<p class="para"><span class="en">Three years on, I give presentations every month, and I even <b class="ph" data-zh="讲笑话 crack jokes">crack jokes</b> in meetings — carefully, though, because nobody wants to be <b class="ph" data-zh="取笑">made fun of</b>, and humor that wounds is not humor at all. I am still an introvert; that part of my <b class="ph" data-zh="品格、性格">character</b> will never change, and I no longer want it to. If you asked me what those two years taught me, I would say this: <b class="ph" data-zh="敢于梦想，从小处着手">dream big, but start small</b>; <b class="ph" data-zh="朝…努力">work towards</b> your goal a little every day; and remember that a <b class="ph" data-zh="无所畏惧的(brave高分替换)">dauntless</b> person is not someone who feels no fear, but someone who keeps walking on trembling knees. Am I a dreamer or a doer now? Both — I daydream on Sunday, and buckle down from Monday.</span>
+<span class="zh">三年过去了，我每个月都要做展示，甚至开会时还会讲讲笑话——不过会很小心，因为没有人想被取笑，伤人的幽默根本不算幽默。我依然是内向者；我性格的这一部分永远不会变，我也不再想改变它。如果你问我那两年学到了什么，我会说：敢于梦想，但从小处着手；每天朝目标迈一小步；还要记住，无畏的人不是毫无恐惧，而是膝盖发抖仍继续前行的人。那我现在是空想家还是行动派？都是——周日做白日梦，周一开始埋头苦干。</span></p>
+
+<details class="plist"><summary>📋 短语清单（遮住右列自检 · 点击展开/收起）</summary>
+<table><tr><th>短语</th><th>释义</th><th>话题</th></tr>
+<tr><td class="p">bookworm</td><td>书虫、爱读书的人</td><td class="t">13</td></tr>
+<tr><td class="p">introverted</td><td>内向的</td><td class="t">12</td></tr>
+<tr><td class="p">reserved</td><td>内敛的、矜持的</td><td class="t">12</td></tr>
+<tr><td class="p">disposition</td><td>性情、脾气</td><td class="t">12</td></tr>
+<tr><td class="p">a page-turner</td><td>让人爱不释手的书</td><td class="t">13</td></tr>
+<tr><td class="p">a people person</td><td>社交达人</td><td class="t">12</td></tr>
+<tr><td class="p">butterflies in my stomach</td><td>心里发慌</td><td class="t">25</td></tr>
+<tr><td class="p">devour</td><td>如饥似渴地读</td><td class="t">13</td></tr>
+<tr><td class="p">can't put it down</td><td>爱不释手</td><td class="t">13</td></tr>
+<tr><td class="p">lose yourself in a book</td><td>沉浸在书中</td><td class="t">13</td></tr>
+<tr><td class="p">plot</td><td>情节</td><td class="t">13</td></tr>
+<tr><td class="p">broaden your horizons</td><td>开阔视野</td><td class="t">13</td></tr>
+<tr><td class="p">enrich your vocabulary</td><td>丰富词汇</td><td class="t">13</td></tr>
+<tr><td class="p">strengths and weaknesses</td><td>优点与缺点</td><td class="t">12</td></tr>
+<tr><td class="p">daydream</td><td>做白日梦</td><td class="t">14</td></tr>
+<tr><td class="p">obstacle</td><td>障碍</td><td class="t">14</td></tr>
+<tr><td class="p">a phobia of public speaking</td><td>演讲恐惧症</td><td class="t">25</td></tr>
+<tr><td class="p">my fear was heightened</td><td>恐惧被加剧</td><td class="t">25</td></tr>
+<tr><td class="p">my heart raced</td><td>心跳加速</td><td class="t">25</td></tr>
+<tr><td class="p">hands got sweaty</td><td>手心出汗</td><td class="t">25</td></tr>
+<tr><td class="p">freeze</td><td>吓呆、僵住</td><td class="t">25</td></tr>
+<tr><td class="p">petrified</td><td>吓僵的（高分词）</td><td class="t">25</td></tr>
+<tr><td class="p">outgoing</td><td>外向的</td><td class="t">12</td></tr>
+<tr><td class="p">easygoing</td><td>随和的</td><td class="t">12</td></tr>
+<tr><td class="p">get along well with</td><td>相处融洽</td><td class="t">12</td></tr>
+<tr><td class="p">sense of humor</td><td>幽默感</td><td class="t">23</td></tr>
+<tr><td class="p">judge a person's character</td><td>判断一个人的品格</td><td class="t">12</td></tr>
+<tr><td class="p">get in the way</td><td>妨碍、挡道</td><td class="t">14</td></tr>
+<tr><td class="p">get out of your comfort zone</td><td>走出舒适区</td><td class="t">25</td></tr>
+<tr><td class="p">set a goal</td><td>设定目标</td><td class="t">14</td></tr>
+<tr><td class="p">buckle down</td><td>埋头苦干</td><td class="t">14</td></tr>
+<tr><td class="p">hilarious</td><td>极好笑的</td><td class="t">23</td></tr>
+<tr><td class="p">burst out laughing</td><td>突然大笑</td><td class="t">23</td></tr>
+<tr><td class="p">crack a joke</td><td>讲笑话</td><td class="t">23</td></tr>
+<tr><td class="p">setback</td><td>挫折</td><td class="t">14</td></tr>
+<tr><td class="p">persevere</td><td>坚持不懈</td><td class="t">14</td></tr>
+<tr><td class="p">success doesn't come overnight</td><td>成功非一夜之功</td><td class="t">14</td></tr>
+<tr><td class="p">wit / witty</td><td>机智 / 机智风趣的</td><td class="t">23</td></tr>
+<tr><td class="p">inner strength</td><td>内在力量</td><td class="t">25</td></tr>
+<tr><td class="p">deal with failures and setbacks</td><td>应对失败与挫折</td><td class="t">25</td></tr>
+<tr><td class="p">cope with</td><td>应对（必须带宾语）</td><td class="t">25</td></tr>
+<tr><td class="p">charisma</td><td>感召力、个人魅力</td><td class="t">12</td></tr>
+<tr><td class="p">grab the opportunity</td><td>抓住机会</td><td class="t">14</td></tr>
+<tr><td class="p">make fun of</td><td>取笑</td><td class="t">23</td></tr>
+<tr><td class="p">character</td><td>品格、性格</td><td class="t">12</td></tr>
+<tr><td class="p">dream big, but start small</td><td>敢想，从小处着手</td><td class="t">14</td></tr>
+<tr><td class="p">work towards</td><td>朝…努力</td><td class="t">14</td></tr>
+<tr><td class="p">dauntless</td><td>无所畏惧的（↔brave）</td><td class="t">12</td></tr>
+<tr><td class="p">a dreamer or a doer</td><td>空想家还是行动派</td><td class="t">14</td></tr>
+</table></details>
+</div>
+</article>
+<!-- ═══════════════ ARTICLE 4 ═══════════════ -->
+<article class="story" id="a4">
+<header>
+  <span class="num">4</span>
+  <h2>Breaking New Ground in the Digital Age<small>数字时代的开拓 · 议论文 · 约540词</small></h2>
+  <span class="pc"></span>
+  <div class="badges">
+    <span class="badge">06 电脑网络</span><span class="badge">07 创新</span><span class="badge">20 新闻</span>
+    <span class="badge">24 迷信</span>
+  </div>
+</header>
+<div class="story-body">
+
+<p class="para"><span class="en">What is the greatest <b class="ph" data-zh="发明(全新创造)">invention</b> of all time? Ask ten people and you will get ten different answers: the printing press, electricity, antibiotics. Most experts, however, agree on two strong candidates — the computer and the Internet, <b class="ph" data-zh="现代世界最伟大的发明(教材原句)">two of the greatest inventions of the modern world</b>. Together they have <b class="ph" data-zh="开创新局面">broken new ground</b> in almost every field and <b class="ph" data-zh="改变格局">changed the game</b> for how we live, learn, and work.</span>
+<span class="zh">有史以来最伟大的发明是什么？问十个人，你会得到十种答案：印刷机、电、抗生素。不过多数专家对两个热门候选者意见一致——计算机和互联网，现代世界最伟大的两项发明。它们几乎在每个领域都开了新局，彻底改变了我们生活、学习和工作的格局。</span></p>
+
+<p class="para"><span class="en">Think about how much daily life has shifted. Twenty years ago, offices printed <b class="ph" data-zh="纸质打印版">hard copies</b> of every report and requested <b class="ph" data-zh="打印件(request及物,不加for)">a printout</b> of every phone bill; today we email a <b class="ph" data-zh="电子版">soft copy</b> and sign on a screen. My first computer was a heavy <b class="ph" data-zh="台式机">desktop</b> with a noisy <b class="ph" data-zh="显示器">monitor</b>, a sticky <b class="ph" data-zh="键盘">keyboard</b>, and a <b class="ph" data-zh="鼠标">mouse</b> that froze twice a day. Now a thin <b class="ph" data-zh="笔记本电脑">laptop</b>, a <b class="ph" data-zh="平板电脑">tablet</b> and a pair of comfortable <b class="ph" data-zh="耳机">headsets</b> share my desk. We <b class="ph" data-zh="上网冲浪">surf the internet</b>, <b class="ph" data-zh="流媒体播放">stream</b> films, <b class="ph" data-zh="下载">download</b> files, <b class="ph" data-zh="收藏(网页)">bookmark</b> useful pages, and <b class="ph" data-zh="备份">back everything up</b> to the cloud — so that even if the computer <b class="ph" data-zh="死机">crashes</b> or the screen suddenly <b class="ph" data-zh="卡死(frozen形容词)">freezes</b>, our work survives. When a <b class="ph" data-zh="小故障">glitch</b> appears, we restart, <b class="ph" data-zh="更新软件">update the software</b>, and carry on.</span>
+<span class="zh">想想日常生活变了多少吧。二十年前，办公室里每份报告都要打印纸质版，每份话费账单都要申请打印件；今天我们发个电子版、在屏幕上签字就完事了。我的第一台电脑是笨重的台式机：显示器吵、键盘发涩、鼠标一天冻住两回。现在，一台轻薄笔记本、一块平板和一副舒适的耳机共享我的桌面。我们上网冲浪、看电影、下载文件、收藏有用的网页，把一切都备份到云端——这样一来，就算电脑死机、屏幕突然卡死，工作也丢不了。出了小故障，重启一下、更新软件，继续干活。</span></p>
+
+<p class="para"><span class="en">And the pace never slows. This year's flagship phone "<b class="ph" data-zh="迄今最好的功能(教材原句)">has the best features so far</b>" — a <b class="ph" data-zh="最先进的">state-of-the-art</b> camera, a faster chip, an <b class="ph" data-zh="升级">upgrade</b> nobody strictly needs but everybody wants. <b class="ph" data-zh="科技巨头">Tech giants</b> race to <b class="ph" data-zh="发布">launch</b> smart-home systems, delivery drones, and clever little <b class="ph" data-zh="小电子玩意">gadgets</b> of every size. AI is reshaping entire industries; <b class="ph" data-zh="虚拟现实不再是科幻——它已经来了">virtual reality is no longer science fiction — it is here</b>. <b class="ph" data-zh="自动驾驶汽车(=self-driving)">Autonomous vehicles</b> are said to be ideal for inexperienced drivers, although surveys show that many people still refuse to trust a <b class="ph" data-zh="无人驾驶的">driverless</b> car. One thing seems certain: technology will keep <b class="ph" data-zh="塑造未来">shaping the future</b>. Whether it makes our lives easier or more complicated, however, is entirely up to us.</span>
+<span class="zh">而且这节奏从不放慢。今年的旗舰手机"拥有迄今最好的功能"——最先进的相机、更快的芯片，一场谁都不真正需要、但谁都想要的升级。科技巨头竞相发布智能家居系统、送货无人机和各种聪明的小玩意儿。人工智能正在重塑整个行业；虚拟现实不再是科幻——它已经来了。据说自动驾驶汽车最适合新手司机，尽管调查显示很多人仍然不肯信任无人车。有一点似乎确定无疑：技术会继续塑造未来。但它让生活更简单还是更复杂，完全取决于我们自己。</span></p>
+
+<p class="para"><span class="en">There is a shadow side, and it fits in your pocket. <b class="ph" data-zh="研究显示(studies reveal)">Studies reveal</b> that people now spend around two hours a day on <b class="ph" data-zh="社交媒体">social media</b> — and many of us spend far more. We <b class="ph" data-zh="刷屏、滑动屏幕">scroll</b> through feeds while eating, while walking, while "listening" to friends. <b class="ph" data-zh="屏幕时间">Screen time</b> climbs year after year; some people now schedule <b class="ph" data-zh="数字排毒">a digital detox</b> the way they schedule a vacation, and I know at least three friends who admit they are genuinely <b class="ph" data-zh="上瘾(be addicted to)">addicted to</b> their phones. When the Wi-Fi at home goes down, it should not feel like a natural disaster — but in many households, it does.</span>
+<span class="zh">这枚硬币也有背面，而且它就装在你的口袋里。研究显示，人们如今每天花约两小时在社交媒体上——而我们中的许多人远不止于此。吃饭时刷、走路时刷、一边"听"朋友讲话一边刷。屏幕时间逐年攀升；有人开始像安排度假一样安排"数字排毒"，我至少认识三个朋友承认自己真的手机上瘾。家里断网本不该像自然灾害，可在许多家庭，它就是。</span></p>
+
+<p class="para"><span class="en">The internet has transformed the news as well — not always for the better. <b class="ph" data-zh="假新闻比真新闻传得快得多">Fake news spreads much faster than real news</b> on social media; a rumor can <b class="ph" data-zh="疯传">spread like wildfire</b> around the world before journalists finish fact-checking it. The <b class="ph" data-zh="狗仔队(单数paparazzo)">paparazzi</b> <b class="ph" data-zh="侵犯…的隐私">invade celebrities' privacy</b> just to get a single photo; <b class="ph" data-zh="媒体炒作">media hype</b> keeps a scandal <b class="ph" data-zh="醒目地登上头条(splash across)">splashed across the headlines</b> for weeks. Meanwhile, young viewers drift from traditional programs to short videos, and one famous <b class="ph" data-zh="新闻播音员">newscaster</b> after another retires from the screen. In this noise, the old rule matters more than ever: check whether the <b class="ph" data-zh="可靠来源">source is reliable</b>, and learn to <b class="ph" data-zh="区分事实与虚构(H2/G4串联)">separate fact from fiction</b>. That is supposed to be a journalist's job — but nowadays it is every reader's job too.</span>
+<span class="zh">互联网也改变了新闻——并不总是变好。在社交媒体上，假新闻比真新闻传得快得多；一条谣言能在记者完成核查之前就火遍全球。狗仔队为了拍到一张照片不惜侵犯明星的隐私；媒体炒作让一桩丑闻连续数周霸占头条。与此同时，年轻观众从传统节目流向短视频，一位又一位著名新闻主播从荧屏退休。在这样的噪音里，老规矩比任何时候都重要：核实消息来源是否可靠，学会区分事实与虚构。这本该是记者的工作——但如今，它也是每个读者的工作。</span></p>
+
+<p class="para"><span class="en">Believing things without evidence, of course, is an ancient habit rather than a new one. <b class="ph" data-zh="迷信">Superstition</b> — a belief not based on reason or science — thrives perfectly well in the digital age. Every culture has its <b class="ph" data-zh="幸运符">lucky charms</b> and its <b class="ph" data-zh="都市传说">urban legends</b>. My grandmother <b class="ph" data-zh="交叉手指祈顺利">crosses her fingers</b> before my big exams and <b class="ph" data-zh="敲木头避厄运">knocks on wood</b> whenever she mentions her own good luck; in Chinese culture, the number 8 is <b class="ph" data-zh="被认为吉利(be considered)">considered lucky</b> because it sounds like the word for wealth. I am polite about all this, but <b class="ph" data-zh="我对…持怀疑态度(E2句型)">I am skeptical of</b> <b class="ph" data-zh="算命">fortune telling</b> — I do not believe it can predict the future. When a <b class="ph" data-zh="星座运程">horoscope</b> happens to come true, <b class="ph" data-zh="只是个巧合——别过度解读">it is just a coincidence — don't read too much into it</b>. Still, these old <b class="ph" data-zh="观念、想法">notions</b> <b class="ph" data-zh="追溯到(go back to)">go back thousands of years</b>, and, <b class="ph" data-zh="信不信由你">believe it or not</b>, they now travel at fiber-optic speed: the newest urban legends no longer spread around a fire; they spread through your group chats.</span>
+<span class="zh">当然，不经证据就相信某事，是古老的习惯，而非新发明。迷信——不基于理性或科学的信念——在数字时代活得照样滋润。每种文化都有自己的幸运符和都市传说。我奶奶在我大考前会为我交叉手指，一提到自己的好运就敲敲木头；在中国文化里，数字8被认为吉利，因为发音像"发"。我对这些很有礼貌，但我对算命持怀疑态度——我不相信它能预测未来。星座运程碰巧应验，那只是巧合——别想太多。不过，这些旧观念可以追溯到几千年前，而且信不信由你：它们如今以光纤的速度传播——最新的都市传说不再围着篝火讲，而是在你的群聊里流转。</span></p>
+
+<p class="para"><span class="en">So here is my conclusion after twenty years online: the machines will keep getting smarter, but wisdom still has to be installed in humans. Innovation gives us the tools; only we can decide what to build with them. In the end, the most important skill of the digital age is not mastering the next <b class="ph" data-zh="尖端的(cutting-edge)">cutting-edge</b> gadget — it is relearning, again and again, how to think for yourself.</span>
+<span class="zh">所以上网二十年后的结论是：机器会越来越聪明，但智慧仍然只能"安装"在人类身上。创新给我们工具；拿它们建造什么，只有我们能决定。说到底，数字时代最重要的技能，不是玩转下一个尖端小玩意——而是一遍又一遍地重新学会：独立思考。</span></p>
+
+<details class="plist"><summary>📋 短语清单（遮住右列自检 · 点击展开/收起）</summary>
+<table><tr><th>短语</th><th>释义</th><th>话题</th></tr>
+<tr><td class="p">invention</td><td>发明（全新创造）</td><td class="t">07</td></tr>
+<tr><td class="p">break new ground</td><td>开创新局面</td><td class="t">07</td></tr>
+<tr><td class="p">change the game</td><td>改变格局</td><td class="t">07</td></tr>
+<tr><td class="p">hard copy</td><td>纸质打印版</td><td class="t">06</td></tr>
+<tr><td class="p">printout</td><td>打印件（request 及物）</td><td class="t">06</td></tr>
+<tr><td class="p">soft copy</td><td>电子版</td><td class="t">06</td></tr>
+<tr><td class="p">desktop / monitor / keyboard / mouse</td><td>台式机 / 显示器 / 键盘 / 鼠标</td><td class="t">06</td></tr>
+<tr><td class="p">laptop / tablet / headsets</td><td>笔记本 / 平板 / 耳机</td><td class="t">06</td></tr>
+<tr><td class="p">surf the internet</td><td>上网冲浪</td><td class="t">06</td></tr>
+<tr><td class="p">stream / download / bookmark</td><td>流媒体播放 / 下载 / 收藏</td><td class="t">06</td></tr>
+<tr><td class="p">back up</td><td>备份</td><td class="t">06</td></tr>
+<tr><td class="p">crash / freeze / glitch</td><td>死机 / 卡死 / 小故障</td><td class="t">06</td></tr>
+<tr><td class="p">update the software</td><td>更新软件</td><td class="t">06</td></tr>
+<tr><td class="p">have the best features so far</td><td>迄今最好的功能</td><td class="t">07</td></tr>
+<tr><td class="p">state-of-the-art</td><td>最先进的</td><td class="t">07</td></tr>
+<tr><td class="p">upgrade / launch / gadget</td><td>升级 / 发布 / 小电子玩意</td><td class="t">07</td></tr>
+<tr><td class="p">virtual reality</td><td>虚拟现实</td><td class="t">07</td></tr>
+<tr><td class="p">autonomous vehicles</td><td>自动驾驶汽车</td><td class="t">07</td></tr>
+<tr><td class="p">driverless</td><td>无人驾驶的</td><td class="t">07</td></tr>
+<tr><td class="p">shape the future</td><td>塑造未来</td><td class="t">07</td></tr>
+<tr><td class="p">studies reveal</td><td>研究显示</td><td class="t">07</td></tr>
+<tr><td class="p">social media</td><td>社交媒体</td><td class="t">07</td></tr>
+<tr><td class="p">scroll</td><td>刷屏、滑动屏幕</td><td class="t">06</td></tr>
+<tr><td class="p">screen time</td><td>屏幕时间</td><td class="t">06</td></tr>
+<tr><td class="p">digital detox</td><td>数字排毒</td><td class="t">06</td></tr>
+<tr><td class="p">be addicted to</td><td>上瘾</td><td class="t">06</td></tr>
+<tr><td class="p">fake news spreads much faster</td><td>假新闻传得快得多</td><td class="t">20</td></tr>
+<tr><td class="p">spread like wildfire</td><td>疯传</td><td class="t">20</td></tr>
+<tr><td class="p">paparazzi</td><td>狗仔队（单数 paparazzo）</td><td class="t">20</td></tr>
+<tr><td class="p">invade one's privacy</td><td>侵犯隐私</td><td class="t">20</td></tr>
+<tr><td class="p">media hype</td><td>媒体炒作</td><td class="t">20</td></tr>
+<tr><td class="p">splash across the headlines</td><td>醒目地登上头条</td><td class="t">20</td></tr>
+<tr><td class="p">newscaster</td><td>新闻播音员</td><td class="t">20</td></tr>
+<tr><td class="p">reliable source</td><td>可靠来源</td><td class="t">20</td></tr>
+<tr><td class="p">separate fact from fiction</td><td>区分事实与虚构</td><td class="t">20/24</td></tr>
+<tr><td class="p">superstition</td><td>迷信</td><td class="t">24</td></tr>
+<tr><td class="p">lucky charm</td><td>幸运符</td><td class="t">24</td></tr>
+<tr><td class="p">urban legend</td><td>都市传说</td><td class="t">24</td></tr>
+<tr><td class="p">cross one's fingers</td><td>交叉手指祈顺利</td><td class="t">24</td></tr>
+<tr><td class="p">knock on wood</td><td>敲木头避厄运</td><td class="t">24</td></tr>
+<tr><td class="p">be considered lucky</td><td>被认为吉利</td><td class="t">24</td></tr>
+<tr><td class="p">I am skeptical of fortune telling</td><td>我对算命持怀疑态度</td><td class="t">24</td></tr>
+<tr><td class="p">horoscope</td><td>星座运程</td><td class="t">24</td></tr>
+<tr><td class="p">coincidence</td><td>巧合</td><td class="t">24</td></tr>
+<tr><td class="p">don't read too much into it</td><td>别过度解读</td><td class="t">24</td></tr>
+<tr><td class="p">notion</td><td>观念、想法</td><td class="t">24</td></tr>
+<tr><td class="p">go back thousands of years</td><td>追溯数千年</td><td class="t">24</td></tr>
+<tr><td class="p">believe it or not</td><td>信不信由你</td><td class="t">24</td></tr>
+<tr><td class="p">cutting-edge</td><td>尖端的</td><td class="t">07</td></tr>
+</table></details>
+</div>
+</article>
+<!-- ═══════════════ ARTICLE 5 ═══════════════ -->
+<article class="story" id="a5">
+<header>
+  <span class="num">5</span>
+  <h2>A Greener City, a Kinder World<small>更绿色的城市，更温暖的世界 · 议论+记叙 · 约560词</small></h2>
+  <span class="pc"></span>
+  <div class="badges">
+    <span class="badge">18 环保</span><span class="badge">19 污染</span><span class="badge">08 交通</span>
+    <span class="badge">21 贫困</span><span class="badge">22 视觉艺术</span>
+  </div>
+</header>
+<div class="story-body">
+
+<p class="para"><span class="en">I still remember the winters of my childhood, when our city <b class="ph" data-zh="饱受严重雾霾之苦(suffer from)">suffered from heavy smog</b> and the sky was the color of dishwater. People joked about "indoor seasons" back then, but <b class="ph" data-zh="空气污染">air pollution</b> was no joke: the elderly were told to stay home, and children coughed through the whole semester. <b class="ph" data-zh="全球变暖">Global warming</b> sounded distant in those days. Today it is local news — <b class="ph" data-zh="由于气候变化极端天气更常见">extreme weather is becoming more common due to climate change</b>, from <b class="ph" data-zh="酷热的">scorching</b> heatwaves to sudden <b class="ph" data-zh="倾盆大雨(downpour)">downpours</b> that flood the streets.</span>
+<span class="zh">我还记得童年的那些冬天：城市饱受严重雾霾之苦，天空是洗碗水的颜色。那时人们自嘲过着"室内季节"，但空气污染绝非玩笑：老人被叮嘱别出门，孩子们咳了一整个学期。那些年，全球变暖听上去很遥远。如今它是本地新闻——由于气候变化，极端天气越来越常见：从酷热的热浪，到淹没街道的倾盆大雨。</span></p>
+
+<p class="para"><span class="en">The causes are no secret either. <b class="ph" data-zh="燃烧化石燃料">Burning fossil fuels</b> <b class="ph" data-zh="排放温室气体(release greenhouse gases)">releases greenhouse gases</b> into the air; <b class="ph" data-zh="汽车排放物/尾气">car emissions</b> and <b class="ph" data-zh="(汽车)尾气">exhaust fumes</b> choke the main roads; the river in my hometown was once <b class="ph" data-zh="被…污染(contaminated)">contaminated by</b> waste from a factory upstream; farmers used too many <b class="ph" data-zh="杀虫剂">pesticides</b>, which harmed the soil; and <b class="ph" data-zh="噪音污染">noise pollution</b> from late-night construction robbed whole neighborhoods of their sleep. For years, the city <b class="ph" data-zh="处理垃圾(dispose of)">disposed of</b> its waste first and asked questions later. Pollution, in short, is harmful material living where it does not belong — and we were producing it at record speed.</span>
+<span class="zh">原因也早已不是秘密。燃烧化石燃料向空气中排放温室气体；汽车尾气呛满主干道；我家乡的河曾被上游工厂的废水污染；农民滥用杀虫剂，损害了土壤；深夜施工的噪音污染则抢走了整个社区的睡眠。多年来，这座城市先处理垃圾、后提问题。简言之，污染就是有害物质住进了不属于它的地方——而我们曾以创纪录的速度制造它。</span></p>
+
+<p class="para"><span class="en">Then things began to change, from the top and from the bottom. The government <b class="ph" data-zh="对…处以重罚(impose fines on)">imposed heavy fines on</b> polluting factories, promoted <b class="ph" data-zh="可再生能源">renewable energy</b> like solar and wind power, and supported <b class="ph" data-zh="有机农业">organic farming</b> that avoids chemical pesticides. Ordinary people started to <b class="ph" data-zh="尽一份力(do your part)">do their part</b>: we <b class="ph" data-zh="垃圾分类(waste sorting)">sort our waste</b> before throwing it away, <b class="ph" data-zh="自带袋子以减少塑料垃圾">bring our own bags to reduce plastic waste</b>, choose <b class="ph" data-zh="环保的">eco-friendly</b> products and <b class="ph" data-zh="可生物降解的">biodegradable</b> packaging, and <b class="ph" data-zh="回收利用">recycle</b> paper, glass, and metal. <b class="ph" data-zh="回收已成为我日常的一部分">Recycling has quietly become part of my daily routine</b> — and once a habit forms, you hardly notice the effort. More and more of us have decided to <b class="ph" data-zh="走环保路线">go green</b>, not as a fashion but as a way of life.</span>
+<span class="zh">后来，改变开始了——自上而下，也自下而上。政府对污染工厂处以重罚，推广太阳能、风能等可再生能源，支持避免化学杀虫剂的有机农业。普通人也开始尽自己的一份力：扔垃圾前先分类，自带袋子减少塑料垃圾，选择环保产品和可降解包装，回收纸张、玻璃和金属。回收已悄悄成为我日常的一部分——习惯一旦养成，你几乎察觉不到费劲。我们中越来越多的人决定"绿色起来"，不是赶时髦，而是当成一种生活方式。</span></p>
+
+<p class="para"><span class="en">Transportation is changing too, and it is one of the clearest places where innovation serves the planet. I usually <b class="ph" data-zh="通勤">commute</b> by <b class="ph" data-zh="地铁(subway/metro)">subway</b> to dodge the <b class="ph" data-zh="高峰时段的交通拥堵">rush-hour traffic jam</b>; when the weather is <b class="ph" data-zh="温和的">mild</b>, I ride <b class="ph" data-zh="共享单车">a shared bike</b>, because <b class="ph" data-zh="骑车对健康和环境都好">cycling to work is good for both your health and the environment</b> — and it keeps my <b class="ph" data-zh="碳足迹">carbon footprint</b> small. <b class="ph" data-zh="电动汽车(EVs)">Electric vehicles</b> are everywhere now; contrary to the old jokes, <b class="ph" data-zh="它们的里程比预期好(教材句)">they have better mileage than most people expect</b>, and charging gets easier every year. <b class="ph" data-zh="骑车人">Cyclists</b> have gained their own lanes, <b class="ph" data-zh="行人">pedestrians</b> their own islands, and even the proudest drivers admit that <b class="ph" data-zh="养车越来越贵">running a car is getting more and more expensive</b>. My city is far from perfect — we still get <b class="ph" data-zh="拥堵(congestion)">congestion</b> and the occasional <b class="ph" data-zh="完全堵死">gridlock</b> — but at last the direction feels right.</span>
+<span class="zh">交通也在变，而且它是创新服务地球最清晰的地方之一。我通常坐地铁通勤，躲开高峰时段的堵车；天气温和时骑共享单车，因为骑车上班对健康和环境都好——还能让我的碳足迹保持小小的。电动汽车如今随处可见；和那些老笑话说的相反，它们的续航比大多数人预期的要好，充电一年比一年方便。骑行者有了自己的车道，行人有了安全岛，连最嘴硬的司机也承认：养车越来越贵了。我的城市远非完美——依然有拥堵，偶尔还会彻底堵死——但方向终于对了。</span></p>
+
+<p class="para"><span class="en">A better world, however, must be not only greener but also fairer. While some families are comfortably <b class="ph" data-zh="小康、宽裕的">well-off</b>, <b class="ph" data-zh="贫富差距持续扩大">the wealth gap between rich and poor keeps widening</b>. Many young people are <b class="ph" data-zh="负债(in debt)">in debt</b> because of student loans and spend years <b class="ph" data-zh="还清(pay off)">paying them off</b>; with prices rising so fast, quite a few households can hardly <b class="ph" data-zh="收支勉强平衡(高频习语!)">make ends meet</b>; and in some remote areas there is still <b class="ph" data-zh="短缺(shortage of)">a shortage of</b> clean water and good schools. A friend of mine <b class="ph" data-zh="破产、倒闭(go broke)">went broke</b> when his startup failed, and I saw with my own eyes how quickly an ordinary life can slide toward <b class="ph" data-zh="贫困线(poverty line)">the poverty line</b>. That is why I believe <b class="ph" data-zh="教育是打破贫困循环的关键">education is the key to breaking the cycle of poverty</b> — and why those of us who can should <b class="ph" data-zh="捐赠">donate</b>, <b class="ph" data-zh="做志愿服务">volunteer</b>, and support <b class="ph" data-zh="慈善">charity</b> and <b class="ph" data-zh="福利">welfare</b> programs for <b class="ph" data-zh="低收入的">low-income</b> families. A child's future should not depend on luck.</span>
+<span class="zh">然而，更好的世界不仅更绿，还要更公平。当一些家庭过得很宽裕时，贫富差距却在持续扩大。许多年轻人因助学贷款负债，要花多年才能还清；物价涨得这么快，不少家庭几乎入不敷出；一些偏远地区仍然缺乏清洁的水和好的学校。我的一位朋友创业失败破了产，我亲眼看到普通人的生活能多快滑向贫困线。这就是为什么我相信，教育是打破贫困循环的关键——也是为什么有能力的人应该捐赠、做志愿服务，支持面向低收入家庭的慈善与福利项目。孩子的未来，不该取决于运气。</span></p>
+
+<p class="para"><span class="en">And here is where art enters the story. You may know the sad statistic: in <b class="ph" data-zh="贫困的、被剥夺基本生活条件的(deprived)">deprived</b> communities, a large share of residents have never been to a single arts event, not even a cinema. Three years ago, a local charity opened a free gallery in exactly such a neighborhood, and I attended its first <b class="ph" data-zh="展览">exhibition</b> of <b class="ph" data-zh="当代艺术">contemporary art</b>. I watched an elderly man stand in front of an <b class="ph" data-zh="抽象的">abstract</b> painting — all <b class="ph" data-zh="鲜艳的;生动的(vivid)">vivid</b>, burning color — for nearly twenty minutes. Was it a future <b class="ph" data-zh="杰作">masterpiece</b>, or only <b class="ph" data-zh="素描">a sketch</b> that a young painter had created after <b class="ph" data-zh="从大自然汲取灵感(draw inspiration from)">taking inspiration from nature</b>? It does not matter. That painting <b class="ph" data-zh="抓住他的目光(catch the eye of)">caught his eye</b>, and for a moment it gave his hard days some light. Some works are <b class="ph" data-zh="惊艳的">breathtaking</b>, some are <b class="ph" data-zh="发人深省的">thought-provoking</b>; the best ones are simply <b class="ph" data-zh="鼓舞人心的">inspiring</b> — proof that beauty does not belong to the rich alone.</span>
+<span class="zh">而这里，正是艺术出场的地方。你可能知道那个令人难过的数据：在贫困社区，相当多的居民从未参加过一场艺术活动，甚至连电影院都没进过。三年前，一家本地慈善机构恰恰在这样的社区开了一间免费画廊，我去看了它的首场当代艺术展。我看到一位老人在一幅抽象画前站了将近二十分钟——画上全是鲜艳炽烈的色彩。它是一件未来的杰作，还是某位年轻画家从大自然汲取灵感后画下的素描？这不重要。那幅画抓住了他的目光，有一瞬间，它照亮了他艰辛的日子。有些作品令人惊艳，有些发人深省；最好的作品就是能鼓舞人心——证明美并不只属于富人。</span></p>
+
+<p class="para"><span class="en">A greener city and a kinder world: in the end they are not two dreams but one. Clean air, fair chances, art within reach — each of them starts with the same small decision, repeated daily: to care, and to do our part. <b class="ph" data-zh="预防胜于治疗(串E2)">Prevention is better than cure</b>, for the planet as much as for people. The Earth is the only home we all share, and it deserves our best habits.</span>
+<span class="zh">更绿色的城市，更温暖的世界：说到底，这不是两个梦，而是同一个。清洁的空气、公平的机会、触手可及的艺术——它们都始于同一个每天重复的小小决定：去在乎，去尽一份力。预防胜于治疗——对地球如此，对人亦然。地球是我们共同唯一的家，它值得我们拿出最好的习惯。</span></p>
+
+<details class="plist"><summary>📋 短语清单（遮住右列自检 · 点击展开/收起）</summary>
+<table><tr><th>短语</th><th>释义</th><th>话题</th></tr>
+<tr><td class="p">suffer from heavy smog</td><td>饱受严重雾霾之苦</td><td class="t">19</td></tr>
+<tr><td class="p">air pollution</td><td>空气污染</td><td class="t">19</td></tr>
+<tr><td class="p">global warming</td><td>全球变暖</td><td class="t">19</td></tr>
+<tr><td class="p">extreme weather / climate change</td><td>极端天气 / 气候变化</td><td class="t">19/16</td></tr>
+<tr><td class="p">scorching / downpour</td><td>酷热的 / 倾盆大雨</td><td class="t">16</td></tr>
+<tr><td class="p">burning fossil fuels</td><td>燃烧化石燃料</td><td class="t">19</td></tr>
+<tr><td class="p">release greenhouse gases</td><td>排放温室气体</td><td class="t">19</td></tr>
+<tr><td class="p">car emissions / exhaust fumes</td><td>汽车排放 / 尾气</td><td class="t">19</td></tr>
+<tr><td class="p">contaminated</td><td>被污染的</td><td class="t">19</td></tr>
+<tr><td class="p">pesticides</td><td>杀虫剂</td><td class="t">19</td></tr>
+<tr><td class="p">noise pollution</td><td>噪音污染</td><td class="t">19</td></tr>
+<tr><td class="p">dispose of waste</td><td>处理垃圾</td><td class="t">19</td></tr>
+<tr><td class="p">impose heavy fines on</td><td>对…处以重罚</td><td class="t">19</td></tr>
+<tr><td class="p">renewable energy</td><td>可再生能源</td><td class="t">18</td></tr>
+<tr><td class="p">organic farming</td><td>有机农业</td><td class="t">18</td></tr>
+<tr><td class="p">do your part</td><td>尽一份力</td><td class="t">18</td></tr>
+<tr><td class="p">sort waste / waste sorting</td><td>垃圾分类</td><td class="t">18</td></tr>
+<tr><td class="p">reduce plastic waste</td><td>减少塑料垃圾</td><td class="t">18</td></tr>
+<tr><td class="p">eco-friendly</td><td>环保的</td><td class="t">18</td></tr>
+<tr><td class="p">biodegradable</td><td>可生物降解的</td><td class="t">18</td></tr>
+<tr><td class="p">recycle / recycling</td><td>回收利用</td><td class="t">18</td></tr>
+<tr><td class="p">go green</td><td>走环保路线</td><td class="t">18</td></tr>
+<tr><td class="p">commute</td><td>通勤</td><td class="t">08</td></tr>
+<tr><td class="p">rush-hour traffic jam</td><td>高峰时段的交通拥堵</td><td class="t">08</td></tr>
+<tr><td class="p">a shared bike</td><td>共享单车</td><td class="t">08</td></tr>
+<tr><td class="p">carbon footprint</td><td>碳足迹</td><td class="t">18</td></tr>
+<tr><td class="p">electric vehicles (EVs)</td><td>电动汽车</td><td class="t">08</td></tr>
+<tr><td class="p">better mileage than expected</td><td>里程比预期好</td><td class="t">08</td></tr>
+<tr><td class="p">cyclist / pedestrian</td><td>骑车人 / 行人</td><td class="t">08</td></tr>
+<tr><td class="p">running a car</td><td>养车</td><td class="t">08</td></tr>
+<tr><td class="p">congestion / gridlock</td><td>拥堵 / 完全堵死</td><td class="t">08</td></tr>
+<tr><td class="p">well-off</td><td>小康、宽裕的</td><td class="t">21</td></tr>
+<tr><td class="p">the wealth gap keeps widening</td><td>贫富差距持续扩大</td><td class="t">21</td></tr>
+<tr><td class="p">in debt / pay off</td><td>负债 / 还清</td><td class="t">21</td></tr>
+<tr><td class="p">make ends meet</td><td>收支勉强平衡（高频习语）</td><td class="t">21</td></tr>
+<tr><td class="p">a shortage of</td><td>…的短缺</td><td class="t">21</td></tr>
+<tr><td class="p">go broke</td><td>破产、倒闭</td><td class="t">21</td></tr>
+<tr><td class="p">the poverty line</td><td>贫困线</td><td class="t">21</td></tr>
+<tr><td class="p">break the cycle of poverty</td><td>打破贫困循环</td><td class="t">21</td></tr>
+<tr><td class="p">donate / volunteer / charity / welfare</td><td>捐赠 / 志愿 / 慈善 / 福利</td><td class="t">21</td></tr>
+<tr><td class="p">low-income / deprived</td><td>低收入的 / 贫困的</td><td class="t">21</td></tr>
+<tr><td class="p">exhibition / contemporary art</td><td>展览 / 当代艺术</td><td class="t">22</td></tr>
+<tr><td class="p">abstract / vivid</td><td>抽象的 / 鲜艳的</td><td class="t">22</td></tr>
+<tr><td class="p">masterpiece / sketch</td><td>杰作 / 素描</td><td class="t">22</td></tr>
+<tr><td class="p">take/draw inspiration from nature</td><td>从大自然汲取灵感</td><td class="t">22</td></tr>
+<tr><td class="p">catch one's eye</td><td>吸引目光</td><td class="t">22</td></tr>
+<tr><td class="p">breathtaking / thought-provoking / inspiring</td><td>惊艳的 / 发人深省的 / 鼓舞人心的</td><td class="t">22</td></tr>
+</table></details>
+</div>
+</article>
+<!-- ═══════════════ ARTICLE 6 ═══════════════ -->
+<article class="story" id="a6">
+<header>
+  <span class="num">6</span>
+  <h2>Home Sweet Home<small>甜蜜的家 · 轻松记叙(Beginners友好) · 约460词</small></h2>
+  <span class="pc"></span>
+  <div class="badges">
+    <span class="badge">26 家电</span><span class="badge">27 家具</span><span class="badge">28 房间</span>
+    <span class="badge">30 社区场所</span><span class="badge">09 时尚</span><span class="badge">29 游乐设施</span>
+  </div>
+</header>
+<div class="story-body">
+
+<p class="para"><span class="en">Saturday morning at our house always begins the same way. Sunlight fills the <b class="ph" data-zh="客厅">living room</b>, and my mother is already busy in the <b class="ph" data-zh="厨房">kitchen</b>. "Come in and have breakfast!" she calls. The <b class="ph" data-zh="洗衣机">washing machine</b> hums in the corner, the <b class="ph" data-zh="冰箱">refrigerator</b> is full of fresh food, and my father, coffee in hand, is watching the morning news on <b class="ph" data-zh="电视">television</b>. Later he will run the <b class="ph" data-zh="吸尘器(vacuum cleaner)">vacuum cleaner</b> — it is very <b class="ph" data-zh="吵的(串G2噪音污染)">noisy</b>, but as he always says, a clean home is a happy home. I love our home: the soft <b class="ph" data-zh="沙发">sofa</b> with its bright <b class="ph" data-zh="垫子、靠垫">cushions</b>, the big <b class="ph" data-zh="桌子">table</b> where the four of us eat together, the quiet <b class="ph" data-zh="浴室">bathroom</b> where my sister takes her famous bubble baths, and above all my <b class="ph" data-zh="卧室">bedroom</b>, which I think is the most comfortable room in the world. "<b class="ph" data-zh="合你的口味(suit one's taste)">This bed suits your taste</b>," my mother likes to say — and she is right.</span>
+<span class="zh">我们家的周六早晨总是这样开始：阳光洒满客厅，妈妈已经在厨房忙开了。"进来吃早饭啦！"她喊。洗衣机在角落嗡嗡转着，冰箱里塞满新鲜食物，爸爸端着咖啡，正在电视上看早间新闻。一会儿他要开吸尘器——噪音很大，但正如他常说的：干净的家才是快乐的家。我爱我们的家：软软的沙发配着鲜艳的靠垫，我们四个人一起吃饭的大桌子，妹妹泡她那著名泡泡浴的安静浴室，还有最重要的——我的卧室，我认为它是世界上最舒服的房间。"这张床很合你的口味，"妈妈爱这么说——她说得对。</span></p>
+
+<p class="para"><span class="en">After breakfast comes the day's most serious question: what to wear? My sister loves putting together <b class="ph" data-zh="搭配一套衣服(put together an outfit)">a trendy outfit</b>; she follows every fashion trend, and her <b class="ph" data-zh="衣柜(也指全部衣物)">wardrobe</b> is twice the size of mine. I am the exact opposite — <b class="ph" data-zh="我不追潮流,只穿舒服的">I don't really follow fashion trends; I just wear what's comfortable</b>. Still, even I know that <b class="ph" data-zh="第一印象往往取决于穿着">first impressions are often based on how people dress</b>, so for today's outing I choose something <b class="ph" data-zh="休闲的(casual)">casual</b>: jeans, a T-shirt, and white sneakers, because <b class="ph" data-zh="小白鞋几乎配一切(go with)">white sneakers go with almost everything</b>. My sister, in <b class="ph" data-zh="颜色鲜艳的">a vibrant</b> dress from <b class="ph" data-zh="复古店(vintage)">a vintage</b> shop, looks at me and sighs, "That hoodie is so <b class="ph" data-zh="过时的">out of fashion</b>!" — "It's not old," I answer. "It's <b class="ph" data-zh="永不过时的(↔dated老气)">timeless</b>." We never finish this argument, and somehow we never want to.</span>
+<span class="zh">早饭后，迎来一天最严肃的问题：穿什么？妹妹最爱搭配时髦的穿搭，追逐每一股时尚潮流，她的衣柜是我的两倍大。我正相反——我不太追潮流，只穿舒服的。不过，就连我也知道第一印象往往取决于穿着，所以今天出门我选了休闲装：牛仔裤、T恤，加白色运动鞋——因为小白鞋几乎配一切。妹妹穿着一条从复古店淘来的鲜艳连衣裙，看了我一眼，叹气道："那件连帽衫早过时了！"——"它不是旧，"我回答，"它永不过时。"这场争论永远吵不完，但不知怎么，我们也不想吵完。</span></p>
+
+<p class="para"><span class="en">Our neighborhood is small but convenient. The <b class="ph" data-zh="杂货店">grocery store</b> is just <b class="ph" data-zh="紧挨着(next to)">next to</b> our building, so we pick up fresh fruit on the way. The <b class="ph" data-zh="诊所">clinic</b> is across the street — thankfully, today we only wave at it. My favorite place is the <b class="ph" data-zh="图书馆">library</b>: this afternoon, as usual, I will <b class="ph" data-zh="从图书馆借书(borrow from)">borrow some books from it</b>. The <b class="ph" data-zh="学校">school</b> where my mother teaches is <b class="ph" data-zh="离这儿很远(far from)">far from</b> here, but on weekends the whole community slows down and feels like one big, friendly village.</span>
+<span class="zh">我们的社区不大，但很方便。杂货店就在我们楼隔壁，顺路就能买上新鲜水果。诊所在街对面——谢天谢地，今天我们只需要跟它挥挥手。我最爱的地方是图书馆：今天下午，我会照常去借几本书。妈妈教书的学校离这儿很远，但一到周末，整个社区就慢了下来，像一个友好温暖的大村庄。</span></p>
+
+<p class="para"><span class="en">On Sunday we visit the amusement park in the suburbs. My sister runs straight to the <b class="ph" data-zh="过山车">roller coaster</b> — "<b class="ph" data-zh="坐过山车很吓人(动名词作主语!)">Riding the roller coaster is scary</b>!" I shout after her, but she is already in the line. She loves <b class="ph" data-zh="海盗船/秋千椅">the swing ride</b> too and swears it is even scarier than the coaster; I believe her completely, which is exactly why I stay on the ground. You see, <b class="ph" data-zh="我有恐高症(a phobia of heights串G5)">I have a phobia of heights</b>, <b class="ph" data-zh="所以我从不坐摩天轮">so I never go on the Ferris wheel</b> — yes, even that gentle, family-friendly one. Instead, I take photos, eat ice cream, and watch the <b class="ph" data-zh="旋转木马">carousel</b> turn like a slow, glittering dream. "<b class="ph" data-zh="直面你的恐惧(face your fears串G5)">Face your fears!</b>" my sister yells from the sky. "Not today," I laugh. "Today I'm facing the ice cream."</span>
+<span class="zh">周日，我们去郊区的游乐园。妹妹直奔过山车——"坐过山车很吓人的！"我在她身后喊，可她已经排上队了。她还喜欢海盗船，并发誓它比过山车更吓人；我完全相信，而这正是我待在地面的原因。你瞧，我有恐高症，所以从不坐摩天轮——对，连那种温和的、合家欢款也不坐。我呢，拍拍照、吃吃冰淇淋，看旋转木马像一场缓慢闪亮的梦转个不停。"直面你的恐惧！"妹妹从天上喊。"今天不，"我笑道，"今天我要直面的是冰淇淋。"</span></p>
+
+<p class="para"><span class="en">Home again by evening, tired and happy. The lights in the living room are warm, dinner is waiting on the table, and someone has put fresh flowers in the middle of it. Maybe our home is not the biggest or the trendiest place in the world. But when my father sinks into the sofa with a happy groan, my mother laughs from the kitchen, and my sister and I argue about whose turn it is to use the vacuum, I understand exactly what people mean by "<b class="ph" data-zh="甜蜜的家(home sweet home)">home sweet home</b>": it is not the <b class="ph" data-zh="家电(appliances)">appliances</b> or the <b class="ph" data-zh="家具(furniture)">furniture</b>. It is the people who fill the rooms with laughter.</span>
+<span class="zh">傍晚回到家，又累又开心。客厅的灯光暖暖的，晚餐摆在桌上等着，桌子中央不知谁还放了鲜花。我们的家也许不是世界上最大、最时髦的地方。但当爸爸心满意足地陷进沙发，妈妈在厨房里笑出声，我和妹妹为"今天谁用吸尘器"争执不下时，我完全明白了人们说"甜蜜的家"是什么意思：家不在家电与家具——家是那些让每个房间充满笑声的人。</span></p>
+
+<details class="plist"><summary>📋 短语清单（遮住右列自检 · 点击展开/收起）</summary>
+<table><tr><th>短语</th><th>释义</th><th>话题</th></tr>
+<tr><td class="p">living room / kitchen / bedroom / bathroom</td><td>客厅 / 厨房 / 卧室 / 浴室</td><td class="t">28</td></tr>
+<tr><td class="p">washing machine / refrigerator / television / vacuum cleaner</td><td>洗衣机 / 冰箱 / 电视 / 吸尘器</td><td class="t">26</td></tr>
+<tr><td class="p">noisy</td><td>吵的（串G2噪音污染）</td><td class="t">26</td></tr>
+<tr><td class="p">sofa / cushion / table / bed</td><td>沙发 / 靠垫 / 桌子 / 床</td><td class="t">27</td></tr>
+<tr><td class="p">suit one's taste</td><td>合某人的口味</td><td class="t">27</td></tr>
+<tr><td class="p">put together an outfit</td><td>搭配一套衣服</td><td class="t">09</td></tr>
+<tr><td class="p">trendy</td><td>时髦的、流行的</td><td class="t">09</td></tr>
+<tr><td class="p">wardrobe</td><td>衣柜（也指全部衣物）</td><td class="t">09</td></tr>
+<tr><td class="p">follow fashion trends</td><td>追随时尚潮流</td><td class="t">09</td></tr>
+<tr><td class="p">first impressions are based on how people dress</td><td>第一印象取决于穿着</td><td class="t">09</td></tr>
+<tr><td class="p">casual / formal</td><td>休闲的 / 正式的</td><td class="t">09</td></tr>
+<tr><td class="p">go with</td><td>和…搭</td><td class="t">09</td></tr>
+<tr><td class="p">vibrant / vintage / timeless</td><td>鲜艳的 / 老式复古的 / 永不过时的</td><td class="t">09</td></tr>
+<tr><td class="p">out of fashion</td><td>过时的</td><td class="t">09</td></tr>
+<tr><td class="p">grocery store</td><td>杂货店</td><td class="t">30</td></tr>
+<tr><td class="p">next to / far from</td><td>紧挨着 / 离…很远</td><td class="t">30</td></tr>
+<tr><td class="p">clinic / library / school</td><td>诊所 / 图书馆 / 学校</td><td class="t">30</td></tr>
+<tr><td class="p">borrow ... from the library</td><td>从图书馆借…</td><td class="t">30</td></tr>
+<tr><td class="p">roller coaster / swing ride</td><td>过山车 / 海盗船（秋千椅）</td><td class="t">29</td></tr>
+<tr><td class="p">Riding the roller coaster is scary</td><td>坐过山车很吓人（动名词作主语）</td><td class="t">29</td></tr>
+<tr><td class="p">a phobia of heights</td><td>恐高症</td><td class="t">25</td></tr>
+<tr><td class="p">Ferris wheel / carousel</td><td>摩天轮 / 旋转木马</td><td class="t">29</td></tr>
+<tr><td class="p">face your fears</td><td>直面你的恐惧</td><td class="t">25</td></tr>
+<tr><td class="p">home sweet home</td><td>甜蜜的家</td><td class="t">28</td></tr>
+<tr><td class="p">appliances / furniture</td><td>家电 / 家具</td><td class="t">26/27</td></tr>
+</table></details>
+</div>
+</article>
+
+<div class="foot">
+  生成日期 2026/09/26 · 素材来源：output/全部话题总汇.txt（30话题）<br>
+  建议练习：① 开高亮通读 → ② 开译文精读 → ③ 挖空自测 → ④ 打开短语清单遮右列自检 → ⑤ 隔天重测
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var b = document.body;
+  function bind(id, cls){
+    var el = document.getElementById(id);
+    el.addEventListener('click', function(){
+      el.classList.toggle('on');
+      b.classList.toggle(cls);
+      if(cls === 'blank'){
+        document.querySelectorAll('.ph.rv').forEach(function(p){p.classList.remove('rv')});
+      }
+    });
+  }
+  bind('btn-tr','tr');
+  bind('btn-hl','nohl');
+  bind('btn-blank','blank');
+
+  // 点击短语：挖空模式下显示/隐藏
+  document.querySelectorAll('.ph').forEach(function(p){
+    p.addEventListener('click', function(e){
+      if(b.classList.contains('blank')){ p.classList.toggle('rv'); }
+      e.stopPropagation();
+    });
+  });
+
+  // 统计每篇文章短语数
+  document.querySelectorAll('article.story').forEach(function(a){
+    var n = a.querySelectorAll('.ph').length;
+    var pc = a.querySelector('.pc');
+    if(pc){ pc.textContent = '★ ' + n + ' 处重点短语'; }
+  });
+  var total = document.querySelectorAll('.ph').length;
+  var t = document.getElementById('total');
+  if(t){ t.textContent = '全篇共 ' + total + ' 处重点短语 · 覆盖30话题'; }
+
+  // 快捷键：T=译文 B=挖空 H=高亮
+  document.addEventListener('keydown', function(e){
+    if(e.target.tagName === 'INPUT') return;
+    var k = e.key.toLowerCase();
+    if(k === 't'){ document.getElementById('btn-tr').click(); }
+    if(k === 'b'){ document.getElementById('btn-blank').click(); }
+    if(k === 'h'){ document.getElementById('btn-hl').click(); }
+  });
+})();
+</script>
+</body>
+</html>

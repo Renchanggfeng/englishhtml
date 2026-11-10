@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>旅游英语 · 6天精华版 汇总</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#0e7a5f; --accent-soft:#e6f4ef;
+  --en:#1a3c66; --zh:#57606a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+
+/* ── 工具栏 ── */
+.toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.toolbar h1{font-size:17px;margin:0 14px 0 0;white-space:nowrap}
+.toolbar h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 13px;
+  font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.progress-wrap{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.pbar{width:130px;height:8px;background:#eef0f3;border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1280px;margin:0 auto;align-items:flex-start}
+nav.toc{position:sticky;top:56px;width:225px;flex:none;padding:18px 8px 30px 14px;
+  max-height:calc(100vh - 56px);overflow-y:auto;font-size:13px}
+nav.toc .g{font-weight:600;color:var(--accent);margin:12px 0 4px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:3px 6px;border-radius:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+main{flex:1;min-width:0;padding:20px 26px 60px}
+
+/* ── 速览卡 ── */
+.overview{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:14px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.overview h2{font-size:17px;margin:0 0 10px}
+.overview p{margin:6px 0;color:var(--zh)}
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:14px}
+.route .stop{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#fbfcfd}
+.route .stop b{display:block;color:var(--accent);font-size:13px;margin-bottom:2px}
+.route .stop span{font-size:12.5px;color:var(--zh)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+.stats b{color:var(--accent);font-size:17px;margin-right:4px}
+
+/* ── 每日卡 ── */
+article.day{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow:hidden}
+article.day>header{padding:16px 24px 12px;background:linear-gradient(180deg,#fbfcfd,#f0f7f4);
+  border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+article.day>header .no{font-size:22px;font-weight:700;color:var(--accent)}
+article.day>header h2{font-size:18px;margin:0}
+article.day>header .theme{color:var(--muted);font-size:13.5px}
+section.lesson{padding:6px 24px 14px}
+section.lesson>h3{font-size:14.5px;color:var(--accent);margin:16px 0 6px;
+  border-left:4px solid var(--accent);padding-left:9px}
+table.sent{width:100%;border-collapse:collapse}
+table.sent th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;
+  padding:4px 10px;border-bottom:1px solid var(--line)}
+table.sent td{padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+tr.grp:hover td{background:#fafbfc}
+td.ck{width:30px}
+td.ck input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+tr.grp.done td{opacity:.55}
+tr.grp.done .en,.tr.grp.done .zh{text-decoration:line-through}
+td.num{width:34px;color:#c3c9d1;font-size:12.5px}
+.en{color:var(--en);font-weight:600}
+.zh{color:var(--zh)}
+.sub{display:block;font-size:12.5px;color:#98a0aa;font-weight:400;margin-top:1px}
+.hide-zh .zh{visibility:hidden}
+.hide-zh th.hzh{color:transparent}
+
+/* ── 句型卡 ── */
+.patterns{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.patterns h2{font-size:17px;margin:0 0 4px}
+.patterns>p{color:var(--zh);margin:4px 0 14px;font-size:13.5px}
+.pat{border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:10px 0;background:#fbfcfd}
+.pat .formula{font-weight:700;color:var(--accent);font-size:15px}
+.pat .use{color:var(--muted);font-size:12.5px;margin-left:8px}
+.pat ul{margin:6px 0 2px;padding-left:0;list-style:none;font-size:13.5px}
+.pat li{margin:3px 0}
+.pat li .en{font-size:13.5px}
+
+/* ── 说明卡 ── */
+.notes{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.notes h2{font-size:16px;margin:0 0 8px}
+.notes ul{margin:6px 0;padding-left:22px;color:var(--zh);font-size:13.5px}
+.notes li{margin:4px 0}
+kbd{background:#f0f2f4;border:1px solid var(--line);border-radius:4px;padding:0 6px;font-size:12px}
+
+@media (max-width:900px){
+  nav.toc{display:none}
+  main{padding:14px}
+}
+@media print{
+  .toolbar,nav.toc{display:none}
+  article.day{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>旅游英语 · 6天精华版<small>汇总总结</small></h1>
+  <button class="btn" id="btnZh">隐藏中文（自测）</button>
+  <button class="btn" id="btnReset">重置进度</button>
+  <div class="progress-wrap">
+    <span id="ptext">0 / 60 组</span>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+</div>
+
+<div class="wrap">
+<nav class="toc" id="toc"></nav>
+<main id="main">
+
+  <div class="overview" id="overview">
+    <h2>课程速览</h2>
+    <p>原教材：<b>6-Day Travel English</b>（旅游英语·6天精华版，PDF 共 6 页）。编排方式为
+    <b>1 天 = 2 课 = 10 组句型</b>，每组一句<b>主句</b> + 一句<b>替换句</b>——记住一个句型，换掉关键词就是一个新场景（替换练习法）。
+    全书按一次出国旅行的完整时间线展开：</p>
+    <div class="route">
+      <div class="stop"><b>Day 1 · 出发抵达</b><span>问候寒暄 + 机上服务与入境海关</span></div>
+      <div class="stop"><b>Day 2 · 安顿落脚</b><span>酒店住宿 + 兑换货币与市内交通</span></div>
+      <div class="stop"><b>Day 3 · 吃喝点餐</b><span>餐厅用餐 + 快餐外带</span></div>
+      <div class="stop"><b>Day 4 · 逛与买</b><span>观光游览 + 购物砍价</span></div>
+      <div class="stop"><b>Day 5 · 出行意外</b><span>租车自驾 + 丢失被盗应急</span></div>
+      <div class="stop"><b>Day 6 · 看病就医</b><span>就诊沟通 + 症状描述</span></div>
+    </div>
+    <div class="stats">
+      <span><b>6</b>天</span><span><b>12</b>课</span><span><b>60</b>组句型</span><span><b>120</b>句</span>
+    </div>
+  </div>
+
+  <div id="days"></div>
+
+  <div class="patterns" id="patterns">
+    <h2>高频万能句型总结</h2>
+    <p>全书 120 句其实只反复用了下面 10 个句型，掌握句型再往里填单词即可举一反三。</p>
+
+    <div class="pat"><span class="formula">I'd like (to) …　我想要……</span><span class="use">全书最高频，点单 / 订房 / 租车 / 看病全靠它</span>
+      <ul>
+        <li><span class="en">I'd like a window seat. / I'd like the beef.</span><span class="zh">　靠窗座位 / 我要牛肉（机上）</span></li>
+        <li><span class="en">I'd like a room for two nights. / I'd like to exchange some money.</span><span class="zh">　住两晚的房间 / 兑换些钱</span></li>
+        <li><span class="en">I'd like to rent a car. / I'd like to see a doctor.</span><span class="zh">　租车 / 看医生</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Can I have / get / see …?　能给我/看看……吗</span><span class="use">向对方索要东西或服务</span>
+      <ul>
+        <li><span class="en">Can I have a large pizza? / Can I have a round-trip ticket, please?</span></li>
+        <li><span class="en">Can I get a city map? / Can I see the menu?</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Could you … ?　您能……吗</span><span class="use">比 Can you 更客气的请求</span>
+      <ul>
+        <li><span class="en">Could you recommend a nice wine?</span><span class="zh">　推荐款好酒</span></li>
+        <li><span class="en">Could you give me a discount? / Would you take a picture of me?</span><span class="zh">　打折 / 帮拍张照</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">How much is / are …?　……多少钱</span><span class="use">问价格，is 接单数、are 接复数</span>
+      <ul>
+        <li><span class="en">How much is a room for 2 nights? / How much are those?</span></li>
+        <li><span class="en">How much are the tickets for two adults?</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Where's …? / Which … goes to …?　问路与问线路</span>
+      <ul>
+        <li><span class="en">Where's the outlet mall? / Where's the lost and found?</span></li>
+        <li><span class="en">Which train goes to the Central Park? / Which bus goes to the terminal?</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">I'm here for … / I'm headed to …　表目的与去向</span>
+      <ul>
+        <li><span class="en">I'm here for sightseeing. / I'm here for 5 days.</span><span class="zh">　入境必答</span></li>
+        <li><span class="en">I'm headed to Milan.</span><span class="zh">　我去米兰（自驾/问路）</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Do you have …?　你们有……吗</span>
+      <ul>
+        <li><span class="en">Do you have a morning tour? / Do you have anything on sale?</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Please + 动词　请……</span><span class="use">直接提出要求</span>
+      <ul>
+        <li><span class="en">Please, keep the change. / Please, use the meter.</span><span class="zh">　不用找零 / 请打表</span></li>
+        <li><span class="en">Please speak slowly. / Please speak Chinese.</span><span class="zh">　救命必背</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">症状三件套：I feel … / I have … / It hurts …</span><span class="use">就医描述身体状况</span>
+      <ul>
+        <li><span class="en">I feel nauseous. / I feel like fainting.</span><span class="zh">　恶心 / 要晕倒</span></li>
+        <li><span class="en">I have a stomachache. / I have a bad headache.</span></li>
+        <li><span class="en">It hurts here. / It hurts every 5 minutes. / It hurts when I touch it.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">保险专用：Will my insurance …? / How can I get …?</span>
+      <ul>
+        <li><span class="en">Will my insurance cover it?</span><span class="zh">　保险涵盖这项吗</span></li>
+        <li><span class="en">How can I get an insurance certificate?</span><span class="zh">　怎么开保险证明</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="notes" id="notes">
+    <h2>使用说明与勘误</h2>
+    <ul>
+      <li>勾选每组前的复选框标记"已掌握"，进度自动保存在本机浏览器（localStorage），可用工具栏 <kbd>重置进度</kbd> 清空。</li>
+      <li>点 <kbd>隐藏中文（自测）</kbd> 可遮住中文列，看英文回想意思再核对。</li>
+      <li>原文为繁体中文，本页已统一转为简体；个别句中的英文小错（如 <i>Can i</i> → <i>Can I</i>、句末中文句号）已顺手规范。</li>
+      <li>原文"我想兌換一萬人民幣"与英文 <i>30,000 yuan</i> 数量不一致，已按英文对齐为"三万元"。</li>
+      <li>原文 <i>Could you recommend a local food?</i> 的中文误印为"推荐的红葡萄酒"，已改为"当地美食"。</li>
+      <li>原文"零錢不用<b>照</b>了"应为"不用<b>找</b>了"，已修正。</li>
+      <li>来源：<code>旅游英语-6天精华版/6DayTravelEnglishforCNSB.pdf</code>（仅提取文字，未含图片内容）。</li>
+    </ul>
+  </div>
+
+</main>
+</div>
+
+<script>
+/* ── 课程数据：每天 2 课，每课 5 组 [主句, 替换句]，每组 [中文, 英文] ── */
+const DAYS = [
+  {no:1, title:"出发与抵达", theme:"问候寒暄 · 机上服务 · 入境海关", lessons:[
+    {name:"Lesson 1 · 基础问候", groups:[
+      [["你好","Hello."],["再见","See you."]],
+      [["你好吗？","How are you?"],["很好，谢谢。","Fine, thank you."]],
+      [["谢谢！","Thank you!"],["不，谢谢。","No, thank you."]],
+      [["对不起，打扰一下。","Excuse me."],["对不起。","I'm sorry."]],
+      [["请再说一遍？","Pardon?"],["请说得慢一点。","Please speak slowly."]]
+    ]},
+    {name:"Lesson 2 · 机上与入境", groups:[
+      [["我想要靠窗的座位。","I'd like a window seat."],["我想要靠走廊的座位。","I'd like an aisle seat."]],
+      [["我想要牛肉。","I'd like the beef."],["我想要鸡肉。","I'd like the chicken."]],
+      [["我在这里待 5 天。","I'm here for 5 days."],["我在这里待一周。","I'm here for 1 week."]],
+      [["我来这里观光旅游。","I'm here for sightseeing."],["我来这里出差。","I'm here for business."]],
+      [["我没有要申报的东西。","I have nothing to declare."],["我有一瓶威士忌。","I have a bottle of whiskey."]]
+    ]}
+  ]},
+  {no:2, title:"安顿落脚", theme:"酒店住宿 · 兑换货币 · 市内交通", lessons:[
+    {name:"Lesson 1 · 酒店住宿", groups:[
+      [["我想找个房间住两晚。","I'd like a room for two nights."],["我想要单人房。","I'd like a single room."]],
+      [["一个房间住两晚多少钱？","How much is a room for 2 nights?"],["双人房多少钱？","How much is a room for 2 persons?"]],
+      [["早餐供应到几点？","Until when is breakfast served?"],["几点要退房？","Until when is the check-out?"]],
+      [["怎么拨打国际电话？","How do I make an international call?"],["怎么拨打本地电话？","How do I make a local call?"]],
+      [["我想结账。","I'd like to pay my bills."],["我想要收据。","I'd like to get the receipt."]]
+    ]},
+    {name:"Lesson 2 · 兑换与交通", groups:[
+      [["我想兑换一些钱。","I'd like to exchange some money."],["我想兑换三万元人民币。","I'd like to exchange 30,000 yuan."]],
+      [["能给我一份城市地图吗？","Can I get a city map?"],["能给我一份交通地图吗？","Can I get a transportation map?"]],
+      [["零钱不用找了。","Please, keep the change."],["请打表（用计价器）。","Please, use the meter."]],
+      [["能给我一张往返票吗？","Can I have a round-trip ticket, please?"],["能给我一张单程票吗？","Can I have a one-way ticket, please?"]],
+      [["哪列火车到中央公园？","Which train goes to the Central Park?"],["哪辆公交开往终点站？","Which bus goes to the terminal?"]]
+    ]}
+  ]},
+  {no:3, title:"吃喝点餐", theme:"餐厅预订点菜 · 快餐外带", lessons:[
+    {name:"Lesson 1 · 餐厅用餐", groups:[
+      [["我能预订晚上 6 点吗？","Can I make a reservation at 6pm?"],["我能预订 5 个人的位置吗？","Can I make a reservation for 5 persons?"]],
+      [["我能看看菜单吗？","Can I see the menu?"],["我能看看酒单吗？","Can I see the wine list?"]],
+      [["有推荐的当地美食吗？","Could you recommend a local food?"],["有推荐的好酒吗？","Could you recommend a nice wine?"]],
+      [["你们都有什么甜点？","What kind of dessert do you have?"],["你们有什么饮料？","What kind of drinks do you have?"]],
+      [["结账。","Check, please."],["服务员，请上水。","Water, please."]]
+    ]},
+    {name:"Lesson 2 · 快餐外带", groups:[
+      [["我在这里吃。","I'll eat here."],["我要带走。","I'll take it out."]],
+      [["我能要一个大号披萨吗？","Can I have a large pizza?"],["我能要一杯中杯可乐吗？","Can I have a regular coke?"]],
+      [["给我来半份夏威夷和意大利香肠披萨。","I'd like a half-size of hawaiian and pepperoni pizza."],["我想要半份 meatlover（肉类爱好者）披萨。","I'd like a half-size of meatlover pizza."]],
+      [["能再加一份薯条吗？","Can I have an additional order of french fries?"],["能再加一份意大利面吗？","Can I have an additional order of spaghetti?"]],
+      [["这个多少钱？","How much is it?"],["这些多少钱？","How much are those?"]]
+    ]}
+  ]},
+  {no:4, title:"逛与买", theme:"观光游览 · 拍照门票 · 购物砍价", lessons:[
+    {name:"Lesson 1 · 观光游览", groups:[
+      [["你们有带中文导游的旅行团吗？","Do you have a tour with speaking guide?"],["你们有上午出发的团吗？","Do you have a morning tour?"]],
+      [["这个游览几点开始？","What time does the tour start?"],["博物馆几点开门？","What time does the museum open?"]],
+      [["我在找博物馆。","I'm looking for the museum."],["我在找大教堂。","I'm looking for the cathedral."]],
+      [["能帮我照张相吗？","Would you take a picture of me?"],["能把那座雕像拍下来吗？","Would you take a picture with that statue?"]],
+      [["两张成人票多少钱？","How much are the tickets for two adults?"],["一张成人票多少钱？","How much is the ticket for an adult?"]]
+    ]},
+    {name:"Lesson 2 · 购物砍价", groups:[
+      [["奥特莱斯购物中心在哪里？","Where's the outlet mall?"],["免税店在哪里？","Where's the duty free shop?"]],
+      [["我只是随便看看。","I'm just looking around."],["我只是随便逛逛。","I'm just window shopping."]],
+      [["我能试穿吗？","Can I try it on?"],["我能买下它吗？","Can I get it?"]],
+      [["有什么打折的商品吗？","Do you have anything on sale?"],["这个有别的款式吗？","Do you have this in another style?"]],
+      [["能给我个更便宜的价格吗？","Could you give me a better price?"],["能给我打个折吗？","Could you give me a discount?"]]
+    ]}
+  ]},
+  {no:5, title:"出行与意外", theme:"租车自驾加油 · 丢失被盗应急", lessons:[
+    {name:"Lesson 1 · 租车自驾", groups:[
+      [["我想租辆车。","I'd like to rent a car."],["我想把车还到机场。","I'd like to return the car to the airport."]],
+      [["里程费是多少？","How much is the mileage charge?"],["油价是多少？","How much is the gasoline price?"]],
+      [["我想购买车险。","I want to get a car insurance."],["我想要一份保险凭证。","I want to get an insurance certificate."]],
+      [["请加满普通无铅汽油。","Fill it up with regular unleaded, please."],["请加满高级汽油。","Fill it up with premium gas, please."]],
+      [["我去米兰。","I'm headed to Milan."],["我去往……","I'm headed to ..."]]
+    ]},
+    {name:"Lesson 2 · 丢失与被盗", groups:[
+      [["我找不到钱包了。","I can't find my wallet."],["我找不到手表了。","I can't find my watch."]],
+      [["失物招领处在哪里？","Where's the lost and found?"],["保安处在哪里？","Where's the safety and security office?"]],
+      [["我怎样才能拿到保险证明？","How can I get an insurance certificate?"],["我怎样才能拿到证明信？","How can I get an endorsement letter?"]],
+      [["抓住他！快叫警察。","Catch him! Someone call the police."],["小偷！救命，快叫警察！","Thief! Help me. Call the police!"]],
+      [["我的护照被偷了。","My passport has been stolen."],["我的钱包被偷了。","My wallet has been stolen."]]
+    ]}
+  ]},
+  {no:6, title:"看病就医", theme:"就诊沟通 · 保险报销 · 症状描述", lessons:[
+    {name:"Lesson 1 · 就诊沟通", groups:[
+      [["我想去看医生。","I'd like to see a doctor."],["我想去看牙医。","I'd like to see a dentist."]],
+      [["请说慢一点。","Please speak slowly."],["请讲中文。","Please speak Chinese."]],
+      [["我的保险涵盖这项吗？","Will my insurance cover it?"],["我的保险会支付吗？","Will my insurance pay for it?"]],
+      [["我胃疼。","I have a stomachache."],["我腹泻。","I have a diarrhea."]],
+      [["这一带疼。","It hurts around here."],["我一碰这里就疼。","It hurts when I touch it."]]
+    ]},
+    {name:"Lesson 2 · 描述症状", groups:[
+      [["我觉得不舒服。","I feel discomfort."],["我觉得发冷。","I feel cold."]],
+      [["我觉得恶心。","I feel nauseous."],["我觉得反胃。","I feel queasy."]],
+      [["我觉得想吐。","I feel like vomiting."],["我觉得要晕倒。","I feel like fainting."]],
+      [["我偏头痛得很厉害。","I have a bad headache."],["我胃里一阵绞痛。","I have a squeezing pain in my stomach."]],
+      [["我这里疼。","It hurts here."],["每隔 5 分钟疼一次。","It hurts every 5 minutes."]]
+    ]}
+  ]}
+];
+
+/* ── 渲染 ── */
+const KEY = "travel6d-v1";
+let store = {};
+try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) { store = {}; }
+
+const daysEl = document.getElementById("days");
+DAYS.forEach(d => {
+  const art = document.createElement("article");
+  art.className = "day"; art.id = "day" + d.no;
+  let gi = 0;
+  let lessonsHtml = d.lessons.map(l => {
+    let rows = l.groups.map(g => {
+      gi++;
+      const id = `d${d.no}-g${gi}`;
+      return `<tr class="grp" data-id="${id}">
+        <td class="ck"><input type="checkbox" ${store[id] ? "checked" : ""}></td>
+        <td class="num">${gi}</td>
+        <td><span class="en">${g[0][1]}</span><span class="sub zh">${g[0][0]}</span></td>
+        <td><span class="en">${g[1][1]}</span><span class="sub zh">${g[1][0]}</span></td>
+      </tr>`;
+    }).join("");
+    return `<section class="lesson"><h3>${l.name}</h3>
+      <table class="sent"><thead><tr><th></th><th></th><th>主句 Main</th><th>替换句 Variant</th></tr></thead>
+      <tbody>${rows}</tbody></table></section>`;
+  }).join("");
+  art.innerHTML = `<header><span class="no">DAY ${d.no}</span><h2>${d.title}</h2><span class="theme">${d.theme}</span></header>${lessonsHtml}`;
+  daysEl.appendChild(art);
+});
+
+/* ── 目录 ── */
+const toc = document.getElementById("toc");
+toc.innerHTML = `<div class="g">总览</div>
+  <a href="#overview">课程速览</a>
+  <div class="g">每日句型</div>` +
+  DAYS.map(d => `<a href="#day${d.no}">Day ${d.no} · ${d.title}</a>`).join("") +
+  `<div class="g">总结</div><a href="#patterns">高频万能句型</a><a href="#notes">使用说明与勘误</a>`;
+
+/* ── 勾选进度 ── */
+const total = DAYS.reduce((n, d) => n + d.lessons.reduce((m, l) => m + l.groups.length, 0), 0);
+function refresh() {
+  const done = Object.values(store).filter(Boolean).length;
+  document.getElementById("ptext").textContent = `${done} / ${total} 组`;
+  document.getElementById("pfill").style.width = (done / total * 100) + "%";
+}
+daysEl.addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  const tr = e.target.closest("tr");
+  store[tr.dataset.id] = e.target.checked;
+  tr.classList.toggle("done", e.target.checked);
+  localStorage.setItem(KEY, JSON.stringify(store));
+  refresh();
+});
+daysEl.querySelectorAll("tr.grp").forEach(tr => tr.classList.toggle("done", !!store[tr.dataset.id]));
+refresh();
+
+/* ── 隐藏中文自测 ── */
+const btnZh = document.getElementById("btnZh");
+btnZh.onclick = () => {
+  document.body.classList.toggle("hide-zh");
+  btnZh.classList.toggle("on");
+  btnZh.textContent = document.body.classList.contains("hide-zh") ? "显示中文" : "隐藏中文（自测）";
+};
+
+/* ── 重置 ── */
+document.getElementById("btnReset").onclick = () => {
+  if (!confirm("确定清空全部学习进度吗？")) return;
+  store = {};
+  localStorage.removeItem(KEY);
+  daysEl.querySelectorAll("tr.grp").forEach(tr => { tr.classList.remove("done"); tr.querySelector("input").checked = false; });
+  refresh();
+};
+</script>
+</body>
+</html>

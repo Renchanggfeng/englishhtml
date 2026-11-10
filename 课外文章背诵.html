@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语背诵 · 自选课外文章（持续更新）</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#0e7a5f; --accent-soft:#e6f4ef;
+  --en:#1a3c66; --zh:#57606a; --ph:#9a3412; --ph-bg:#fff3bf;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+
+/* ── 工具栏 ── */
+.toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.toolbar h1{font-size:17px;margin:0 14px 0 0;white-space:nowrap}
+.toolbar h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 13px;
+  font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1280px;margin:0 auto;align-items:flex-start}
+nav.toc{position:sticky;top:56px;width:235px;flex:none;padding:18px 8px 30px 14px;
+  max-height:calc(100vh - 56px);overflow-y:auto;font-size:13px}
+nav.toc .g{font-weight:600;color:var(--accent);margin:12px 0 4px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:3px 6px;border-radius:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+main{flex:1;min-width:0;padding:20px 26px 60px}
+
+/* ── 说明卡 ── */
+.howto{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;
+  margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.howto h2{font-size:16px;margin:0 0 8px}
+.howto ol{margin:6px 0 0;padding-left:22px;color:var(--zh)}
+.howto b.k{color:var(--ph)}
+
+/* ── 文章卡 ── */
+article.story{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow:hidden}
+article.story>header{padding:18px 24px 14px;background:linear-gradient(180deg,#fbfcfd,#f0f7f4);
+  border-bottom:1px solid var(--line)}
+article.story>header .num{display:inline-flex;width:40px;height:40px;border-radius:10px;
+  background:var(--accent);color:#fff;font-weight:700;font-size:18px;
+  align-items:center;justify-content:center;vertical-align:middle;margin-right:12px}
+article.story>header h2{display:inline;font-size:21px;vertical-align:middle;margin:0}
+article.story>header h2 small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:2px}
+.meta{margin:8px 0 0;font-size:12.5px;color:var(--muted)}
+.badges{margin:8px 0 0}
+.badge{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:20px;
+  padding:2px 11px;font-size:12px;margin:2px 4px 2px 0}
+.pc{float:right;color:var(--muted);font-size:12.5px;margin-top:10px}
+.story-body{padding:8px 26px 20px}
+
+/* ── 段落 ── */
+p.para{margin:14px 0}
+p.para .en{font-family:Georgia,"Times New Roman",serif;font-size:16.5px;line-height:1.85;color:var(--en);
+  display:block}
+p.para .zh{display:none;color:var(--zh);font-size:14px;line-height:1.75;
+  border-left:3px solid var(--line);padding:2px 0 2px 12px;margin-top:6px}
+body.tr p.para .zh{display:block}
+
+/* ── 重点短语 ── */
+.ph{font-weight:700;color:var(--ph);background:var(--ph-bg);border-radius:3px;padding:0 3px;
+  cursor:pointer;position:relative}
+.ph:hover::after{content:attr(data-zh);position:absolute;left:50%;transform:translateX(-50%);
+  top:calc(100% + 4px);background:#24292f;color:#fff;font-size:12px;font-weight:400;
+  font-family:"Microsoft YaHei",sans-serif;padding:3px 10px;border-radius:5px;white-space:nowrap;
+  z-index:30;pointer-events:none}
+body.nohl .ph{font-weight:inherit;color:inherit;background:none;padding:0}
+body.blank .ph{color:transparent;background:#ffe9a8;user-select:none}
+body.blank .ph.rv{color:var(--ph)}
+body.blank .ph:hover::after{content:none}
+
+/* ── 要点速记 ── */
+.facts{background:#f7faf9;border:1px dashed #cfe5dc;border-radius:8px;padding:10px 16px;margin:14px 0;
+  font-size:14px;color:var(--zh)}
+.facts b{color:var(--en)}
+
+/* ── 短语清单 ── */
+details.plist{margin:16px 0 6px;border:1px solid var(--line);border-radius:8px;background:#fbfcfd}
+details.plist summary{cursor:pointer;padding:10px 16px;font-weight:600;color:var(--accent);font-size:14px}
+details.plist table{width:100%;border-collapse:collapse;font-size:13.5px;margin:4px 0 12px}
+details.plist th{background:#eef5f2;text-align:left;padding:6px 14px;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);font-size:13px}
+details.plist td{padding:5px 14px;border-bottom:1px solid #eef1f4;vertical-align:top}
+details.plist td.p{font-family:Georgia,serif;font-weight:700;color:var(--ph)}
+.foot{color:var(--muted);font-size:12.5px;text-align:center;padding:20px 0 40px}
+@media(max-width:900px){nav.toc{display:none}}
+@media print{.toolbar,nav.toc,.howto{display:none}p.para .zh{display:block}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>自选课外文章背诵<small>持续更新</small></h1>
+  <button class="btn" id="btn-tr">📝 显示译文</button>
+  <button class="btn on" id="btn-hl">🖍 短语高亮</button>
+  <button class="btn" id="btn-blank">🧩 挖空自测</button>
+  <span style="color:var(--muted);font-size:13px;margin-left:auto" id="total"></span>
+</div>
+
+<div class="wrap">
+<nav class="toc">
+  <div class="g">使用说明</div>
+  <a href="#howto">📍 三种背诵模式</a>
+  <a href="#howto">➕ 如何新增文章</a>
+  <div class="g">文章目录</div>
+  <a href="#x1">1 · UiPath Agentic Automation…</a>
+  <div class="g">分类</div>
+  <a href="#x1">科技 · 认证公告</a>
+</nav>
+
+<main>
+
+<div class="howto" id="howto">
+  <h2>📍 背诵使用说明</h2>
+  <ol>
+    <li><b class="k">🖍 短语高亮</b>（默认开启）：橙色标记为本文值得背诵的短语与句型，<b>鼠标悬停</b>显示中文释义。</li>
+    <li><b class="k">📝 显示译文</b>：逐段显示中文对照，检查理解。</li>
+    <li><b class="k">🧩 挖空自测</b>：重点短语变成黄色空块，<b>点击空块</b> reveal 答案，检验记忆。</li>
+    <li>快捷键：<b>T</b>=译文 · <b>B</b>=挖空 · <b>H</b>=高亮。</li>
+    <li><b class="k">➕ 如何新增文章</b>：把新文章文本放进 <b>自选课外文章/</b> 文件夹，命名规范 <b>序号_文章标题.txt</b>（如 01_UiPath Agentic智能体自动化专业认证发布公告.txt，序号与本页文章编号对应），然后让 Claude"读取并追加到课外文章背诵.html"——格式会自动保持一致：分段、高亮重点短语、加中文译文、生成短语清单。</li>
+  </ol>
+</div>
+
+<!-- ═══════════════ ARTICLE X1 ═══════════════ -->
+<article class="story" id="x1">
+<header>
+  <span class="num">1</span>
+  <h2>UiPath Agentic Automation Builder Professional Certification<small>UiPath 智能体自动化构建者专业认证 · 发布公告</small></h2>
+  <span class="pc"></span>
+  <div class="meta">来源：自选课外文章/01_UiPath Agentic智能体自动化专业认证发布公告.txt · 收录于 2026/09/26 · 约 300 词</div>
+  <div class="badges">
+    <span class="badge">科技</span><span class="badge">产品公告</span><span class="badge">AI 自动化</span>
+  </div>
+</header>
+<div class="story-body">
+
+<p class="para"><span class="en">We're <b class="ph" data-zh="很高兴地介绍…(announce常用替换)">excited to introduce</b> the UiPath Agentic Automation Builder Professional Certification, our newest UiPath Certified Professional <b class="ph" data-zh="证书、资质">credential</b>, <b class="ph" data-zh="发布、上线(v./n.)">launching</b> on September 22 at UiPath Fusion.</span>
+<span class="zh">我们很高兴地向大家介绍 UiPath 智能体自动化构建者专业认证——UiPath 最新的一项专业认证资质，将于9月22日在 UiPath Fusion 大会上正式发布。</span></p>
+
+<p class="para"><span class="en">Created for professionals ready to <b class="ph" data-zh="把A的潜力转化为B(turn A into B)">turn the potential of</b> agentic automation into <b class="ph" data-zh="真实世界的(=practical)">real-world</b>, <b class="ph" data-zh="企业级可用的">enterprise-ready</b> solutions, this certification <b class="ph" data-zh="验证、认证(技能等)">validates</b> the skills needed to build, <b class="ph" data-zh="编排">orchestrate</b>, <b class="ph" data-zh="评估">evaluate</b>, and <b class="ph" data-zh="治理">govern</b> <b class="ph" data-zh="下一代的…">the next generation of</b> automation.</span>
+<span class="zh">这项认证专为那些准备将智能体自动化的潜力转化为真实的、企业级解决方案的专业人士打造，它验证的是构建、编排、评估和治理下一代自动化所需的技能。</span></p>
+
+<p class="para"><span class="en">As organizations <b class="ph" data-zh="拥抱、接纳(新事物,高频!)">embrace</b> Agents &amp; Operational AI, building successful solutions requires <b class="ph" data-zh="不仅仅是…(more than + n./doing)">more than</b> creating individual agents. It means understanding how intelligent, <b class="ph" data-zh="自适应的">adaptive</b> agents can <b class="ph" data-zh="与…协同工作">work alongside</b> Deterministic Automation, <b class="ph" data-zh="把A与B结合(combine A with B)">combining</b> flexibility and reasoning <b class="ph" data-zh="把A与B结合">with</b> the consistency and precision businesses <b class="ph" data-zh="依赖、依靠(rely on=depend on)">rely on</b>.</span>
+<span class="zh">随着各组织拥抱智能体与运营式 AI，构建成功的解决方案所需要的不仅仅是创建单个智能体。它意味着要理解：智能的、自适应的智能体如何与确定性自动化协同工作，把灵活性和推理能力与企业所依赖的一致性和精确性结合起来。</span></p>
+
+<p class="para"><span class="en">The certification validates the ability to use Agentic Business Orchestration to <b class="ph" data-zh="协调…之间的工作">coordinate work across</b> agents, robots, people, and enterprise systems, while <b class="ph" data-zh="利用(工具/资源,高频!)">leveraging</b> UiPath for Coding Agents <b class="ph" data-zh="作为…的一部分">as part of</b> a modern automation development experience.</span>
+<span class="zh">该认证验证这样的能力：使用"智能体业务编排"来协调智能体、机器人、人和企业系统之间的工作，同时将 UiPath 编码智能体作为现代自动化开发体验的一部分加以利用。</span></p>
+
+<p class="para"><span class="en">And building is <b class="ph" data-zh="只是等式的一部分(=只是一方面,地道!)">only part of the equation</b>. As agentic automation <b class="ph" data-zh="规模化扩展(scale across/throughout)">scales</b> across the enterprise, Evaluation, Governance and Reliability <b class="ph" data-zh="对(做)…至关重要(be essential to + n./doing)">become essential to ensuring</b> solutions <b class="ph" data-zh="运行、表现(perform well)">perform</b> effectively, responsibly, and consistently.</span>
+<span class="zh">而"构建"只是等式的一部分。随着智能体自动化在企业范围内规模化扩展，评估、治理与可靠性对于确保解决方案有效、负责、一致地运行，变得至关重要。</span></p>
+
+<p class="para"><span class="en">The certification <b class="ph" data-zh="给某人做…的机会(give sb the opportunity to do)">gives professionals the opportunity to</b> <b class="ph" data-zh="证明、展示(demonstrate=show formally)">demonstrate</b> that they can <b class="ph" data-zh="超越…(不止于)">go beyond</b> understanding agentic automation and build solutions <b class="ph" data-zh="专为…而设计(be designed for)">designed for</b> real-world enterprise impact.</span>
+<span class="zh">这项认证让专业人士有机会证明：他们能够超越对智能体自动化的"理解"层面，去构建专为真实企业影响力设计的解决方案。</span></p>
+
+<p class="para"><span class="en"><b class="ph" data-zh="为庆祝发布/开业等(目的状语开头)">To celebrate the launch</b>, <b class="ph" data-zh="考生、候选人">candidates</b> can <b class="ph" data-zh="享受…折(50% off=五折)">receive 50% off</b> the certification exam <b class="ph" data-zh="从…到…(含端点,through=inclusive)">from September 22 through</b> November 22, 2026.</span>
+<span class="zh">为庆祝发布，考生可在2026年9月22日至11月22日期间享受认证考试五折优惠。</span></p>
+
+<div class="facts">📌 <b>要点速记</b>：发布日期 <b>2026/09/22</b> · 发布场合 <b>UiPath Fusion</b> · 五折优惠期 <b>2026/09/22 – 11/22</b></div>
+
+<details class="plist"><summary>📋 短语清单（遮住右列自检 · 点击展开/收起）</summary>
+<table><tr><th>短语 / 单词</th><th>释义</th></tr>
+<tr><td class="p">be excited to introduce</td><td>很高兴地介绍…（announce 的常用替换）</td></tr>
+<tr><td class="p">credential</td><td>证书、资质</td></tr>
+<tr><td class="p">launch</td><td>发布、上线（v./n.；launching）</td></tr>
+<tr><td class="p">turn the potential of A into B</td><td>把 A 的潜力转化为 B</td></tr>
+<tr><td class="p">real-world</td><td>真实世界的（= practical）</td></tr>
+<tr><td class="p">enterprise-ready</td><td>企业级可用的</td></tr>
+<tr><td class="p">validate</td><td>验证、认证（技能等）</td></tr>
+<tr><td class="p">orchestrate</td><td>编排</td></tr>
+<tr><td class="p">evaluate</td><td>评估</td></tr>
+<tr><td class="p">govern</td><td>治理</td></tr>
+<tr><td class="p">the next generation of</td><td>下一代的…</td></tr>
+<tr><td class="p">embrace</td><td>拥抱、接纳（新事物；高频词！）</td></tr>
+<tr><td class="p">more than doing sth</td><td>不仅仅是做某事</td></tr>
+<tr><td class="p">adaptive</td><td>自适应的</td></tr>
+<tr><td class="p">work alongside</td><td>与…协同工作</td></tr>
+<tr><td class="p">combine A with B</td><td>把 A 与 B 结合</td></tr>
+<tr><td class="p">rely on</td><td>依赖、依靠（= depend on）</td></tr>
+<tr><td class="p">coordinate work across</td><td>协调跨越…的工作</td></tr>
+<tr><td class="p">leverage</td><td>利用（工具/资源；高频词！）</td></tr>
+<tr><td class="p">as part of</td><td>作为…的一部分</td></tr>
+<tr><td class="p">only part of the equation</td><td>只是等式的一部分（=只是一方面）</td></tr>
+<tr><td class="p">scale (across)</td><td>规模化扩展</td></tr>
+<tr><td class="p">be essential to ensuring</td><td>对确保…至关重要（to 是介词！）</td></tr>
+<tr><td class="p">perform</td><td>运行、表现（perform well）</td></tr>
+<tr><td class="p">give sb the opportunity to do</td><td>给某人做…的机会</td></tr>
+<tr><td class="p">demonstrate</td><td>（正式地）证明、展示</td></tr>
+<tr><td class="p">go beyond</td><td>超越…（不止于）</td></tr>
+<tr><td class="p">be designed for</td><td>专为…而设计</td></tr>
+<tr><td class="p">to celebrate the launch</td><td>为庆祝发布（目的状语开头）</td></tr>
+<tr><td class="p">candidate</td><td>考生、候选人</td></tr>
+<tr><td class="p">50% off</td><td>五折</td></tr>
+<tr><td class="p">from ... through ...</td><td>从…到…（含端点，through = inclusive）</td></tr>
+</table></details>
+</div>
+</article>
+
+<!-- ═══ 新增文章模板（给Claude看）：复制上面的 <article> 区块，
+     改 id 为 x2/x3…，更新标题、来源、分段、译文、短语清单，
+     并在 nav.toc 目录里加一行链接 ═══ -->
+
+<div class="foot">
+  收录 1 篇 · 更新于 2026/09/26 · 素材来源：自选课外文章/<br>
+  建议练习：① 开高亮通读 → ② 开译文精读 → ③ 挖空自测 → ④ 短语清单遮右列自检 → ⑤ 隔天重测
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var b = document.body;
+  function bind(id, cls){
+    var el = document.getElementById(id);
+    el.addEventListener('click', function(){
+      el.classList.toggle('on');
+      b.classList.toggle(cls);
+      if(cls === 'blank'){
+        document.querySelectorAll('.ph.rv').forEach(function(p){p.classList.remove('rv')});
+      }
+    });
+  }
+  bind('btn-tr','tr');
+  bind('btn-hl','nohl');
+  bind('btn-blank','blank');
+
+  // 点击短语：挖空模式下显示/隐藏
+  document.querySelectorAll('.ph').forEach(function(p){
+    p.addEventListener('click', function(e){
+      if(b.classList.contains('blank')){ p.classList.toggle('rv'); }
+      e.stopPropagation();
+    });
+  });
+
+  // 统计每篇文章短语数
+  document.querySelectorAll('article.story').forEach(function(a, i){
+    var n = a.querySelectorAll('.ph').length;
+    var pc = a.querySelector('.pc');
+    if(pc){ pc.textContent = '★ ' + n + ' 处重点短语'; }
+  });
+  var total = document.querySelectorAll('.ph').length;
+  var t = document.getElementById('total');
+  if(t){ t.textContent = '共 ' + total + ' 处重点短语 · ' + document.querySelectorAll('article.story').length + ' 篇文章'; }
+
+  // 快捷键：T=译文 B=挖空 H=高亮
+  document.addEventListener('keydown', function(e){
+    if(e.target.tagName === 'INPUT') return;
+    var k = e.key.toLowerCase();
+    if(k === 't'){ document.getElementById('btn-tr').click(); }
+    if(k === 'b'){ document.getElementById('btn-blank').click(); }
+    if(k === 'h'){ document.getElementById('btn-hl').click(); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语学习 · 全话题总汇</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#2f6fdb; --accent-soft:#eaf1fd;
+  --en:#1a3c66; --zh:#57606a; --warn-bg:#fff8e6; --warn:#9a6700;
+  --ok:#1a7f37;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65}
+.en{font-family:Georgia,"Times New Roman",serif;color:var(--en)}
+.zh{color:var(--zh);font-size:.92em}
+
+/* ── 顶部工具栏 ── */
+.toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.toolbar h1{font-size:17px;margin:0 14px 0 0;white-space:nowrap}
+.toolbar h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 13px;
+  font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#search{border:1px solid var(--line);border-radius:6px;padding:5px 12px;font-size:13px;width:210px;outline:none}
+#search:focus{border-color:var(--accent)}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1280px;margin:0 auto;align-items:flex-start}
+nav.toc{position:sticky;top:56px;width:215px;flex:none;padding:18px 8px 30px 14px;
+  max-height:calc(100vh - 56px);overflow-y:auto;font-size:13px}
+nav.toc .g{font-weight:600;color:var(--accent);margin:12px 0 4px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:2.5px 6px;border-radius:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+main{flex:1;min-width:0;padding:20px 26px 60px}
+
+/* ── 分组标题 ── */
+section.group>h2{font-size:19px;margin:34px 0 14px;padding:8px 14px;border-left:5px solid var(--accent);
+  background:var(--card);border-radius:0 8px 8px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+section.group>h2 small{color:var(--muted);font-weight:400;margin-left:10px}
+
+/* ── 话题卡片 ── */
+article.topic{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  margin:16px 0;box-shadow:0 1px 3px rgba(0,0,0,.04);overflow:hidden}
+article.topic>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;
+  padding:13px 18px;background:linear-gradient(180deg,#fbfcfd,#f5f7fa)}
+article.topic>summary::-webkit-details-marker{display:none}
+article.topic>summary .num{flex:none;width:32px;height:32px;border-radius:8px;background:var(--accent);
+  color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px}
+article.topic>summary h3{margin:0;font-size:16.5px;flex:1;min-width:0}
+article.topic>summary h3 .cn{color:var(--muted);font-weight:400;font-size:14px;margin-left:8px}
+article.topic>summary .arrow{color:var(--muted);transition:.15s;flex:none}
+article.topic[open]>summary .arrow{transform:rotate(90deg)}
+.body{padding:4px 20px 16px}
+@media(max-width:900px){nav.toc{display:none}}
+
+/* ── 卡片内区块 ── */
+h4.sec{margin:16px 0 6px;font-size:13.5px;color:var(--accent);letter-spacing:.5px;
+  border-bottom:1px dashed var(--line);padding-bottom:3px}
+.badge{display:inline-block;font-size:11.5px;background:var(--accent-soft);color:var(--accent);
+  border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:2px;font-weight:400}
+.badge.bg{background:#eef7ee;color:var(--ok)}
+
+table.vocab{border-collapse:collapse;width:100%;font-size:14px;margin:4px 0}
+table.vocab td{border:1px solid var(--line);padding:4.5px 10px;vertical-align:top}
+table.vocab td.w{font-weight:600;white-space:nowrap;font-family:Georgia,serif;color:var(--en)}
+table.vocab td.p{color:#8a6d1a;white-space:nowrap;font-size:12.5px}
+
+ol.sent{margin:4px 0;padding-left:0;list-style:none;counter-reset:s}
+ol.sent>li{counter-increment:s;padding:3px 0 3px 34px;position:relative}
+ol.sent>li::before{content:counter(s);position:absolute;left:6px;top:4px;width:20px;height:20px;
+  border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:11.5px;
+  display:flex;align-items:center;justify-content:center;font-weight:700}
+ol.sent .en{display:block}
+ol.sent .zh{display:block;padding-left:2px}
+.discuss li .zh,.zh-inline{color:var(--zh);font-size:.92em}
+
+ul.exp{margin:4px 0;padding-left:4px;list-style:none}
+ul.exp li{padding:2.5px 0;border-bottom:1px dotted var(--line)}
+ul.exp b{font-family:Georgia,serif;color:var(--en)}
+ul.exp .zh{margin-left:6px}
+
+.qlist{margin:4px 0;padding-left:0;list-style:none}
+.qlist li{padding:3px 0 3px 24px;position:relative}
+.qlist li::before{content:"💬";position:absolute;left:0;top:3px;font-size:12px}
+.warn{background:var(--warn-bg);border-left:3px solid #d4a72c;color:var(--warn);
+  border-radius:0 6px 6px 0;padding:6px 12px;margin:8px 0;font-size:13.5px}
+.note{background:#f0f7f4;border-left:3px solid var(--ok);border-radius:0 6px 6px 0;
+  padding:6px 12px;margin:8px 0;font-size:13.5px;color:#335c42}
+.tip{color:var(--muted);font-size:12.5px}
+blockquote.passage{margin:8px 0;padding:10px 16px;background:#faf8f2;border-left:3px solid #b08d57;
+  border-radius:0 8px 8px 0;font-family:Georgia,serif;color:#4a3f2f;font-size:14.5px}
+
+/* 中文显隐 */
+body.no-zh .zh{display:none}
+body.no-zh ol.sent .en::after{content:" ____________";color:#c8ced4;letter-spacing:1px}
+
+/* 搜索 */
+article.topic.dim{display:none}
+section.group.dim>h2{display:none}
+
+/* 打印 */
+@media print{
+  .toolbar,nav.toc{display:none}
+  body{background:#fff}
+  article.topic{break-inside:avoid;box-shadow:none}
+  main{padding:0}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>📚 英语学习 · 全话题总汇<small>NTC D~H + Beginners · 30 Topics</small></h1>
+  <button class="btn" id="btnZh" onclick="toggleZh()">中文: 显示</button>
+  <button class="btn" onclick="setAll(true)">全部展开</button>
+  <button class="btn" onclick="setAll(false)">全部收起</button>
+  <input id="search" type="search" placeholder="🔍 搜索话题 / 单词 / 句子…" oninput="doSearch()">
+</div>
+
+<div class="wrap">
+<nav class="toc">
+  <div class="g">一、工作与压力</div>
+  <a href="#t01">01 Jobs 工作与职业</a>
+  <a href="#t02">02 Stress 压力</a>
+  <div class="g">二、饮食与健康</div>
+  <a href="#t03">03 Eating Out 外食</a>
+  <a href="#t04">04 Diets 饮食</a>
+  <a href="#t05">05 Alt. Medicine 另类疗法</a>
+  <div class="g">三、数码科技</div>
+  <a href="#t06">06 Computers 电脑网络</a>
+  <a href="#t07">07 Innovation 创新</a>
+  <div class="g">四、交通出行</div>
+  <a href="#t08">08 Transportation 交通</a>
+  <div class="g">五、生活方式</div>
+  <a href="#t09">09 Fashion 时尚</a>
+  <a href="#t10">10 Habits 习惯</a>
+  <a href="#t11">11 Leisure 休闲</a>
+  <div class="g">六、自我成长</div>
+  <a href="#t12">12 Personality 性格</a>
+  <a href="#t13">13 Books 阅读</a>
+  <a href="#t14">14 Dreams 梦想目标</a>
+  <div class="g">七、假日与自然</div>
+  <a href="#t15">15 Holidays 假期</a>
+  <a href="#t16">16 Weather 天气</a>
+  <a href="#t17">17 Gardening 园艺</a>
+  <div class="g">八、社会与环境</div>
+  <a href="#t18">18 Environment 环保</a>
+  <a href="#t19">19 Pollution 污染</a>
+  <a href="#t20">20 News 新闻</a>
+  <a href="#t21">21 Poverty 贫困</a>
+  <div class="g">九、艺术与心理</div>
+  <a href="#t22">22 Visual Arts 视觉艺术</a>
+  <a href="#t23">23 Humor 幽默</a>
+  <a href="#t24">24 Superstition 迷信</a>
+  <a href="#t25">25 Fear 恐惧</a>
+  <div class="g">十、Beginners 基础</div>
+  <a href="#t26">26 家电</a><a href="#t27">27 家具</a><a href="#t28">28 房间</a>
+  <a href="#t29">29 游乐设施</a><a href="#t30">30 社区场所</a>
+  <div class="g">附录</div>
+  <a href="#ax-a">A 定义自测</a><a href="#ax-b">B 全书勘误</a>
+  <a href="#ax-c">C 串联图</a><a href="#ax-d">D 学习建议</a>
+</nav>
+
+<main>
+
+<!-- ==================== 一、工作与压力 ==================== -->
+<section class="group" id="g1">
+<h2>一、工作与压力 <small>Jobs · Stress</small></h2>
+
+<article class="topic" id="t01">
+<summary><span class="num">01</span><h3>Jobs and Occupations <span class="cn">工作与职业</span></h3><span class="badge">Intermediates D1 · 俚语课</span><span class="badge bg">Beginners D1</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">big bucks</td><td class="p">/bɪɡ bʌks/</td><td>一大笔钱</td></tr>
+<tr><td class="w">daily grind</td><td class="p">/ˈdeɪli ɡraɪnd/</td><td>日常苦差、单调工作</td></tr>
+<tr><td class="w">top dog</td><td class="p">/tɑːp dɔːɡ/</td><td>大人物、一把手</td></tr>
+<tr><td class="w">happy hour</td><td class="p">/ˈhæpi ˌaʊər/</td><td>(酒吧)饮品打折时段</td></tr>
+<tr><td class="w">chicken feed</td><td class="p">/ˈtʃɪkɪn fiːd/</td><td>一小笔钱(与 big bucks 反义!)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">I'm earning big bucks at my new job. I'll finally be able to afford that new car! <span class="tip">(afford sth 买得起)</span></span><span class="zh">我在新工作赚大钱，终于买得起那辆新车了！</span></li>
+<li><span class="en">Brad has been doing the same job for thirty years. He's tired of the daily grind! <span class="tip">(be tired of 厌倦)</span></span><span class="zh">Brad 做同一份工作三十年了，他厌倦了这种日复一日的苦差！</span></li>
+<li><span class="en">Carlos got promoted. Now he's a top dog! <span class="tip">(get promoted 升职)</span></span><span class="zh">Carlos 升职了，现在他是一把手了！</span></li>
+<li><span class="en">After weeks of finishing the project, we can go to happy hour and get a few drinks!</span><span class="zh">项目完结后，我们可以去酒吧特价时段喝几杯！</span></li>
+<li><span class="en">Before I got promoted, I was working for chicken feed!</span><span class="zh">升职之前，我挣的钱少得可怜！</span></li>
+</ol>
+<div class="warn">⚠️ 原PDF印成 "he'sa top dog" 是印刷错误，应为 he's a top dog。big bucks ↔ chicken feed 反义组，一对记忆！</div>
+<h4 class="sec">◆ Beginners 基础补充 (D1)</h4>
+<ul class="exp">
+<li><b>nurse</b> 护士 · <b>firefighter</b> 消防员 · <b>policeman</b> 警察 · <b>teacher</b> 教师</li>
+<li><span class="en">Firefighters put out fires and rescue people.</span><span class="zh">消防员灭火并救人。</span></li>
+<li><span class="en">I have thought of becoming a policeman. <span class="tip">(现在完成时)</span></span><span class="zh">我曾想过当警察。</span></li>
+<li><span class="en">I think teachers do a tough job.</span><span class="zh">我觉得教师的工作很辛苦。</span></li>
+</ul>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>钱相关:</b> make a living 谋生 · breadwinner 养家人 · loaded 富得流油 · strapped for cash 手头紧 · get a raise 涨薪</li>
+<li><b>职场:</b> climb the corporate ladder · nine-to-five 朝九晚五 · work overtime 加班 · dead-end job 没前途的工作 · job-hopping 跳槽 · the rat race 都市竞争 · lay off 裁员</li>
+<li><b>人物:</b> colleague 同事 · supervisor 上司 · employee↔employer 员工↔雇主 · freelancer 自由职业 · workaholic 工作狂</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I'm tired of the daily grind — I really need a vacation.</span><span class="zh">我厌倦了每天的苦差事——我真需要休假。</span></li>
+<li><span class="en">He earns big bucks working as a software engineer.</span><span class="zh">他当软件工程师赚大钱。</span></li>
+<li><span class="en">She worked for chicken feed when she first started her career.</span><span class="zh">她刚入行时挣的钱少得可怜。</span></li>
+<li><span class="en">After ten years of hard work, he finally became the top dog in the company.</span><span class="zh">经过十年的努力，他终于成了公司的一把手。</span></li>
+<li><span class="en">My coworkers and I often grab drinks during happy hour on Fridays.</span><span class="zh">周五下班后，我和同事们常在酒吧特价时段喝一杯。</span></li>
+<li><span class="en">I'd rather have a job I love than earn big bucks doing something boring.</span><span class="zh">我宁愿做自己热爱的工作，也不愿赚大钱做无聊的事。</span></li>
+<li><span class="en">Working overtime every day is bad for your health.</span><span class="zh">每天加班对你的健康有害。</span></li>
+<li><span class="en">Many young people are tired of the rat race and want a slower life.</span><span class="zh">很多年轻人厌倦了激烈竞争，想要慢节奏的生活。</span></li>
+<li><span class="en">She quit her nine-to-five job and became a freelancer.</span><span class="zh">她辞掉了朝九晚五的工作，成了自由职业者。</span></li>
+<li><span class="en">My father was the breadwinner of the family, so he never stopped working.</span><span class="zh">我父亲是家里的顶梁柱，所以他从不停止工作。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What matters more to you: a high salary or job satisfaction?</span><span class="zh">对你来说，高薪和工作满意度哪个更重要？</span></li>
+<li>💬 <span class="en">Would you take a promotion if it meant much more stress?</span><span class="zh">如果升职意味着压力更大，你还会接受吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What do you do for a living?</span></li>
+<li><span class="en">Would you rather earn big bucks with a daily grind, or earn chicken feed doing what you love?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t02">
+<summary><span class="num">02</span><h3>Stress <span class="cn">压力</span></h3><span class="badge">Intermediates D2 · 仅4词</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">stressed out</td><td class="p">/strest aʊt/</td><td>焦虑疲惫、绷不住了</td></tr>
+<tr><td class="w">retire</td><td class="p">/rɪˈtaɪər/</td><td>退休</td></tr>
+<tr><td class="w">stress</td><td class="p">/stres/</td><td>精神压力</td></tr>
+<tr><td class="w">nap</td><td class="p">/næp/</td><td>小睡(尤指白天)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">You know you are stressed out. Give yourself some time to relax.</span><span class="zh">你知道你已经压力过大了，给自己一点放松的时间。</span></li>
+<li><span class="en">I get a lot of stress from my coworkers. They are very competitive. <span class="tip">(competitive 竞争激烈)</span></span><span class="zh">同事给我很大压力，他们竞争心很强。</span></li>
+<li><span class="en">I feel tired during the day. I take a nap.</span><span class="zh">我白天犯困，就小睡一会儿。</span></li>
+<li><span class="en">Mark stopped working last year because of his workload. He felt happy to retire. <span class="tip">(workload 工作量，好词)</span></span><span class="zh">Mark 去年因工作量辞职了，退休让他很开心。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>压力程度递进:</b> under pressure → stressed out → overwhelmed 不堪重负 → burned out 倦怠 → anxious 焦虑 → tense 紧绷</li>
+<li><b>缓解方式:</b> relieve stress · blow off steam 发泄 · take a nap · unwind(→E5) · meditate 冥想(→E2) · me time(→E5)</li>
+<li><b>高分用法:</b> <span class="en">Deadlines really stress me out.</span> / <span class="en">I'm stressed about the exam.</span> / cope with stress(→G5)</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I've been so stressed out lately because of the deadlines.</span><span class="zh">最近因为各种截止日期，我压力大到快崩溃了。</span></li>
+<li><span class="en">Taking a short nap after lunch helps me stay focused.</span><span class="zh">午饭后小睡一会儿能帮我保持专注。</span></li>
+<li><span class="en">My parents plan to retire early and travel the world.</span><span class="zh">我父母打算早点退休去环游世界。</span></li>
+<li><span class="en">Too much stress can cause serious health problems.</span><span class="zh">压力太大会导致严重的健康问题。</span></li>
+<li><span class="en">I always feel stressed out before an important exam.</span><span class="zh">重要考试前我总是紧张得不行。</span></li>
+<li><span class="en">Going for a walk is my favorite way to relieve stress.</span><span class="zh">散步是我最喜欢的减压方式。</span></li>
+<li><span class="en">She was overwhelmed by the heavy workload last month.</span><span class="zh">上个月她被繁重的工作量压得喘不过气。</span></li>
+<li><span class="en">When I feel tense, I take a few deep breaths to calm down.</span><span class="zh">感到紧绷时，我会深呼吸几次让自己平静下来。</span></li>
+<li><span class="en">Don't keep your stress to yourself — talk to someone you trust.</span><span class="zh">别把压力憋在心里——和你信任的人聊聊。</span></li>
+<li><span class="en">He burned out after working on the project for three months straight.</span><span class="zh">连续做了三个月项目后，他累垮了。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What stresses you out the most in your daily life?</span><span class="zh">日常生活中什么最让你感到压力？</span></li>
+<li>💬 <span class="en">Do you think people today are more stressed than before?</span><span class="zh">你认为现在的人比以前压力更大吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What stresses you out the most?</span></li>
+<li><span class="en">How do you usually deal with stress?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 二、饮食与健康 ==================== -->
+<section class="group" id="g2">
+<h2>二、饮食与健康 <small>Eating Out · Diets · Alternative Medicine</small></h2>
+
+<article class="topic" id="t03">
+<summary><span class="num">03</span><h3>Restaurants and Eating Out <span class="cn">餐厅与外食</span></h3><span class="badge">Intermediates D3</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">my treat</td><td class="p"></td><td>我请客</td></tr>
+<tr><td class="w">ready-to-eat</td><td class="p"></td><td>即食的</td></tr>
+<tr><td class="w">eat like a horse</td><td class="p"></td><td>吃得很多</td></tr>
+<tr><td class="w">craving</td><td class="p">/ˈkreɪvɪŋ/</td><td>(对某物的)强烈渴望</td></tr>
+<tr><td class="w">go Dutch</td><td class="p"></td><td>AA制、各付各的</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Let's get out for lunch — my treat.</span><span class="zh">我们出去吃午饭吧——我请客。</span></li>
+<li><span class="en">I love ready-to-eat foods such as deli meats and cheeses. <span class="tip">(deli 熟食店)</span></span><span class="zh">我喜欢熟食肉类和奶酪这类即食食品。</span></li>
+<li><span class="en">She can eat like a horse and never gain weight. <span class="tip">(gain weight = put on weight，见E3)</span></span><span class="zh">她吃得很多却从不长胖。</span></li>
+<li><span class="en">She was craving for some chocolate.</span><span class="zh">她当时特别想吃巧克力。</span></li>
+<li><span class="en">My boyfriend and I always go Dutch.</span><span class="zh">我和男友总是AA制。</span></li>
+</ol>
+<div class="warn">⚠️ PDF用法欠妥：crave 是及物动词，应为 She was craving some chocolate 或 She had a craving for some chocolate。</div>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>买单全家福:</b> my treat / It's on me 我请客 · go Dutch / split the bill AA·分摊 · foot the bill 付账</li>
+<li><b>餐厅流程:</b> book/reserve a table 订位 · order 点餐 · waiter/server 服务员 · tip 小费 · dine in 堂食 · takeaway(英)/takeout(美) 外带</li>
+<li><b>食量表达:</b> eat like a bird 吃得少 · have a sweet tooth 爱吃甜 · grab a bite 随便吃点 · be stuffed 吃饱了 · skip meals 不吃饭</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">Let's try that new Italian restaurant tonight — my treat!</span><span class="zh">今晚我们去试试那家新开的意大利餐厅——我请客！</span></li>
+<li><span class="en">I always keep some ready-to-eat food at home for busy days.</span><span class="zh">我家里总备着一些即食食品，忙的时候吃。</span></li>
+<li><span class="en">My brother eats like a horse, but he never gains weight.</span><span class="zh">我弟弟吃得很多，但从不长胖。</span></li>
+<li><span class="en">I have a sudden craving for hotpot tonight.</span><span class="zh">我今晚突然特别想吃火锅。</span></li>
+<li><span class="en">When we eat out together, we usually go Dutch.</span><span class="zh">我们一起出去吃饭时通常AA制。</span></li>
+<li><span class="en">Could we split the bill? I didn't bring much cash.</span><span class="zh">我们能分摊账单吗？我没带多少现金。</span></li>
+<li><span class="en">I booked a table for four at the new restaurant.</span><span class="zh">我在那家新餐厅订了一张四人桌。</span></li>
+<li><span class="en">Don't order too much — I don't want to waste food.</span><span class="zh">别点太多——我不想浪费食物。</span></li>
+<li><span class="en">The service was great, so we left a big tip.</span><span class="zh">服务很棒，所以我们给了不少小费。</span></li>
+<li><span class="en">Let's order takeaway tonight — I'm too tired to cook.</span><span class="zh">今晚点外卖吧——我太累了，不想做饭。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">How often do you eat out in a week?</span><span class="zh">你一周出去吃几次饭？</span></li>
+<li>💬 <span class="en">When a friend invites you to dinner, who usually pays?</span><span class="zh">朋友请你吃饭时，通常谁买单？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">When you eat out with friends, do you go Dutch?</span></li>
+<li><span class="en">Do you have a sweet tooth?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t04">
+<summary><span class="num">04</span><h3>Diets <span class="cn">饮食</span></h3><span class="badge">Intermediates E3</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">(dietary) regimen</td><td class="p">/ˈredʒɪmən/</td><td>(饮食/锻炼)养生计划</td></tr>
+<tr><td class="w">nutrition</td><td class="p">/nuˈtrɪʃn/</td><td>营养</td></tr>
+<tr><td class="w">nourishment</td><td class="p">/ˈnɜːrɪʃmənt/</td><td>滋养、养料</td></tr>
+<tr><td class="w">put on weight</td><td class="p"></td><td>增重、长胖</td></tr>
+<tr><td class="w">lost a lot of weight</td><td class="p"></td><td>瘦了很多(反义组)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Patients maintain a strict dietary regimen. <span class="tip">(maintain 坚持)</span></span><span class="zh">患者坚持严格的饮食计划。</span></li>
+<li><span class="en">Nutrition and exercise are essential to fitness and health. <span class="tip">(be essential to 对…至关重要)</span></span><span class="zh">营养和运动对健身与健康至关重要。</span></li>
+<li><span class="en">She collapsed due to lack of proper nourishment. <span class="tip">(collapse 晕倒; due to 由于)</span></span><span class="zh">她因缺乏适当营养而晕倒。</span></li>
+<li><span class="en">Dolly has put on weight after giving birth.</span><span class="zh">Dolly 生完孩子后长胖了。</span></li>
+<li><span class="en">I saw Peter yesterday, he's lost a lot of weight.</span><span class="zh">我昨天见到 Peter，他瘦了很多。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>饮食行为:</b> go on a diet 节食 · balanced diet 均衡饮食 · cut down on 减少摄入 · give up 戒掉 · craving 渴望 · overeat 吃太多 · appetite 食欲</li>
+<li><b>食物类:</b> junk food 垃圾食品 · processed food 加工食品 · organic food 有机食品 · comfort food 治愈系食物 · supplements 保健品</li>
+<li><b>进阶词:</b> metabolism 新陈代谢 · nutrients 营养素 · vegetarian 素食者 · vegan 纯素食者</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I'm trying to cut down on sugar in my diet.</span><span class="zh">我正在努力减少饮食中的糖分。</span></li>
+<li><span class="en">He put on weight during the holidays because he ate too much.</span><span class="zh">假期里他吃得太多，长胖了。</span></li>
+<li><span class="en">She has lost weight since she started jogging every day.</span><span class="zh">自从每天开始慢跑，她已经瘦下来了。</span></li>
+<li><span class="en">Good nutrition is essential for children's growth.</span><span class="zh">良好的营养对孩子的成长至关重要。</span></li>
+<li><span class="en">I try to eat a balanced diet with plenty of vegetables and fruit.</span><span class="zh">我尽量均衡饮食，多吃蔬菜和水果。</span></li>
+<li><span class="en">Skipping breakfast is bad for your health.</span><span class="zh">不吃早餐对健康有害。</span></li>
+<li><span class="en">I've been craving junk food lately, but I know it's not healthy.</span><span class="zh">我最近特别想吃垃圾食品，但我知道那不健康。</span></li>
+<li><span class="en">Drinking enough water is part of a healthy diet.</span><span class="zh">喝足够的水也是健康饮食的一部分。</span></li>
+<li><span class="en">My doctor advised me to follow a strict dietary regimen.</span><span class="zh">医生建议我遵循严格的饮食计划。</span></li>
+<li><span class="en">Processed food usually contains too much salt and fat.</span><span class="zh">加工食品通常含有过多的盐和脂肪。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Have you ever been on a diet? Did it work?</span><span class="zh">你减过肥吗？有效果吗？</span></li>
+<li>💬 <span class="en">I believe a healthy lifestyle matters more than dieting alone.</span><span class="zh">我认为健康的生活方式比单纯节食更重要。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Have you ever been on a diet? Did it work?</span></li>
+<li><span class="en">What's your biggest food craving?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t05">
+<summary><span class="num">05</span><h3>Alternative Medicine <span class="cn">另类疗法</span></h3><span class="badge">Intermediates E2</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">patient</td><td class="p">/ˈpeɪʃnt/</td><td>病人、患者</td></tr>
+<tr><td class="w">aromatherapy</td><td class="p">/əˌroʊməˈθerəpi/</td><td>芳香疗法</td></tr>
+<tr><td class="w">herbal</td><td class="p">/ˈɜːrbl/</td><td>草本的、草药的</td></tr>
+<tr><td class="w">yoga</td><td class="p">/ˈjoʊɡə/</td><td>瑜伽</td></tr>
+<tr><td class="w">equilibrium</td><td class="p">/ˌiːkwɪˈlɪbriəm/</td><td>平衡(例句好词)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Most patients nowadays prefer alternative medicine to modern drugs. <span class="tip">(prefer A to B 结构!)</span></span><span class="zh">如今大多数患者比起现代药物更喜欢替代疗法。</span></li>
+<li><span class="en">Aromatherapy allows your body and mind to achieve equilibrium. <span class="tip">(allow sb to do)</span></span><span class="zh">芳香疗法可以让身体和心灵达到平衡。</span></li>
+<li><span class="en">Herbal remedies are very effective. <span class="tip">(remedy 疗法、药物)</span></span><span class="zh">草药疗法非常有效。</span></li>
+<li><span class="en">He has been teaching yoga full time for six years. <span class="tip">(现在完成进行时)</span></span><span class="zh">他已经全职教瑜伽六年了。</span></li>
+</ol>
+<h4 class="sec">◆ 课堂补充</h4>
+<ul class="exp">
+<li><b>herbal</b> = made of herbs；herbs 指有软茎、用于烹饪和医药的植物</li>
+<li><b>aromatherapy</b> = 用有好闻气味的天然精油让人感觉更好的疗法</li>
+</ul>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>疗法类:</b> acupuncture 针灸 · massage 按摩 · meditation 冥想 · TCM 中医 · chiropractic 脊柱按摩疗法</li>
+<li><b>医疗类:</b> treatment 治疗 · therapy 疗法 · side effects 副作用 · chronic 慢性的 · heal 治愈 · alleviate 缓解 · holistic 整体的 · placebo effect 安慰剂效应</li>
+<li><b>句型:</b> <span class="en">I'm skeptical of…</span> 我对…持怀疑态度 · <span class="en">It works for some people, but…</span></li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">More and more people are trying alternative medicine these days.</span><span class="zh">现在越来越多的人在尝试替代医学。</span></li>
+<li><span class="en">Aromatherapy helps me relax after a long day at work.</span><span class="zh">忙碌了一天之后，芳香疗法能帮我放松。</span></li>
+<li><span class="en">My grandmother swears by herbal remedies for colds.</span><span class="zh">我祖母坚信草药疗法能治感冒。(swear by 深信)</span></li>
+<li><span class="en">I practice yoga every morning to keep my body and mind in equilibrium.</span><span class="zh">我每天早上练瑜伽，让身心保持平衡。</span></li>
+<li><span class="en">Some herbal remedies may interact with modern medicines.</span><span class="zh">有些草药疗法可能与现代药物产生相互作用。</span></li>
+<li><span class="en">Getting enough sleep is the best medicine.</span><span class="zh">睡眠充足是最好的良药。</span></li>
+<li><span class="en">Acupuncture is another popular form of alternative medicine.</span><span class="zh">针灸是另一种流行的替代疗法。</span></li>
+<li><span class="en">Regular exercise and a balanced diet can prevent many illnesses.</span><span class="zh">规律运动和均衡饮食能预防很多疾病。</span></li>
+<li><span class="en">I go for a massage once a month to relieve stress.</span><span class="zh">我每个月去做一次按摩来缓解压力。</span></li>
+<li><span class="en">You should consult a doctor before trying any alternative treatment.</span><span class="zh">在尝试任何替代疗法之前，你应该先咨询医生。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Do you think alternative medicine actually works, or is it just a placebo?</span><span class="zh">你认为替代医学真的有效，还是只是安慰剂效应？</span></li>
+<li>💬 <span class="en">Prevention is better than cure.</span><span class="zh">预防胜于治疗。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Have you ever tried any alternative medicine? Does it work?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 三、数码科技 ==================== -->
+<section class="group" id="g3">
+<h2>三、数码科技 <small>Computers · Innovation</small></h2>
+
+<article class="topic" id="t06">
+<summary><span class="num">06</span><h3>Computers and Internet <span class="cn">电脑与网络</span></h3><span class="badge">Intermediates D4</span><span class="badge bg">Beginners D2</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">browsing</td><td class="p">/ˈbraʊzɪŋ/</td><td>浏览(网页)</td></tr>
+<tr><td class="w">laptop</td><td class="p">/ˈlæptɑːp/</td><td>笔记本电脑</td></tr>
+<tr><td class="w">hard copy</td><td class="p"></td><td>纸质打印版</td></tr>
+<tr><td class="w">cursor</td><td class="p">/ˈkɜːrsər/</td><td>光标</td></tr>
+<tr><td class="w">printout</td><td class="p">/ˈprɪntaʊt/</td><td>打印件</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">I usually spend most of my time browsing the internet.</span><span class="zh">我通常大部分时间都在上网浏览。</span></li>
+<li><span class="en">A laptop would be really useful when I'm working on the train. <span class="tip">(would be 含蓄的虚拟假设)</span></span><span class="zh">在火车上办公时，笔记本电脑会很有用。</span></li>
+<li><span class="en">We need to pass the hard copies of our reports to our teacher as soon as possible. <span class="tip">(as soon as possible 尽快)</span></span><span class="zh">我们需要尽快把报告的纸质版交给老师。</span></li>
+<li><span class="en">You can move the cursor either by using the mouse or by using the arrow keys on the keyboard. <span class="tip">(either…or…)</span></span><span class="zh">你可以用鼠标或键盘上的方向键移动光标。</span></li>
+<li><span class="en">You can request a printout of your phone bills.</span><span class="zh">你可以申请打印一份电话账单。</span></li>
+</ol>
+<div class="warn">⚠️ 原PDF "request for a printout" 语法错误：request 及物，不加 for。</div>
+<h4 class="sec">◆ 课堂补充</h4>
+<ul class="exp">
+<li><b>soft copy</b> 电子版(课堂补充，与 hard copy 相对)：a digital version of a document viewed on a device</li>
+<li><span class="en">I search for some information, watch some videos, and do some coding.</span><span class="zh">我查资料、看视频、写代码。(描述上网活动)</span></li>
+<li><span class="en">I use a desktop monitor in my office for work, and I use a laptop at home.</span><span class="zh">我办公用台式显示器，在家用笔记本。</span></li>
+</ul>
+<h4 class="sec">◆ Beginners 基础补充 (D2)</h4>
+<ul class="exp">
+<li><b>mouse</b> 鼠标 · <b>monitor</b> 显示器 · <b>keyboard</b> 键盘 · <b>headset</b> 耳机</li>
+<li><span class="en">There's something wrong with the mouse. <span class="tip">(某物出毛病)</span></span></li>
+<li><span class="en">Have your headset fixed at the computer shop. <span class="tip">(have sth fixed 请人修理，使役结构!)</span></span></li>
+</ul>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>硬件:</b> desktop 台式机 · tablet 平板 · charger 充电器 · hard drive 硬盘 · USB drive U盘</li>
+<li><b>上网行为:</b> surf the internet · scroll 刷屏幕 · stream 流媒体 · download/upload · log in/out · bookmark 收藏</li>
+<li><b>高频词:</b> password 密码 · software/hardware · glitch 小故障 · crash 死机 · frozen 卡死 · update 更新 · back up 备份</li>
+<li><b>延伸话题:</b> screen time 屏幕时间 · digital detox 数字排毒 · addicted to phones 手机上瘾 · online shopping · remote work 远程办公</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I spend too much time browsing the internet before bed.</span><span class="zh">我睡前花太多时间刷网页。</span></li>
+<li><span class="en">Could you send me a soft copy of the report? I don't need a hard copy.</span><span class="zh">你能把报告的电子版发给我吗？我不需要纸质版。</span></li>
+<li><span class="en">Please print a hard copy of the contract for the meeting.</span><span class="zh">请为会议打印一份纸质合同。</span></li>
+<li><span class="en">The cursor disappeared when the screen froze.</span><span class="zh">屏幕卡住时，光标就消失了。</span></li>
+<li><span class="en">My laptop is running slow. I think I need to restart it.</span><span class="zh">我的笔记本电脑运行很慢，我想我需要重启一下。</span></li>
+<li><span class="en">I always back up my files to the cloud in case my computer crashes.</span><span class="zh">我总是把文件备份到云端，以防电脑死机。</span></li>
+<li><span class="en">Do you prefer working on a desktop or a laptop?</span><span class="zh">你更喜欢用台式电脑还是笔记本电脑工作？</span></li>
+<li><span class="en">You should update your software regularly to keep your computer secure.</span><span class="zh">你应该定期更新软件以保证电脑安全。</span></li>
+<li><span class="en">I got a pop-up ad that I couldn't close.</span><span class="zh">我弹出了一个广告，怎么都关不掉。</span></li>
+<li><span class="en">The Wi-Fi connection is unstable in my bedroom.</span><span class="zh">我卧室里的 Wi-Fi 连接不稳定。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">The internet has changed the way we work, study, and communicate.</span><span class="zh">互联网改变了我们工作、学习和交流的方式。</span></li>
+<li>💬 <span class="en">I think people rely too much on their smartphones these days.</span><span class="zh">我觉得现在人们对智能手机的依赖太严重了。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">How much time do you spend browsing the internet daily?</span></li>
+<li><span class="en">Could you live without your laptop for a week?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t07">
+<summary><span class="num">07</span><h3>Innovation <span class="cn">创新</span></h3><span class="badge">Intermediates H3</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">invention</td><td class="p">/ɪnˈvenʃn/</td><td>发明</td></tr>
+<tr><td class="w">feature</td><td class="p">/ˈfiːtʃər/</td><td>功能、特点</td></tr>
+<tr><td class="w">break new ground</td><td class="p"></td><td>开创新局面</td></tr>
+<tr><td class="w">social media</td><td class="p"></td><td>社交媒体</td></tr>
+<tr><td class="w">autonomous</td><td class="p">/ɔːˈtɑːnəməs/</td><td>自动的、自主的</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">The computer and the Internet are two of the greatest inventions of the modern world.</span><span class="zh">计算机和互联网是现代世界最伟大的两项发明。</span></li>
+<li><span class="en">The company's most recent phone model has the best features so far.</span><span class="zh">该公司最新的手机型号拥有迄今最好的功能。</span></li>
+<li><span class="en">Advanced technology allowed them to break new ground in the film industry.</span><span class="zh">先进技术让他们在电影业开了新局。</span></li>
+<li><span class="en">Studies reveal that people spend around 2 hours on social media daily. <span class="tip">(reveal 揭示；串D4屏幕时间)</span></span><span class="zh">研究显示人们每天在社交媒体上花费约两小时。</span></li>
+<li><span class="en">Autonomous vehicles are ideal for inexperienced drivers.</span><span class="zh">自动驾驶车辆对新手司机很理想。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>辨析(口语常考!):</b> invention 发明(全新创造) vs innovation 创新(新应用/改进)</li>
+<li><b>形容词:</b> cutting-edge 尖端 · state-of-the-art 最先进 · revolutionary 颠覆性 · groundbreaking 开创性</li>
+<li><b>产品:</b> gadget 小电子玩意 · device 设备 · upgrade 升级 · launch 发布 · prototype 原型</li>
+<li><b>热点:</b> AI 人工智能 · VR 虚拟现实 · autonomous=self-driving vehicles 自动驾驶 · smart home 智能家居 · drone 无人机 · tech giant 科技巨头</li>
+<li><b>短语:</b> change the game 改变格局 · shape the future · digital age 数字时代</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">The smartphone is probably the most important invention of this century.</span><span class="zh">智能手机可能是本世纪最重要的发明。</span></li>
+<li><span class="en">The new phone's best feature is its amazing camera.</span><span class="zh">这款新手机最大的亮点是它出色的相机。</span></li>
+<li><span class="en">AI is changing the game in almost every industry.</span><span class="zh">人工智能正在几乎所有行业改变格局。</span></li>
+<li><span class="en">The company broke new ground with its self-driving technology.</span><span class="zh">这家公司凭借自动驾驶技术开了先河。</span></li>
+<li><span class="en">I spend way too much time on social media every day.</span><span class="zh">我每天在社交媒体上花的时间太多了。</span></li>
+<li><span class="en">Would you trust an autonomous car to drive you around?</span><span class="zh">你会放心让自动驾驶汽车载你到处跑吗？</span></li>
+<li><span class="en">This gadget looks small, but it's really powerful.</span><span class="zh">这个小玩意看着小，功能却很强大。</span></li>
+<li><span class="en">Technology should make our lives easier, not more complicated.</span><span class="zh">科技应该让生活更简单，而不是更复杂。</span></li>
+<li><span class="en">The tech giant just launched a new smart home system.</span><span class="zh">那家科技巨头刚刚发布了一套新的智能家居系统。</span></li>
+<li><span class="en">Virtual reality is no longer science fiction — it's here.</span><span class="zh">虚拟现实不再是科幻——它已经来了。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What do you think is the greatest invention of all time?</span><span class="zh">你认为有史以来最伟大的发明是什么？</span></li>
+<li>💬 <span class="en">Do the benefits of new technology always outweigh the risks?</span><span class="zh">新技术的好处总是大于风险吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What do you think is the greatest invention of all time?</span></li>
+<li><span class="en">Would you trust an autonomous vehicle?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 四、交通出行 ==================== -->
+<section class="group" id="g4">
+<h2>四、交通出行 <small>Transportation</small></h2>
+
+<article class="topic" id="t08">
+<summary><span class="num">08</span><h3>Transportation <span class="cn">交通</span></h3><span class="badge">Intermediates D5</span><span class="badge bg">Beginners D6/D7/D8</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">mileage</td><td class="p">/ˈmaɪlɪdʒ/</td><td>里程(车行驶英里数)</td></tr>
+<tr><td class="w">accident</td><td class="p">/ˈæksɪdənt/</td><td>事故</td></tr>
+<tr><td class="w">pedestrian</td><td class="p">/pəˈdestriən/</td><td>行人</td></tr>
+<tr><td class="w">speed limit</td><td class="p"></td><td>限速</td></tr>
+<tr><td class="w">rush hour</td><td class="p"></td><td>高峰时段</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Smaller cars have better mileage and so cost less to run. <span class="tip">(cost less to run 使用成本更低)</span></span><span class="zh">小车续航更好，因此使用成本更低。</span></li>
+<li><span class="en">She was injured in a road accident. <span class="tip">(be injured in 在…中受伤)</span></span><span class="zh">她在一起道路事故中受伤了。</span></li>
+<li><span class="en">The death rate for pedestrians hit by cars is unacceptably high. <span class="tip">(hit by cars 过去分词作后置定语)</span></span><span class="zh">行人被车撞到的事故概率高得令人难以接受。</span></li>
+<li><span class="en">Slow down. You are breaking the speed limit. <span class="tip">(break the speed limit 超速)</span></span><span class="zh">减速，你超速了。</span></li>
+<li><span class="en">I hate to go home during rush hour. There's always a traffic jam.</span><span class="zh">我讨厌在高峰时段回家，总是堵车。</span></li>
+</ol>
+<h4 class="sec">◆ 课堂补充</h4>
+<ul class="exp">
+<li><b>penalty</b> 惩罚、罚款：A punishment, fine, or disadvantage given for breaking a law, rule, or contract (配超速话题)</li>
+<li><b>et cetera</b> /ɪt ˈsetərə/ 等等 (缩写 etc.)</li>
+<li><b>辨析:</b> on the road = 在路上/在旅途中(正常) · in the road = 在路面之内(常含妨碍交通之意)</li>
+</ul>
+<h4 class="sec">◆ Beginners 基础补充 (D6/D7/D8)</h4>
+<ul class="exp">
+<li><b>小型:</b> car · motorbike · bicycle · truck</li>
+<li><span class="en">It's better if people ride a bicycle.</span><span class="zh">人们骑自行车更好。</span> <span class="en">Driving a truck is dangerous because it carries heavy things.</span></li>
+<li><b>大型:</b> bus · airplane · train · ship</li>
+<li><span class="en">I take the train to school every day. / I sometimes feel dizzy (seasick) on the train (ship).</span><span class="zh">dizzy 晕车 · seasick 晕船</span></li>
+<li><b>紧急:</b> tow truck 拖车 · fire truck 消防车 · ambulance 救护车 · police car 警车</li>
+<li><span class="en">You can dial 120 (China) to call an ambulance. Police cars can go very fast so they can help people right away.</span></li>
+</ul>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>方式:</b> commute 通勤(高频!) · public transport · subway=metro · ride-hailing 网约车 · e-bike 电动车</li>
+<li><b>路况:</b> traffic jam=congestion 堵车 · heavy traffic · bumper-to-bumper 一辆贴一辆 · gridlock 完全堵死</li>
+<li><b>驾驶:</b> driver's license 驾照 · run a red light 闯红灯 · drunk driving 酒驾 · pull over 靠边停车</li>
+<li><b>人物道路:</b> cyclist 骑车人 · passenger 乘客 · pedestrian crossing 斑马线 · sidewalk(美)=pavement(英) 人行道</li>
+<li><b>新趋势:</b> electric vehicles (EVs) · shared bikes 共享单车 · driverless cars 无人驾驶(串H3 autonomous)</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I usually take the subway to avoid the rush hour traffic.</span><span class="zh">我通常坐地铁，以避开高峰时段的交通拥堵。</span></li>
+<li><span class="en">The government lowered the speed limit near schools to protect pedestrians.</span><span class="zh">政府降低了学校附近的限速，以保护行人。</span></li>
+<li><span class="en">Electric cars have better mileage than most people expect.</span><span class="zh">电动汽车的续航里程比大多数人预期的要好。</span></li>
+<li><span class="en">He had a minor accident on his way to work, but thankfully no one was hurt.</span><span class="zh">他上班路上出了个小事故，幸好没人受伤。</span></li>
+<li><span class="en">Pedestrians should always use the crosswalk when crossing the road.</span><span class="zh">行人过马路时应该走人行横道。</span></li>
+<li><span class="en">The bus is cheaper, but the train is much faster.</span><span class="zh">公交车更便宜，但火车快得多。</span></li>
+<li><span class="en">I'd rather take a taxi than drive in heavy traffic.</span><span class="zh">我宁愿打车也不想在拥堵的车流里开车。</span></li>
+<li><span class="en">My car broke down on the highway last week.</span><span class="zh">我的车上周在高速路上抛锚了。</span></li>
+<li><span class="en">Is it far from here? Can I walk or should I take a bus?</span><span class="zh">离这里远吗？我可以走路还是应该坐公交？</span></li>
+<li><span class="en">Cycling to work is good for both your health and the environment.</span><span class="zh">骑车上班对你的健康和环境都有好处。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Public transportation in my city needs to be improved.</span><span class="zh">我们城市的公共交通需要改善。</span></li>
+<li>💬 <span class="en">Running a car is getting more and more expensive.</span><span class="zh">养车变得越来越贵了。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">How do you usually commute to work or school?</span></li>
+<li><span class="en">What's the traffic like during rush hour in your city?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 五、生活方式 ==================== -->
+<section class="group" id="g5">
+<h2>五、生活方式 <small>Fashion · Habits · Leisure</small></h2>
+
+<article class="topic" id="t09">
+<summary><span class="num">09</span><h3>Fashion <span class="cn">时尚穿搭</span></h3><span class="badge">Intermediates E1</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">outfit</td><td class="p">/ˈaʊtfɪt/</td><td>一套衣服(特定场合)</td></tr>
+<tr><td class="w">trendy</td><td class="p">/ˈtrendi/</td><td>时髦的、流行的</td></tr>
+<tr><td class="w">out of fashion</td><td class="p"></td><td>过时的、不再受欢迎</td></tr>
+<tr><td class="w">vintage</td><td class="p">/ˈvɪntɪdʒ/</td><td>老式的(服饰、珠宝等非新品)</td></tr>
+<tr><td class="w">vibrant</td><td class="p">/ˈvaɪbrənt/</td><td>颜色鲜艳醒目的</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">His work outfit consists of a shirt, a coat, and trousers. <span class="tip">(consist of 由…组成，不用被动)</span></span><span class="zh">他的工作服包括一件衬衫、一件外套和裤子。</span></li>
+<li><span class="en">Wearing trendy clothes makes me confident. <span class="tip">(动名词作主语，谓语用单数!)</span></span><span class="zh">穿时髦的衣服让我更自信。</span></li>
+<li><span class="en">Skinny jeans are now considered out of fashion for men. <span class="tip">(be considered 被认为)</span></span><span class="zh">男性穿紧身牛仔裤如今已过时。</span></li>
+<li><span class="en">The vintage shop in my city sells clothes from over 50 years ago.</span><span class="zh">我所在城市的复古商店卖50多年前的衣服。</span></li>
+<li><span class="en">She wore a vibrant dress for the town's festival party.</span><span class="zh">她穿了一条鲜艳的裙子参加小镇的节日聚会。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>服装类:</b> casual 休闲 · formal 正式 · dress code 着装要求 · accessory 配饰 · wardrobe 衣柜(也指全部衣物)</li>
+<li><b>搭配类:</b> fit 合身 · go with… 和…搭 · put together an outfit · dress up 打扮正式 · dress down 穿得随意</li>
+<li><b>观点类:</b> timeless 永不过时 ↔ dated 老气 · thrift shopping 二手淘 · sustainable fashion · fashion icon · follow trends 追潮流</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I bought a new outfit for the job interview.</span><span class="zh">我为面试买了一套新衣服。</span></li>
+<li><span class="en">That style is already out of fashion, but I still like it.</span><span class="zh">那种款式已经过时了，但我还是很喜欢。</span></li>
+<li><span class="en">Vintage clothing is becoming popular among young people again.</span><span class="zh">复古服装在年轻人中又流行起来了。</span></li>
+<li><span class="en">She likes wearing vibrant colors in summer.</span><span class="zh">她夏天喜欢穿颜色鲜艳的衣服。</span></li>
+<li><span class="en">I don't really follow fashion trends. I just wear what's comfortable.</span><span class="zh">我不太追时尚潮流，只穿舒服的衣服。</span></li>
+<li><span class="en">This jacket matches perfectly with my jeans.</span><span class="zh">这件夹克和我的牛仔裤很搭。</span></li>
+<li><span class="en">You should dress properly for formal occasions.</span><span class="zh">正式场合你应该穿着得体。</span></li>
+<li><span class="en">Comfort is more important to me than being trendy.</span><span class="zh">对我来说，舒适比时髦更重要。</span></li>
+<li><span class="en">White sneakers go with almost everything.</span><span class="zh">白色运动鞋几乎可以搭配任何衣服。</span></li>
+<li><span class="en">I need to change my wardrobe for the new season.</span><span class="zh">换季了，我需要更新一下我的衣柜。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Do you think fashion trends repeat themselves over time?</span><span class="zh">你认为时尚潮流会随时间循环再现吗？</span></li>
+<li>💬 <span class="en">First impressions are often based on how people dress.</span><span class="zh">第一印象往往取决于一个人的穿着。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">How would you describe your everyday outfit?</span></li>
+<li><span class="en">Do you prefer trendy or vintage clothes?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t10">
+<summary><span class="num">10</span><h3>Habits <span class="cn">习惯</span></h3><span class="badge">Intermediates E4</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇 + 辨析(考试常考!)</h4>
+<table class="vocab">
+<tr><td class="w">habit</td><td class="p">/ˈhæbɪt/</td><td>习惯(个人，常不自觉)</td></tr>
+<tr><td class="w">break the habit</td><td class="p"></td><td>戒掉习惯</td></tr>
+<tr><td class="w">routine</td><td class="p">/ruːˈtiːn/</td><td>例行事项(固定流程，按顺序做)</td></tr>
+<tr><td class="w">practice</td><td class="p">/ˈpræktɪs/</td><td>惯例习俗(群体性)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">She has a habit of playing with her hair when she's nervous. <span class="tip">(have a habit of doing sth)</span></span><span class="zh">她紧张时有玩头发的习惯。</span></li>
+<li><span class="en">Try to break the habit of adding salt to your food at the table.</span><span class="zh">试着改掉在餐桌上给食物加盐的习惯。</span></li>
+<li><span class="en">The visit was clearly going to disrupt our daily routine. <span class="tip">(disrupt 打乱)</span></span><span class="zh">那次拜访显然会打乱我们的日常安排。</span></li>
+<li><span class="en">The practice of dumping waste into the sea was prohibited. <span class="tip">(prohibit 禁止)</span></span><span class="zh">向海里倾倒垃圾的做法已被禁止。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>养成/戒掉:</b> get into the habit of · kick a habit(=break) · quit cold turkey 突然彻底戒 · force of habit 习惯使然 · stick to 坚持</li>
+<li><b>高频表达:</b> bad habits die hard 旧习难改 · second nature 第二天性 · willpower 意志力 · habit-forming 容易上瘾的</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I have a habit of checking my phone first thing in the morning.</span><span class="zh">我有个习惯，早上第一件事就是看手机。</span></li>
+<li><span class="en">It's hard to break a habit once it's formed.</span><span class="zh">习惯一旦养成，就很难改掉。</span></li>
+<li><span class="en">Reading before bed has become part of my daily routine.</span><span class="zh">睡前阅读已经成了我日常习惯的一部分。</span></li>
+<li><span class="en">Good study habits are more important than talent.</span><span class="zh">好的学习习惯比天赋更重要。</span></li>
+<li><span class="en">I'm trying to build the habit of exercising three times a week.</span><span class="zh">我正在培养每周锻炼三次的习惯。</span></li>
+<li><span class="en">He broke the habit of smoking after ten years.</span><span class="zh">他戒掉了十年烟瘾。</span></li>
+<li><span class="en">My morning routine includes coffee and a short walk.</span><span class="zh">我的晨间例行事项包括喝咖啡和散步。</span></li>
+<li><span class="en">It usually takes about three weeks to form a new habit.</span><span class="zh">养成一个新习惯通常需要大约三周时间。</span></li>
+<li><span class="en">She has a habit of biting her nails when she's nervous.</span><span class="zh">她紧张时有咬指甲的习惯。</span></li>
+<li><span class="en">Small daily improvements lead to big changes in the long run.</span><span class="zh">每天小小的进步，长期来看会带来巨大的改变。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What good habits would you like to develop this year?</span><span class="zh">今年你想养成哪些好习惯？</span></li>
+<li>💬 <span class="en">Bad habits are easy to form but hard to break.</span><span class="zh">坏习惯容易养成，却难以戒除。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What's one bad habit you've successfully broken?</span></li>
+<li><span class="en">What's your morning routine?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t11">
+<summary><span class="num">11</span><h3>Leisure <span class="cn">休闲</span></h3><span class="badge">Intermediates E5</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">recreational</td><td class="p">/ˌrekriˈeɪʃənl/</td><td>娱乐的、消遣的</td></tr>
+<tr><td class="w">revitalize</td><td class="p">/ˌriːˈvaɪtəlaɪz/</td><td>使恢复活力</td></tr>
+<tr><td class="w">stress-free</td><td class="p"></td><td>无压力的</td></tr>
+<tr><td class="w">unwind</td><td class="p">/ˌʌnˈwaɪnd/</td><td>放松、松弛</td></tr>
+<tr><td class="w">relaxation</td><td class="p">/ˌriːlækˈseɪʃn/</td><td>放松、消遣</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">The students decided to do some recreational activities days after the exam.</span><span class="zh">学生们决定在考试几天后做些娱乐活动。</span></li>
+<li><span class="en">Regular exercise revitalizes your body.</span><span class="zh">规律运动能让身体恢复活力。</span></li>
+<li><span class="en">She's done with all her tasks. She's now stress-free. <span class="tip">(be done with… 完成…)</span></span><span class="zh">她做完了所有任务，现在毫无压力。</span></li>
+<li><span class="en">I plan to go to the mountain to unwind next month.</span><span class="zh">我打算下个月去山里放松。</span></li>
+<li><span class="en">Her job is demanding, so she takes every opportunity for relaxation seriously. <span class="tip">(demanding 费心费力的)</span></span><span class="zh">她的工作很耗神，所以她认真对待每一个放松的机会。</span></li>
+</ol>
+<h4 class="sec">◆ 课堂背诵课文: Work-life Balance</h4>
+<blockquote class="passage">
+Work-life balance is a very important aspect of any working environment. However, people nowadays struggle to attain it. Most are tired of managing their daily grinds and get stressed. Due to this, achieving balance between work and personal life is becoming increasingly difficult. Experts advise everyone to do fun things little by little so they will become part of our daily habits in the long run. During your free time, you can visit pubs during happy hour, eat what food you are craving, travel to relaxing places near you, or browse the internet for some entertaining videos. These are some simple ways to achieve a healthy lifestyle. Working too much might make someone wealthy but having a work-life balance gives you the greatest wealth, which is good health.
+</blockquote>
+<div class="note">💡 这篇课文串起了 D1 daily grind/happy hour、D2 stress、D4 browse、E3 craving、E4 habits —— 绝佳的复习材料！</div>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>辨析:</b> unwind / relax / recharge / decompress 都是"放松"，recharge 强调"回血充电"</li>
+<li><b>活动类:</b> pastime 消遣 · take up a hobby · hang out with friends · binge-watch 追剧 · me time 属于自己的时间</li>
+<li><b>状态类:</b> burnout 倦怠 · work-life balance · take a break · take it easy 别紧张</li>
+<li><b>搭配:</b> leisure time = spare time = free time</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I like to unwind by watching movies on weekends.</span><span class="zh">周末我喜欢看电影来放松。</span></li>
+<li><span class="en">A short vacation can revitalize both your body and mind.</span><span class="zh">一次短暂的度假能让你的身心都恢复活力。</span></li>
+<li><span class="en">Swimming is my favorite recreational activity.</span><span class="zh">游泳是我最喜欢的休闲活动。</span></li>
+<li><span class="en">Everyone needs some time for relaxation after a busy week.</span><span class="zh">忙碌一周之后，每个人都需要一些放松的时间。</span></li>
+<li><span class="en">I feel completely stress-free when I'm hiking in the mountains.</span><span class="zh">在山里徒步时，我感觉完全没有压力。</span></li>
+<li><span class="en">What do you usually do in your leisure time?</span><span class="zh">你闲暇时间通常做什么？</span></li>
+<li><span class="en">Listening to music helps me unwind after work.</span><span class="zh">下班后听音乐能帮我放松。</span></li>
+<li><span class="en">I try to keep my work and leisure time separate.</span><span class="zh">我尽量把工作和休闲时间分开。</span></li>
+<li><span class="en">A work-life balance is important for mental health.</span><span class="zh">工作与生活的平衡对心理健康很重要。</span></li>
+<li><span class="en">On weekends, I just want to stay home and do nothing.</span><span class="zh">周末我只想待在家里，什么都不做。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">How do you usually spend your weekends?</span><span class="zh">你通常怎么过周末？</span></li>
+<li>💬 <span class="en">For me, leisure time is just as important as work time.</span><span class="zh">对我来说，休闲时间和工作时间同样重要。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">How do you usually unwind after a long day?</span></li>
+<li><span class="en">What do you do in your leisure time?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 六、自我成长 ==================== -->
+<section class="group" id="g6">
+<h2>六、自我成长 <small>Personality · Books · Dreams</small></h2>
+
+<article class="topic" id="t12">
+<summary><span class="num">12</span><h3>Personality <span class="cn">性格</span></h3><span class="badge">Intermediates F1</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">charisma</td><td class="p">/kəˈrɪzmə/</td><td>个人魅力、感召力</td></tr>
+<tr><td class="w">charms</td><td class="p">/tʃɑːrmz/</td><td>迷人之处、魅力</td></tr>
+<tr><td class="w">disposition</td><td class="p">/ˌdɪspəˈzɪʃn/</td><td>性情、脾气</td></tr>
+<tr><td class="w">dauntless</td><td class="p">/ˈdɔːntləs/</td><td>无所畏惧的</td></tr>
+<tr><td class="w">character</td><td class="p">/ˈkærəktər/</td><td>品格、性格</td></tr>
+</table>
+<div class="warn">⚠️ 勘误：PDF 把 charisma 释为 "a person's beauty or attractiveness" 有误导，charisma 是感召力(能吸引和影响他人的气质)，不只是外貌美。</div>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">A television news program is famous for the charisma of its anchors. <span class="tip">(anchor 新闻主播，与G4 newscaster同义)</span></span><span class="zh">一档电视新闻节目因其主播的个人魅力而闻名。</span></li>
+<li><span class="en">A mischievous grin was amongst the child's many charms. <span class="tip">(mischievous 淘气的; grin 咧嘴笑)</span></span><span class="zh">淘气的一笑是这个孩子众多可爱之处之一。</span></li>
+<li><span class="en">She has a very sweet disposition. <span class="tip">(常配形容词 sweet/cheerful/sunny)</span></span><span class="zh">她性情非常温和。</span></li>
+<li><span class="en">Only dauntless people can dare to jump off a cliff.</span><span class="zh">只有无畏的人才敢悬崖跳水。</span></li>
+<li><span class="en">He has a cheerful but quiet character.</span><span class="zh">他性格开朗但安静。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>高频词:</b> easygoing 随和 · outgoing 外向 · introverted 内向 · reserved 内敛 · open-minded 开明 · down-to-earth 踏实 · laid-back 悠闲 · hot-tempered 脾气火爆 · good-natured 心地好</li>
+<li><b>高分替换链:</b> brave → dauntless / fearless / courageous · nice → charming / appealing</li>
+<li><b>短语:</b> first impression · get along well with · a people person 社交达人 · strengths and weaknesses · inner beauty 内在美</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">My best friend has a sweet disposition and never gets angry.</span><span class="zh">我最好的朋友性情温和，从不生气。</span></li>
+<li><span class="en">The team leader's charisma motivates everyone to work harder.</span><span class="zh">团队领袖的个人魅力激励着每个人更加努力地工作。</span></li>
+<li><span class="en">She is outgoing and gets along well with almost everyone.</span><span class="zh">她性格外向，几乎和所有人都相处融洽。</span></li>
+<li><span class="en">My grandfather is easygoing — nothing seems to worry him.</span><span class="zh">我爷爷很随和，似乎什么事都不让他操心。</span></li>
+<li><span class="en">It takes a dauntless person to start a business from scratch.</span><span class="zh">白手起家创业需要无所畏惧的勇气。</span></li>
+<li><span class="en">Don't judge a person's character by their appearance.</span><span class="zh">不要以貌取人。</span></li>
+<li><span class="en">He is a bit reserved, but he opens up once you get to know him.</span><span class="zh">他有点内敛，但熟悉之后就会敞开心扉。</span></li>
+<li><span class="en">We complement each other: I'm hot-tempered, and she's laid-back.</span><span class="zh">我们性格互补：我脾气急，她很悠闲。</span></li>
+<li><span class="en">I admire people who are down-to-earth and honest.</span><span class="zh">我欣赏踏实真诚的人。</span></li>
+<li><span class="en">Being a good listener is part of her many charms.</span><span class="zh">善于倾听是她众多迷人之处之一。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Which personality trait do you value most in a friend?</span><span class="zh">你最看重朋友的哪种性格特质？</span></li>
+<li>💬 <span class="en">In the long run, personality matters more than appearance.</span><span class="zh">长远来看，性格比外表更重要。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">How would you describe your personality in three words?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t13">
+<summary><span class="num">13</span><h3>Books <span class="cn">阅读</span></h3><span class="badge">Intermediates F2</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">bookworm</td><td class="p">/ˈbʊkwɜːrm/</td><td>书虫、爱读书的人</td></tr>
+<tr><td class="w">plot</td><td class="p">/plɑːt/</td><td>情节</td></tr>
+<tr><td class="w">page-turner</td><td class="p">/ˈpeɪdʒ tɜːrnər/</td><td>让人爱不释手的书</td></tr>
+<tr><td class="w">e-book</td><td class="p">/ˈiː bʊk/</td><td>电子书</td></tr>
+<tr><td class="w">flick through</td><td class="p">/flɪk θruː/</td><td>快速翻阅</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">The library is bookworms' favorite place. <span class="tip">(⚠️ 原PDF漏了所有格符号)</span></span><span class="zh">图书馆是书虫们最喜欢的地方。</span></li>
+<li><span class="en">Fiction novels usually have amazing plots. <span class="tip">(fiction 小说类总称; novel 具体一本)</span></span><span class="zh">小说类作品通常有精彩的情节。</span></li>
+<li><span class="en">The novel Sherlock Holmes by Arthur Conan Doyle is a page-turner.</span><span class="zh">柯南·道尔的《福尔摩斯》让人爱不释手。</span></li>
+<li><span class="en">More people are choosing e-books over paper books nowadays. <span class="tip">(choose A over B)</span></span><span class="zh">如今更多人选择电子书而非纸质书。</span></li>
+<li><span class="en">I usually only flick through boring magazines.</span><span class="zh">无聊的杂志我通常只是翻翻而已。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>类型:</b> fiction/non-fiction · biography 传记 · autobiography 自传 · poetry 诗集 · mystery 推理 · thriller 惊悚 · sci-fi 科幻 · comics 漫画</li>
+<li><b>阅读程度递进:</b> skim 略读 → flick through 翻阅 → read through 通读 → devour 如饥似渴地读 → can't put it down 爱不释手</li>
+<li><b>场景:</b> bestseller 畅销书 · audiobook 有声书 · a good read · lose yourself in a book 沉浸书中</li>
+<li><b>句型:</b> <span class="en">I prefer paper books to e-books because…</span> (串E2 prefer A to B)</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I'm a real bookworm — I finish two books a month.</span><span class="zh">我是个真正的书虫，每个月能读完两本书。</span></li>
+<li><span class="en">The plot of this novel is full of twists and surprises.</span><span class="zh">这部小说的情节充满转折和惊喜。</span></li>
+<li><span class="en">Once I started reading it, I couldn't put it down.</span><span class="zh">我一开始读就爱不释手了。</span></li>
+<li><span class="en">I just flick through magazines while waiting in line.</span><span class="zh">排队等候时我只是随便翻翻杂志。</span></li>
+<li><span class="en">More and more people are choosing e-books over paper books.</span><span class="zh">越来越多的人选择电子书而不是纸质书。</span></li>
+<li><span class="en">This thriller has been on the bestseller list for months.</span><span class="zh">这本惊悚小说已经在畅销榜上待了好几个月了。</span></li>
+<li><span class="en">I usually skim the headlines instead of reading through the articles.</span><span class="zh">我通常只略读标题，而不通读全文。</span></li>
+<li><span class="en">Listening to audiobooks is a good way to "read" while commuting.</span><span class="zh">通勤时听有声书是"阅读"的好办法。</span></li>
+<li><span class="en">I love losing myself in a good book on rainy days.</span><span class="zh">雨天我喜欢沉浸在好书中。</span></li>
+<li><span class="en">Do you prefer fiction or non-fiction?</span><span class="zh">你更喜欢小说类还是非小说类？</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Do you think paper books will disappear someday?</span><span class="zh">你认为纸质书有一天会消失吗？</span></li>
+<li>💬 <span class="en">Reading broadens your horizons and enriches your vocabulary.</span><span class="zh">阅读开阔视野，丰富词汇。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Do you prefer e-books or paper books?</span></li>
+<li><span class="en">What's the last page-turner you read?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t14">
+<summary><span class="num">14</span><h3>Dreams and Goals <span class="cn">梦想与目标</span></h3><span class="badge">Intermediates H5</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">success</td><td class="p">/səkˈses/</td><td>成功</td></tr>
+<tr><td class="w">grab the opportunity</td><td class="p"></td><td>抓住机会</td></tr>
+<tr><td class="w">obstacle</td><td class="p">/ˈɑːbstəkl/</td><td>障碍</td></tr>
+<tr><td class="w">buckle down</td><td class="p">/ˈbʌkl daʊn/</td><td>埋头苦干</td></tr>
+<tr><td class="w">daydream</td><td class="p">/ˈdeɪdriːm/</td><td>做白日梦</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Your hard work will bring you success.</span><span class="zh">努力工作会给你带来成功。</span></li>
+<li><span class="en">I'd grab the opportunity to buy my dream car once I save up enough money. <span class="tip">(save up 攒钱; once 引导时间状从)</span></span><span class="zh">一旦攒够钱，我就会抓住机会买下梦想之车。</span></li>
+<li><span class="en">Lack of money is his main obstacle to finishing university.</span><span class="zh">缺钱是他完成学业的主要障碍。</span></li>
+<li><span class="en">Be ready to buckle down when facing difficulties in life.</span><span class="zh">面对生活中的困难时要做好埋头苦干的准备。</span></li>
+<li><span class="en">I often get caught up daydreaming about my promotion. <span class="tip">(get caught up 沉浸于)</span></span><span class="zh">我经常沉浸在对升职的幻想中。</span></li>
+</ol>
+<div class="warn">⚠️ 考点：obstacle <b>to doing</b> sth — 这里的 to 是介词，后接 doing！</div>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>目标:</b> set a goal · achieve=attain a goal · long-term/short-term goals · New Year's resolutions · pursue your dream 追梦 · ambition 雄心 · aspiration 抱负</li>
+<li><b>行动:</b> work towards · be determined to · committed 全力投入 · persevere 坚持不懈 · stay motivated · step out of your comfort zone(串G5)</li>
+<li><b>挫折:</b> barrier 障碍 · setback 挫折 · get in the way 妨碍 · overcome obstacles(串G5克服恐惧)</li>
+<li><b>梦与现实:</b> dream big 敢想 · vision 愿景 · wishful thinking 一厢情愿 · face reality 面对现实</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I set a goal at the beginning of every year.</span><span class="zh">我每年年初都会设定一个目标。</span></li>
+<li><span class="en">Lack of time is my biggest obstacle to learning English well.</span><span class="zh">缺乏时间是我学好英语的最大障碍。</span></li>
+<li><span class="en">When the chance comes, grab it — don't hesitate.</span><span class="zh">机会来临时要抓住它——别犹豫。</span></li>
+<li><span class="en">If you want to pass the exam, you'll have to buckle down and study.</span><span class="zh">如果你想通过考试，就得埋头苦学。</span></li>
+<li><span class="en">Success doesn't come overnight — it takes patience.</span><span class="zh">成功不会一夜之间到来——它需要耐心。</span></li>
+<li><span class="en">I often daydream about traveling around the world.</span><span class="zh">我经常做着环游世界的白日梦。</span></li>
+<li><span class="en">She has been working towards her dream of becoming a doctor.</span><span class="zh">她一直在为成为医生的梦想而努力。</span></li>
+<li><span class="en">Every setback is a chance to learn something new.</span><span class="zh">每一次挫折都是学习新东西的机会。</span></li>
+<li><span class="en">Don't be afraid to step out of your comfort zone and try new things.</span><span class="zh">不要害怕走出舒适区去尝试新事物。</span></li>
+<li><span class="en">Dream big, but start small.</span><span class="zh">敢于梦想，从小处着手。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What's your biggest goal right now, and what's your plan?</span><span class="zh">你目前最大的目标是什么？打算怎么实现？</span></li>
+<li>💬 <span class="en">Are you a dreamer or a doer?</span><span class="zh">你是空想家还是行动派？(dream偏"想"，goal偏"做")</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What's your biggest goal right now?</span></li>
+<li><span class="en">Are you a dreamer or a doer?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 七、假日与自然 ==================== -->
+<section class="group" id="g7">
+<h2>七、假日与自然 <small>Holidays · Weather · Gardening</small></h2>
+
+<article class="topic" id="t15">
+<summary><span class="num">15</span><h3>Holidays and Special Days <span class="cn">假期与节日</span></h3><span class="badge">Intermediates F3 · "各种假"辨析</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇(本课全是"假"的辨析，重点!)</h4>
+<table class="vocab">
+<tr><td class="w">time off</td><td class="p"></td><td>休息时间(泛指)</td></tr>
+<tr><td class="w">break</td><td class="p">/breɪk/</td><td>小憩、工间休息</td></tr>
+<tr><td class="w">day off</td><td class="p"></td><td>休息日(单日)</td></tr>
+<tr><td class="w">family holiday</td><td class="p"></td><td>家庭度假</td></tr>
+<tr><td class="w">leave</td><td class="p">/liːv/</td><td>请的假(需批准)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">I'm spending some time off with my family in Italy.</span><span class="zh">我正和家人在意大利休假。</span></li>
+<li><span class="en">I was beginning to feel that I needed a break.</span><span class="zh">我开始觉得需要休息一下了。</span></li>
+<li><span class="en">Thursday is his day off.</span><span class="zh">周四是他这周的休息日。</span></li>
+<li><span class="en">Luke was forced to cancel the family holiday to Acapulco.</span><span class="zh">Luke 被迫取消了去阿卡普尔科的家庭度假。</span></li>
+<li><span class="en">I've applied for three days' leave. <span class="tip">(apply for 申请; three days' 所有格!)</span></span><span class="zh">我申请了三天假。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>"假"家族:</b> vacation 美式度假 · holiday 英式(也指节日) · public holiday 法定假 · long weekend 小长假</li>
+<li><b>职场假期:</b> sick leave 病假 · annual leave 年假 · maternity leave 产假 · personal leave 事假 · paid/unpaid leave 带薪/无薪假</li>
+<li><b>节日活动:</b> get together=family reunion 团聚 · festive 节日气氛的 · decorate 装饰 · exchange gifts · fireworks 烟花 · countdown 倒数</li>
+<li><b>度假方式:</b> go on a trip · travel abroad · staycation 宅度假 · recharge your batteries 充电回血(串E5)</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I'm taking some time off next week to visit my parents.</span><span class="zh">我下周休假去看望父母。</span></li>
+<li><span class="en">Let's take a five-minute break before we continue.</span><span class="zh">我们继续之前休息五分钟吧。</span></li>
+<li><span class="en">Friday is my day off this week.</span><span class="zh">这周五是我的休息日。</span></li>
+<li><span class="en">I've applied for three days' leave for my sister's wedding.</span><span class="zh">我为参加姐姐的婚礼申请了三天假。</span></li>
+<li><span class="en">We're planning a family holiday to Yunnan this summer.</span><span class="zh">今年夏天我们计划全家去云南度假。</span></li>
+<li><span class="en">I still have five days of annual leave left this year.</span><span class="zh">我今年还剩五天年假。</span></li>
+<li><span class="en">During the Spring Festival, the whole family gets together for a reunion dinner.</span><span class="zh">春节期间，全家人团聚吃团圆饭。</span></li>
+<li><span class="en">More people are choosing a staycation to save money.</span><span class="zh">越来越多的人为了省钱选择宅度假。</span></li>
+<li><span class="en">The streets were festive, with lights and decorations everywhere.</span><span class="zh">街上充满节日气氛，到处是彩灯和装饰。</span></li>
+<li><span class="en">A short trip can really recharge your batteries.</span><span class="zh">一次短途旅行真的能让人满血复活。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">How do you usually spend your long weekends?</span><span class="zh">你通常怎么过小长假？</span></li>
+<li>💬 <span class="en">Holidays are the best time to slow down and recharge.</span><span class="zh">假期是放慢脚步、充电恢复的最佳时机。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">How do you usually spend your holidays?</span></li>
+<li><span class="en">Do you prefer traveling or staying home?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t16">
+<summary><span class="num">16</span><h3>Weather <span class="cn">天气</span></h3><span class="badge">Intermediates F4</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">freezing</td><td class="p">/ˈfriːzɪŋ/</td><td>极冷的(低于冰点)</td></tr>
+<tr><td class="w">drizzle</td><td class="p">/ˈdrɪzl/</td><td>毛毛细雨</td></tr>
+<tr><td class="w">humid</td><td class="p">/ˈhjuːmɪd/</td><td>湿热的</td></tr>
+<tr><td class="w">misty</td><td class="p">/ˈmɪsti/</td><td>有雾的</td></tr>
+<tr><td class="w">mild</td><td class="p">/maɪld/</td><td>温和的(不冷不热)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Freezing weather strands 2000 passengers at Paris airport. <span class="tip">(strand 使滞留，新闻高频词!)</span></span><span class="zh">严寒天气使2000名乘客滞留巴黎机场。</span></li>
+<li><span class="en">A light drizzle had started by the time we left.</span><span class="zh">我们离开时已经开始下毛毛雨了。</span></li>
+<li><span class="en">Tokyo is extremely humid in mid-summer.</span><span class="zh">东京仲夏极其湿热。</span></li>
+<li><span class="en">It's a cold, misty morning.</span><span class="zh">这是一个寒冷多雾的早晨。</span></li>
+<li><span class="en">It should be generally mild for the next few days. <span class="tip">(天气预报常用句式)</span></span><span class="zh">未来几天总体天气温和。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>温度轴:</b> scorching/boiling 炎热 → warm → mild 温和 → chilly 凉 → cold → freezing 严寒</li>
+<li><b>降雨轴:</b> drizzle 细雨 → shower 阵雨 → downpour/pouring 倾盆大雨 → thunderstorm 雷暴</li>
+<li><b>其他:</b> blizzard 暴风雪 · heatwave 热浪 · hailing 下冰雹 · breeze 微风</li>
+<li><b>高分表达:</b> temperatures soar/plummet 飙升/骤降 · The forecast says… · below freezing 零下 · humidity 湿度</li>
+<li><b>辨析:</b> weather 短期天气 vs climate 长期气候(串G1/G2)</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">It's freezing outside — you'd better wear a down coat.</span><span class="zh">外面极冷，你最好穿羽绒服。</span></li>
+<li><span class="en">A light drizzle started just as we left the house.</span><span class="zh">我们刚出门就下起了毛毛细雨。</span></li>
+<li><span class="en">Summers in my hometown are hot and humid.</span><span class="zh">我家乡的夏天又热又潮湿。</span></li>
+<li><span class="en">We drove slowly along the misty mountain road.</span><span class="zh">我们沿着雾蒙蒙的山路慢慢开车。</span></li>
+<li><span class="en">The weather is mild in spring, neither too hot nor too cold.</span><span class="zh">春天天气温和，不冷不热。</span></li>
+<li><span class="en">Temperatures will plummet to below freezing tonight.</span><span class="zh">今夜气温将骤降至零下。</span></li>
+<li><span class="en">We were caught in a sudden downpour without an umbrella.</span><span class="zh">我们没带伞，遇上了突如其来的倾盆大雨。</span></li>
+<li><span class="en">The forecast says it will clear up tomorrow.</span><span class="zh">天气预报说明天会放晴。</span></li>
+<li><span class="en">I can't stand the scorching heat in July and August.</span><span class="zh">我受不了七八月的酷热。</span></li>
+<li><span class="en">Weather affects my mood more than I'd like to admit.</span><span class="zh">天气对我情绪的影响比我想承认的还要大。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What's your favorite season, and why?</span><span class="zh">你最喜欢哪个季节，为什么？</span></li>
+<li>💬 <span class="en">Extreme weather is becoming more common due to climate change.</span><span class="zh">由于气候变化，极端天气越来越常见。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What's the weather like in your city?</span></li>
+<li><span class="en">Which season do you like best?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t17">
+<summary><span class="num">17</span><h3>Gardening <span class="cn">园艺</span></h3><span class="badge">Intermediates F5 · 三个"剪"辨析</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">landscape</td><td class="p">/ˈlændskeɪp/</td><td>景观、庭院景致</td></tr>
+<tr><td class="w">trimming</td><td class="p">/ˈtrɪmɪŋ/</td><td>修剪(剪整齐)</td></tr>
+<tr><td class="w">pruning</td><td class="p">/ˈpruːnɪŋ/</td><td>修枝(为了促进生长)</td></tr>
+<tr><td class="w">mow</td><td class="p">/moʊ/</td><td>割(草)</td></tr>
+<tr><td class="w">weeds</td><td class="p">/wiːdz/</td><td>杂草</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">I really like the house especially for its landscape.</span><span class="zh">我真的很喜欢这房子，尤其因为它的庭院景观。</span></li>
+<li><span class="en">He is so busy trimming off the rotten wood. <span class="tip">(trim off 剪掉)</span></span><span class="zh">他正忙着剪掉腐朽的枝干。</span></li>
+<li><span class="en">I think the roses need pruning. <span class="tip">(need + doing = need to be done 被动含义!)</span></span><span class="zh">我觉得这些玫瑰需要修剪了。</span></li>
+<li><span class="en">It's time to mow the lawn again. <span class="tip">(mow the lawn 固定搭配)</span></span><span class="zh">又到了割草坪的时候了。</span></li>
+<li><span class="en">I have a constant battle against weeds. <span class="tip">(battle against 与…作斗争)</span></span><span class="zh">我一直在和杂草作斗争。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>三个"剪"分清:</b> trim 剪整齐 / prune 剪枝促生长 / mow 割草</li>
+<li><b>要素:</b> flowerbed 花坛 · lawn 草坪 · hedge 树篱 · seedling 幼苗 · pot 花盆 · soil 土壤 · fertilizer 肥料 · greenhouse 温室</li>
+<li><b>动作:</b> plant · water the plants · weed out 除草 · repot 换盆 · harvest 收获</li>
+<li><b>地道表达:</b> have a green thumb(美)=green fingers(英) 有园艺天赋 · grow your own vegetables 自种蔬菜</li>
+<li><b>感受:</b> therapeutic 治愈的 · rewarding 有成就感 · a great way to unwind(串E5)</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">The landscape of their backyard is beautifully designed.</span><span class="zh">他们后院的景观设计得很漂亮。</span></li>
+<li><span class="en">He spends every weekend trimming the hedge.</span><span class="zh">他每个周末都修剪树篱。</span></li>
+<li><span class="en">These roses need pruning in early spring.</span><span class="zh">这些玫瑰需要在早春修剪。</span></li>
+<li><span class="en">It's time to mow the lawn again.</span><span class="zh">又到了割草坪的时候了。</span></li>
+<li><span class="en">I'm always fighting a battle against weeds in my garden.</span><span class="zh">我总是在花园里和杂草作斗争。</span></li>
+<li><span class="en">My grandmother has a green thumb — everything she plants grows well.</span><span class="zh">我奶奶很有园艺天赋，她种什么都长得好。</span></li>
+<li><span class="en">Growing your own vegetables is both fun and rewarding.</span><span class="zh">自己种菜既有趣又有成就感。</span></li>
+<li><span class="en">Many people find gardening therapeutic after a stressful day.</span><span class="zh">很多人发现，紧张的一天过后做做园艺很治愈。</span></li>
+<li><span class="en">Remember to water the plants and add fertilizer in spring.</span><span class="zh">记得给植物浇水，春天还要施肥。</span></li>
+<li><span class="en">We repotted the orchid into a bigger pot last week.</span><span class="zh">上周我们把兰花换到了一个更大的花盆里。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Is gardening popular among older people in China?</span><span class="zh">园艺在中国的老年人中流行吗？</span></li>
+<li>💬 <span class="en">Taking care of plants is a great way to unwind.</span><span class="zh">照顾植物是放松的好方式。</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Do you have any plants at home?</span></li>
+<li><span class="en">Is gardening popular among older people in China?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 八、社会与环境 ==================== -->
+<section class="group" id="g8">
+<h2>八、社会与环境 <small>Environment · Pollution · News · Poverty</small></h2>
+
+<article class="topic" id="t18">
+<summary><span class="num">18</span><h3>Environment <span class="cn">环境保护</span></h3><span class="badge">Intermediates G1</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">biodegradable</td><td class="p">/ˌbaɪoʊdɪˈɡreɪdəbl/</td><td>可生物降解的</td></tr>
+<tr><td class="w">deforestation</td><td class="p">/ˌdiːˌfɔːrɪˈsteɪʃn/</td><td>滥伐森林</td></tr>
+<tr><td class="w">organic farming</td><td class="p"></td><td>有机农业</td></tr>
+<tr><td class="w">eco-friendly</td><td class="p">/ˈiːkoʊ ˌfrendli/</td><td>环保的</td></tr>
+<tr><td class="w">recycling</td><td class="p">/ˌriːˈsaɪklɪŋ/</td><td>回收利用</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">This carton is made of biodegradable plastic. <span class="tip">(be made of 由…制成)</span></span><span class="zh">这个盒子是由可降解塑料制成的。</span></li>
+<li><span class="en">One of the major problems with deforestation in the Amazon is that many tribes are losing their homes. <span class="tip">(tribe 部落)</span></span><span class="zh">亚马逊滥伐森林的主要问题之一是许多部落正在失去家园。</span></li>
+<li><span class="en">Organic farming is better for the environment.</span><span class="zh">有机农业对环境更好。</span></li>
+<li><span class="en">Retail shops can influence consumers by promoting eco-friendly products and ideas in their shops. <span class="tip">(promote 推广)</span></span><span class="zh">零售店可以通过推广环保产品来影响消费者。</span></li>
+<li><span class="en">Recycling is important to help protect our environment.</span><span class="zh">回收利用对保护环境很重要。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>环保行为:</b> 3R原则 reduce/reuse/recycle · waste sorting 垃圾分类 · single-use plastics 一次性塑料 · carbon footprint 碳足迹 · go green · low-carbon lifestyle 低碳生活</li>
+<li><b>概念:</b> climate change · renewable energy 可再生能源 · sustainable 可持续的 · ecosystem 生态系统 · endangered species 濒危物种 · conservation (资源)保护</li>
+<li><b>人物句型:</b> environmentalist 环保主义者 · do your part 尽一份力 · raise awareness of… 提高…意识</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I always bring my own bag to reduce plastic waste.</span><span class="zh">我总是自带袋子以减少塑料垃圾。</span></li>
+<li><span class="en">More supermarkets are using biodegradable packaging nowadays.</span><span class="zh">现在越来越多的超市在使用可降解包装。</span></li>
+<li><span class="en">Deforestation is destroying the homes of many wild animals.</span><span class="zh">滥伐森林正在毁掉许多野生动物的家园。</span></li>
+<li><span class="en">Organic farming avoids chemical pesticides, so it's better for the soil.</span><span class="zh">有机农业避免使用化学杀虫剂，对土壤更好。</span></li>
+<li><span class="en">Recycling paper and plastic has become part of my daily routine.</span><span class="zh">回收纸张和塑料已成为我日常习惯的一部分。</span></li>
+<li><span class="en">I try to buy eco-friendly products whenever I can.</span><span class="zh">我尽量购买环保产品。</span></li>
+<li><span class="en">We should all do our part to protect the environment.</span><span class="zh">我们都应该为保护环境尽一份力。</span></li>
+<li><span class="en">Riding a bike instead of driving reduces your carbon footprint.</span><span class="zh">骑车代替开车能减少你的碳足迹。</span></li>
+<li><span class="en">Waste sorting has become a habit in many Chinese cities.</span><span class="zh">垃圾分类已经成为许多中国城市的习惯。</span></li>
+<li><span class="en">Renewable energy like solar and wind power is becoming cheaper.</span><span class="zh">太阳能和风能等可再生能源正变得越来越便宜。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Do you think governments or individuals should do more for the environment?</span><span class="zh">你认为环保方面政府还是个人应做得更多？</span></li>
+<li>💬 <span class="en">Is it easy to live a low-carbon lifestyle in your city?</span><span class="zh">在你所在的城市过低碳生活容易吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What do you personally do to help protect the environment?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t19">
+<summary><span class="num">19</span><h3>Pollution <span class="cn">污染</span></h3><span class="badge">Intermediates G2</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">global warming</td><td class="p"></td><td>全球变暖</td></tr>
+<tr><td class="w">smog</td><td class="p">/smɔːɡ/</td><td>烟雾(smoke+fog 合成词)</td></tr>
+<tr><td class="w">pesticides</td><td class="p">/ˈpestɪsaɪdz/</td><td>杀虫剂</td></tr>
+<tr><td class="w">contaminated</td><td class="p">/kənˈtæmɪneɪtɪd/</td><td>被污染的</td></tr>
+<tr><td class="w">noise pollution</td><td class="p"></td><td>噪音污染</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Global warming is an environmental issue that needs to be addressed. <span class="tip">(needs to be done 被动; address=解决)</span></span><span class="zh">全球变暖是一个需要解决的环境问题。</span></li>
+<li><span class="en">Smog is a major problem in some of the cities.</span><span class="zh">烟雾是一些城市的主要问题。</span></li>
+<li><span class="en">Chemical pesticides do pollute the environment. <span class="tip">(助动词 do 强调"确实"!)</span></span><span class="zh">化学杀虫剂确实会污染环境。</span></li>
+<li><span class="en">The infection was probably caused by swimming in contaminated water.</span><span class="zh">感染可能是游泳时接触污染水导致的。</span></li>
+<li><span class="en">The government is thinking about how to reduce noise pollution.</span><span class="zh">政府正在考虑如何减少噪音污染。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>污染家族:</b> air/water/soil/light/plastic pollution</li>
+<li><b>污染源:</b> emissions 排放物 · exhaust fumes 汽车尾气 · greenhouse gases 温室气体 · fossil fuels 化石燃料 · dump waste 倾倒垃圾 · litter 乱扔垃圾</li>
+<li><b>动词:</b> pollute / contaminate / emit / dispose of 处理</li>
+<li><b>治理:</b> ban 禁止 · impose fines 处以罚款 · eco-friendly alternatives 环保替代品</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">Many cities in northern China suffer from heavy smog in winter.</span><span class="zh">中国北方许多城市冬天饱受严重雾霾之苦。</span></li>
+<li><span class="en">Global warming is causing more extreme weather around the world.</span><span class="zh">全球变暖正导致世界各地出现更多极端天气。</span></li>
+<li><span class="en">The river was contaminated by waste from the factory.</span><span class="zh">这条河被工厂排放的废水污染了。</span></li>
+<li><span class="en">Noise pollution from construction sites affects people's sleep.</span><span class="zh">工地的噪音污染影响人们的睡眠。</span></li>
+<li><span class="en">Car emissions are one of the main sources of air pollution.</span><span class="zh">汽车尾气是空气污染的主要来源之一。</span></li>
+<li><span class="en">Farmers used too many pesticides, which harmed the soil.</span><span class="zh">农民使用了过多杀虫剂，损害了土壤。</span></li>
+<li><span class="en">Burning fossil fuels releases greenhouse gases into the air.</span><span class="zh">燃烧化石燃料会向空气中排放温室气体。</span></li>
+<li><span class="en">Some people litter without even thinking about it.</span><span class="zh">有些人乱扔垃圾，连想都不想。</span></li>
+<li><span class="en">The government imposed heavy fines on polluting factories.</span><span class="zh">政府对污染工厂处以重罚。</span></li>
+<li><span class="en">We should dispose of electronic waste properly.</span><span class="zh">我们应该妥善处理电子垃圾。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Do you think air quality has improved in recent years?</span><span class="zh">你认为近年来空气质量有改善吗？</span></li>
+<li>💬 <span class="en">What would you do if you saw someone littering?</span><span class="zh">如果你看到有人乱扔垃圾，你会怎么做？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Which type of pollution is the most serious in your city?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t20">
+<summary><span class="num">20</span><h3>News <span class="cn">新闻</span></h3><span class="badge">Intermediates G4 · 仅4词</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">paparazzi</td><td class="p">/ˌpɑːpəˈrɑːtsi/</td><td>狗仔队(单数 paparazzo)</td></tr>
+<tr><td class="w">newscaster</td><td class="p">/ˈnuːzkæstər/</td><td>新闻播音员</td></tr>
+<tr><td class="w">headlines</td><td class="p">/ˈhedlaɪnz/</td><td>头版头条</td></tr>
+<tr><td class="w">media</td><td class="p">/ˈmiːdiə/</td><td>媒体(整体视为单数概念)</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">As soon as the actor got off the stage, he was followed by several members of paparazzi.</span><span class="zh">那位演员一下台就被几名狗仔队成员跟踪。</span></li>
+<li><span class="en">I saw a very famous newscaster in the shopping mall.</span><span class="zh">我在商场看到一位很有名的新闻播音员。</span></li>
+<li><span class="en">The news of his death was splashed across the headlines in all the newspapers. <span class="tip">(splash across 醒目地登上)</span></span><span class="zh">他去世的消息登上所有报纸的头条。</span></li>
+<li><span class="en">The issue has been much discussed in the media.</span><span class="zh">这个问题在媒体上被广泛讨论。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>从业者:</b> journalist=news reporter 记者 · the press 新闻界 · correspondent 特派记者 · columnist 专栏作家</li>
+<li><b>高频短语:</b> hit the headlines 上头条 · break the news 发布消息 · fake news 假新闻 · keep up with the news · reliable sources 可靠来源 · press conference 记者会</li>
+<li><b>现象讨论:</b> media hype 媒体炒作 · invade one's privacy 侵犯隐私(配paparazzi) · freedom of the press 新闻自由 · spread like wildfire 疯传</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I usually get my news from my phone in the morning.</span><span class="zh">我通常早上用手机看新闻。</span></li>
+<li><span class="en">The scandal was splashed across the headlines for weeks.</span><span class="zh">这桩丑闻连续几周霸占新闻头条。</span></li>
+<li><span class="en">Some celebrities are constantly followed by the paparazzi.</span><span class="zh">一些明星经常被狗仔队跟踪。</span></li>
+<li><span class="en">Fake news spreads much faster than real news on social media.</span><span class="zh">在社交媒体上，假新闻比真新闻传播得快得多。</span></li>
+<li><span class="en">You should always check whether the source is reliable.</span><span class="zh">你应该始终核实消息来源是否可靠。</span></li>
+<li><span class="en">The story spread like wildfire on the internet.</span><span class="zh">这个消息在互联网上疯传。</span></li>
+<li><span class="en">I don't trust everything I read in the media.</span><span class="zh">媒体上的东西我不会全信。</span></li>
+<li><span class="en">The famous newscaster retired after twenty years on air.</span><span class="zh">那位著名播音员在播报新闻二十年后退休了。</span></li>
+<li><span class="en">The paparazzi often invade celebrities' privacy just to get a photo.</span><span class="zh">狗仔队经常为了拍到照片侵犯明星的隐私。</span></li>
+<li><span class="en">Young people today prefer short videos to traditional news programs.</span><span class="zh">如今年轻人更喜欢短视频，而不是传统新闻节目。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">How do you tell real news from fake news?</span><span class="zh">你怎么区分真新闻和假新闻？</span></li>
+<li>💬 <span class="en">Should celebrities' private lives be protected by law?</span><span class="zh">明星的私生活应该受法律保护吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Where do you usually get your news?</span></li>
+<li><span class="en">Do you trust social media as a news source?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t21">
+<summary><span class="num">21</span><h3>Poverty <span class="cn">贫困</span></h3><span class="badge">Intermediates H4 · 仅4词</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">debt</td><td class="p">/det/</td><td>债务(⚠️ b 不发音!)</td></tr>
+<tr><td class="w">shortage</td><td class="p">/ˈʃɔːrtɪdʒ/</td><td>短缺</td></tr>
+<tr><td class="w">go broke</td><td class="p"></td><td>破产</td></tr>
+<tr><td class="w">deprived</td><td class="p">/dɪˈpraɪvd/</td><td>贫困的、被剥夺基本生活条件的</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">The reality is that they are condemned to a lifetime of poverty by an inescapable burden of debt. <span class="tip">(be condemned to 被迫陷入; burden of debt 债务负担)</span></span><span class="zh">现实是他们被无法摆脱的债务负担困于终生贫困。</span></li>
+<li><span class="en">There is shortage of rice in some parts of the country.</span><span class="zh">该国部分地区大米短缺。</span></li>
+<li><span class="en">My uncle started a company last year but it quickly went broke.</span><span class="zh">我叔叔去年开了家公司，但很快就破产了。</span></li>
+<li><span class="en">In deprived communities, 80% of the population have not been to an arts event or even in the cinemas.</span><span class="zh">在贫困社区，80%的人没参加过艺术活动，甚至没进过电影院。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>高分替换 poor:</b> impoverished · needy · low-income · underprivileged 弱势的 · struggling 艰难度日</li>
+<li><b>钱债:</b> in debt 负债 · pay off debt 还清 · go bankrupt 破产(正式版) · poverty line 贫困线 · make ends meet 收支勉强平衡(高频习语!) · short of money 缺钱</li>
+<li><b>社会议题:</b> wealth gap=inequality 贫富差距 · unemployment 失业 · homeless 无家可归 · charity 慈善 · donate 捐赠 · volunteer 志愿者 · welfare 福利</li>
+<li><b>反义:</b> wealthy=affluent 富裕 · well-off 小康</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">Many young people are in debt because of student loans.</span><span class="zh">许多年轻人因为助学贷款而负债。</span></li>
+<li><span class="en">He worked hard for years to pay off his debts.</span><span class="zh">他努力工作多年才还清债务。</span></li>
+<li><span class="en">The company went broke after losing its biggest customer.</span><span class="zh">失去最大的客户后，公司破产了。</span></li>
+<li><span class="en">There is a shortage of clean water in some remote areas.</span><span class="zh">一些偏远地区缺乏清洁用水。</span></li>
+<li><span class="en">With prices rising so fast, many families can hardly make ends meet.</span><span class="zh">物价涨得这么快，许多家庭几乎入不敷出。</span></li>
+<li><span class="en">The charity provides free meals for deprived children.</span><span class="zh">这家慈善机构为贫困儿童提供免费餐食。</span></li>
+<li><span class="en">Education is the key to breaking the cycle of poverty.</span><span class="zh">教育是打破贫困循环的关键。</span></li>
+<li><span class="en">The wealth gap between rich and poor keeps widening.</span><span class="zh">贫富差距还在不断扩大。</span></li>
+<li><span class="en">She donates part of her salary to charity every month.</span><span class="zh">她每月把一部分工资捐给慈善机构。</span></li>
+<li><span class="en">More welfare programs are needed to help low-income families.</span><span class="zh">需要更多福利项目来帮助低收入家庭。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Why do you think some people remain poor despite working hard?</span><span class="zh">你认为为什么有些人尽管努力工作仍然贫穷？</span></li>
+<li>💬 <span class="en">Should the rich pay more taxes to help the poor?</span><span class="zh">富人应该多交税来帮助穷人吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Why do you think some people remain poor?</span></li>
+<li><span class="en">Should the rich pay more taxes to help the poor?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 九、艺术与心理 ==================== -->
+<section class="group" id="g9">
+<h2>九、艺术与心理 <small>Visual Arts · Humor · Superstition · Fear</small></h2>
+
+<article class="topic" id="t22">
+<summary><span class="num">22</span><h3>Visual Arts <span class="cn">视觉艺术</span></h3><span class="badge">Intermediates G3</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">abstract</td><td class="p">/ˈæbstrækt/</td><td>抽象的</td></tr>
+<tr><td class="w">exhibition</td><td class="p">/ˌeksɪˈbɪʃn/</td><td>展览</td></tr>
+<tr><td class="w">landscape</td><td class="p">/ˈlændskeɪp/</td><td>风景画(注意与F5"庭院"义区分)</td></tr>
+<tr><td class="w">masterpiece</td><td class="p">/ˈmæstərpiːs/</td><td>杰作</td></tr>
+<tr><td class="w">vivid</td><td class="p">/ˈvɪvɪd/</td><td>鲜艳的、生动的</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">Her artworks are usually based on abstract concepts. <span class="tip">(be based on 基于)</span></span><span class="zh">她的作品通常基于抽象概念。</span></li>
+<li><span class="en">The prominent painter is completing her works for the upcoming exhibition. <span class="tip">(prominent 著名的)</span></span><span class="zh">这位著名画家正在为即将到来的展览完成作品。</span></li>
+<li><span class="en">I am fond of collecting paintings of landscapes. <span class="tip">(be fond of = like)</span></span><span class="zh">我喜欢收藏风景画。</span></li>
+<li><span class="en">His masterpiece shows the outstanding creativity of his hands.</span><span class="zh">他的杰作展现了他双手的卓越创造力。</span></li>
+<li><span class="en">This artwork catches the eyes of museumgoers because of its vivid colors. <span class="tip">(catch the eye of… 吸引目光)</span></span><span class="zh">这件作品因色彩鲜艳而吸引参观者的目光。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>艺术形式:</b> sketch 素描 · sculpture 雕塑 · photography 摄影 · graffiti 涂鸦 · calligraphy 书法 · pottery 陶艺</li>
+<li><b>流派:</b> realism 写实主义 · impressionism 印象派 · contemporary art 当代艺术 · street art 街头艺术</li>
+<li><b>评价词:</b> breathtaking 惊艳 · thought-provoking 发人深省 · aesthetic 审美的 · inspiring 鼓舞人心</li>
+<li><b>场景:</b> art gallery 画廊 · draw inspiration from 获得灵感 · exhibit 展出 · appreciate art 欣赏艺术</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I went to an exhibition of contemporary art last weekend.</span><span class="zh">上周末我去看了一个当代艺术展。</span></li>
+<li><span class="en">I don't really understand abstract paintings, but I enjoy looking at them.</span><span class="zh">我不太看得懂抽象画，但我喜欢欣赏它们。</span></li>
+<li><span class="en">Monet's landscapes are famous for their soft colors.</span><span class="zh">莫奈的风景画以柔和的色彩闻名。</span></li>
+<li><span class="en">The museum is showing a masterpiece by Van Gogh this month.</span><span class="zh">这个月美术馆正在展出一幅梵高的杰作。</span></li>
+<li><span class="en">The painting is full of vivid colors that catch your eye immediately.</span><span class="zh">这幅画色彩鲜艳，一下子就吸引住你的目光。</span></li>
+<li><span class="en">Street art and graffiti have become popular in many cities.</span><span class="zh">街头艺术和涂鸦在许多城市流行起来。</span></li>
+<li><span class="en">This sculpture is thought-provoking — it makes you think about modern life.</span><span class="zh">这座雕塑发人深省——它让你思考现代生活。</span></li>
+<li><span class="en">I'm not an art expert, but I know what I like.</span><span class="zh">我不是艺术专家，但我知道自己喜欢什么。</span></li>
+<li><span class="en">Many artists draw inspiration from nature.</span><span class="zh">许多艺术家从大自然中获取灵感。</span></li>
+<li><span class="en">Chinese calligraphy is considered both a skill and an art form.</span><span class="zh">中国书法既被视为一种技艺，也被视为一种艺术形式。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Do you enjoy going to museums or galleries?</span><span class="zh">你喜欢去博物馆或画廊吗？</span></li>
+<li>💬 <span class="en">Can AI create real art? What do you think?</span><span class="zh">人工智能能创造真正的艺术吗？你怎么看？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Do you enjoy going to art exhibitions?</span></li>
+<li><span class="en">What kind of paintings do you like?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t23">
+<summary><span class="num">23</span><h3>Humor <span class="cn">幽默</span></h3><span class="badge">Intermediates H1</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">sense of humor</td><td class="p"></td><td>幽默感</td></tr>
+<tr><td class="w">hilarious</td><td class="p">/hɪˈleriəs/</td><td>极好笑的</td></tr>
+<tr><td class="w">comedian</td><td class="p">/kəˈmiːdiən/</td><td>喜剧演员</td></tr>
+<tr><td class="w">gag</td><td class="p">/ɡæɡ/</td><td>笑话、段子(喜剧演员讲的)</td></tr>
+<tr><td class="w">crack a joke</td><td class="p"></td><td>讲笑话</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">She's got a good sense of humor. She makes everyone laugh.</span><span class="zh">她幽默感很好，能逗笑所有人。</span></li>
+<li><span class="en">We laughed at the hilarious movie.</span><span class="zh">我们看那部搞笑电影时笑个不停。</span></li>
+<li><span class="en">A stand-up comedian performs on stage every Friday. <span class="tip">(stand-up 单口喜剧，高频词)</span></span><span class="zh">一位单口喜剧演员每周五登台表演。</span></li>
+<li><span class="en">I did a few gags in the comedy show last night.</span><span class="zh">昨晚我在喜剧节目里讲了几个段子。</span></li>
+<li><span class="en">Leo is everyone's favorite classmate because he frequently cracks a joke.</span><span class="zh">Leo 常讲笑话，是大家最喜欢的同学。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>好笑程度递进:</b> amusing 好笑 → funny → hilarious 捧腹 → hysterical 笑疯 (I was in hysterics)</li>
+<li><b>类型:</b> stand-up comedy 单口 · sitcom 情景喜剧 · slapstick 闹剧 · pun 双关语 · dark humor 黑色幽默 · sarcasm 讽刺挖苦</li>
+<li><b>人物:</b> comedian=comic · clown 小丑 · jokester 爱开玩笑的人</li>
+<li><b>短语:</b> play a prank on sb 捉弄 · laugh one's head off 笑死了 · burst out laughing 突然大笑 · make fun of 取笑 · witty 机智风趣的(高分形容词)</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">My uncle is the funniest person in our family — he's always cracking jokes.</span><span class="zh">我舅舅是我们家最搞笑的人——他总爱讲笑话。</span></li>
+<li><span class="en">That comedy movie was so hilarious that I laughed my head off.</span><span class="zh">那部喜剧片太好笑了，我都笑疯了。</span></li>
+<li><span class="en">My friend has a great sense of humor — she can make anyone laugh.</span><span class="zh">我朋友幽默感极佳——她能把任何人逗笑。</span></li>
+<li><span class="en">I love watching stand-up comedy on the weekend.</span><span class="zh">我喜欢周末看单口喜剧。</span></li>
+<li><span class="en">Don't make fun of people — it may hurt their feelings.</span><span class="zh">别取笑别人——那可能会伤害他们的感情。</span></li>
+<li><span class="en">My classmates played a prank on me on April Fools' Day.</span><span class="zh">愚人节那天同学们捉弄了我。</span></li>
+<li><span class="en">Sarcasm doesn't always work well in a foreign language.</span><span class="zh">讽刺挖苦在外语交流中不一定好用。</span></li>
+<li><span class="en">The comedian's gags had the whole audience in hysterics.</span><span class="zh">喜剧演员的段子让全场观众笑疯了。</span></li>
+<li><span class="en">Sometimes laughing is the best way to relieve stress.</span><span class="zh">有时候大笑是缓解压力的最好方式。</span></li>
+<li><span class="en">He is so witty that you never get bored talking to him.</span><span class="zh">他非常机智风趣，和他聊天从不无聊。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What kind of humor makes you laugh the most?</span><span class="zh">什么样的幽默最能逗笑你？</span></li>
+<li>💬 <span class="en">Do you think a sense of humor is important in a friend?</span><span class="zh">你认为幽默感在朋友身上重要吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Do you have a good sense of humor?</span></li>
+<li><span class="en">Who is the funniest person you know?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t24">
+<summary><span class="num">24</span><h3>Superstition <span class="cn">迷信</span></h3><span class="badge">Intermediates H2</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">beyond belief</td><td class="p"></td><td>难以置信</td></tr>
+<tr><td class="w">urban legend</td><td class="p"></td><td>都市传说</td></tr>
+<tr><td class="w">notion</td><td class="p">/ˈnoʊʃn/</td><td>观念、想法</td></tr>
+<tr><td class="w">fact</td><td class="p">/fækt/</td><td>事实</td></tr>
+<tr><td class="w">lucky</td><td class="p">/ˈlʌki/</td><td>幸运的</td></tr>
+</table>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">What she did was beyond belief.</span><span class="zh">她的所作所为令人难以置信。</span></li>
+<li><span class="en">Did it really happen, or is it just an urban legend?</span><span class="zh">它真的发生过，还是只是个都市传说？</span></li>
+<li><span class="en">The traditional notion of marriage goes back thousands of years. <span class="tip">(go back to 追溯到)</span></span><span class="zh">传统的婚姻观念可以追溯到几千年前。</span></li>
+<li><span class="en">It's a news reporter's job to separate fact from fiction. <span class="tip">(separate A from B; 串G4新闻)</span></span><span class="zh">区分事实与虚构是记者的职责。</span></li>
+<li><span class="en">The children were lucky to survive the fire which destroyed their home.</span><span class="zh">孩子们在烧毁家园的大火中幸存，十分幸运。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>迷信行为:</b> superstition(n.)/superstitious(adj.) · lucky charm 幸运符 · fortune telling 算命 · horoscope 星座运程 · zodiac sign 星座 · palm reading 看手相 · feng shui 风水</li>
+<li><b>幸运/厄运:</b> good/bad luck · knock on wood 敲木头求好运 · cross one's fingers 交叉手指祈顺利 · jinx 乌鸦嘴 · curse 诅咒 · taboo 禁忌</li>
+<li><b>真假辨析:</b> myth 迷思 · rumor 谣言 · coincidence 巧合 · believe it or not · I'm skeptical of…(E2句型)</li>
+<li><b>中国素材(口语好材料):</b> Chinese zodiac 生肖 · 本命年 = my zodiac year</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">Do you believe in lucky numbers? Many Chinese people do.</span><span class="zh">你相信幸运数字吗？很多中国人都信。</span></li>
+<li><span class="en">The story sounds like an urban legend to me.</span><span class="zh">在我听来这个故事就像个都市传说。</span></li>
+<li><span class="en">Some people knock on wood to avoid bad luck.</span><span class="zh">有些人敲木头以求避免坏运气。</span></li>
+<li><span class="en">The magician's performance was beyond belief.</span><span class="zh">魔术师的表演令人难以置信。</span></li>
+<li><span class="en">In Chinese culture, the number 8 is considered lucky because it sounds like the word for wealth.</span><span class="zh">在中国文化里，数字8被认为吉利，因为它的发音像"发"。</span></li>
+<li><span class="en">It's just a coincidence — don't read too much into it.</span><span class="zh">这只是个巧合——别想太多。</span></li>
+<li><span class="en">I'm skeptical of fortune telling. I don't think it can predict the future.</span><span class="zh">我对算命持怀疑态度。我认为它预测不了未来。</span></li>
+<li><span class="en">Many old notions about marriage are changing among young people.</span><span class="zh">关于婚姻的许多旧观念正在年轻人中改变。</span></li>
+<li><span class="en">My grandmother crosses her fingers before my big exams.</span><span class="zh">我大考前奶奶会为我交叉手指祈求好运。</span></li>
+<li><span class="en">A good journalist should separate fact from fiction.</span><span class="zh">好记者应该区分事实与虚构。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">Why do you think superstitions still exist in modern society?</span><span class="zh">你认为为什么现代社会仍然存在迷信？</span></li>
+<li>💬 <span class="en">Do you have a lucky charm or a lucky number?</span><span class="zh">你有幸运符或幸运数字吗？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">Are you superstitious? Do you have a lucky charm?</span></li>
+<li><span class="en">Do you believe in Chinese zodiac or horoscopes?</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="t25">
+<summary><span class="num">25</span><h3>Fear <span class="cn">恐惧</span></h3><span class="badge">Intermediates G5</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">heightened</td><td class="p">/ˈhaɪtnd/</td><td>被加剧/强化的</td></tr>
+<tr><td class="w">cope</td><td class="p">/koʊp/</td><td>应对(cope with)</td></tr>
+<tr><td class="w">phobia</td><td class="p">/ˈfoʊbiə/</td><td>恐惧症 (a phobia of heights)</td></tr>
+<tr><td class="w">broadcast</td><td class="p">/ˈbrɔːdkæst/</td><td>广播、播放</td></tr>
+<tr><td class="w">inner strength</td><td class="p"></td><td>内在力量</td></tr>
+</table>
+<div class="warn">⚠️ 勘误：PDF 把 broadcast 的释义印成了 public speaking(公开演讲)的释义，注意区分。</div>
+<h4 class="sec">◆ 教材关键句</h4>
+<ol class="sent">
+<li><span class="en">My fear is heightened when I see lightning and hear thunder.</span><span class="zh">看到闪电听到雷声时，我的恐惧会加剧。</span></li>
+<li><span class="en">People coped differently during coronavirus pandemic in 2019. <span class="tip">(cope with sth 必须带宾语，不及物!)</span></span><span class="zh">2019年疫情期间人们的应对方式各不相同。</span></li>
+<li><span class="en">James is scared of high buildings. He has a phobia of heights.</span><span class="zh">James 害怕高楼，他有恐高症。</span></li>
+<li><span class="en">A lot of people have a fear of public speaking.</span><span class="zh">很多人害怕公开演讲。</span></li>
+<li><span class="en">People use their inner strength to deal with mistakes and failures. <span class="tip">(deal with 处理应对)</span></span><span class="zh">人们用内在力量应对错误和失败。</span></li>
+</ol>
+<h4 class="sec">◆ 扩展词汇</h4>
+<ul class="exp">
+<li><b>恐惧程度递进(高分替换):</b> uneasy 不安 → nervous → scared → terrified → petrified 吓僵</li>
+<li><b>恐惧症词根:</b> acrophobia 恐高 · claustrophobia 幽闭恐惧</li>
+<li><b>应对:</b> overcome=conquer a fear 克服恐惧 · face your fears 直面 · get out of your comfort zone 走出舒适区 · panic 恐慌 · anxiety 焦虑</li>
+<li><b>身体反应(描述很加分):</b> my heart races 心跳加速 · hands get sweaty 手心出汗 · I freeze 吓呆 · butterflies in my stomach 心里发慌</li>
+</ul>
+<h4 class="sec">◆ 扩展语句</h4>
+<ol class="sent">
+<li><span class="en">I have a phobia of heights, so I never go on Ferris wheels.</span><span class="zh">我有恐高症，所以我从不坐摩天轮。</span></li>
+<li><span class="en">Speaking in public makes me really nervous.</span><span class="zh">在公开场合讲话让我非常紧张。</span></li>
+<li><span class="en">When I see a spider, I freeze and can't move.</span><span class="zh">看到蜘蛛时，我会吓呆动弹不得。</span></li>
+<li><span class="en">Everyone copes with fear in different ways.</span><span class="zh">每个人应对恐惧的方式都不同。</span></li>
+<li><span class="en">My fear was heightened when I heard a strange noise at night.</span><span class="zh">夜里听到奇怪的声音时，我的恐惧感加剧了。</span></li>
+<li><span class="en">The typhoon warning was broadcast on radio and TV.</span><span class="zh">台风警报通过广播和电视播出了。</span></li>
+<li><span class="en">It took me years to overcome my fear of driving.</span><span class="zh">我好几年才克服对开车的恐惧。</span></li>
+<li><span class="en">Getting out of your comfort zone is the first step to growth.</span><span class="zh">走出舒适区是成长的第一步。</span></li>
+<li><span class="en">I felt butterflies in my stomach before the job interview.</span><span class="zh">面试前我心里发慌。</span></li>
+<li><span class="en">Inner strength helps us deal with failures and setbacks.</span><span class="zh">内在的力量帮助我们应对失败和挫折。</span></li>
+</ol>
+<ul class="exp discuss">
+<li>💬 <span class="en">What are you most afraid of, and why?</span><span class="zh">你最害怕什么？为什么？</span></li>
+<li>💬 <span class="en">Have you ever overcome a fear? How did you do it?</span><span class="zh">你克服过恐惧吗？是怎么做到的？</span></li>
+</ul>
+<h4 class="sec">◆ 口语练习</h4>
+<ul class="qlist">
+<li><span class="en">What are you most afraid of?</span></li>
+<li><span class="en">Have you ever overcome a fear?</span></li>
+</ul>
+</div>
+</article>
+</section>
+
+<!-- ==================== 十、Beginners基础 ==================== -->
+<section class="group" id="g10">
+<h2>十、Beginners 基础词汇 <small>居家与社区</small></h2>
+
+<article class="topic" id="t26">
+<summary><span class="num">26</span><h3>Home Appliances <span class="cn">家电</span></h3><span class="badge bg">Beginners D3</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">washing machine</td><td class="p"></td><td>洗衣机</td></tr>
+<tr><td class="w">television</td><td class="p"></td><td>电视</td></tr>
+<tr><td class="w">refrigerator</td><td class="p"></td><td>冰箱</td></tr>
+<tr><td class="w">vacuum (cleaner)</td><td class="p"></td><td>吸尘器</td></tr>
+</table>
+<h4 class="sec">◆ 关键句</h4>
+<ol class="sent">
+<li><span class="en">I'm thinking of buying a washing machine. <span class="tip">(think of doing)</span></span><span class="zh">我在考虑买台洗衣机。</span></li>
+<li><span class="en">You can buy a television from the home appliance store.</span><span class="zh">你可以在家电商店买电视。</span></li>
+<li><span class="en">I need a refrigerator to store food. <span class="tip">(动词不定式表用途)</span></span><span class="zh">我需要一台冰箱来储存食物。</span></li>
+<li><span class="en">A vacuum cleaner is noisy when used.</span><span class="zh">吸尘器用起来很吵。(可联G2噪音污染)</span></li>
+</ol>
+</div>
+</article>
+
+<article class="topic" id="t27">
+<summary><span class="num">27</span><h3>Furniture <span class="cn">家具</span></h3><span class="badge bg">Beginners D4</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">sofa</td><td class="p">/ˈsoʊfə/</td><td>沙发</td></tr>
+<tr><td class="w">chair</td><td class="p">/tʃer/</td><td>椅子</td></tr>
+<tr><td class="w">table</td><td class="p">/ˈteɪbl/</td><td>桌子</td></tr>
+<tr><td class="w">bed</td><td class="p">/bed/</td><td>床</td></tr>
+<tr><td class="w">cushion</td><td class="p">/ˈkʊʃn/</td><td>垫子</td></tr>
+</table>
+<h4 class="sec">◆ 关键句</h4>
+<ol class="sent">
+<li><span class="en">I'm looking for some cushions for my chairs. <span class="tip">(look for 寻找)</span></span><span class="zh">我在找一些椅子坐垫。</span></li>
+<li><span class="en">I'd prefer a bigger table for my dining room. <span class="tip">(prefer)</span></span><span class="zh">我更想要一张大点的餐桌。</span></li>
+<li><span class="en">This bed suits your taste. <span class="tip">(suit one's taste 合口味)</span></span><span class="zh">这张床很合你的品味。</span></li>
+</ol>
+</div>
+</article>
+
+<article class="topic" id="t28">
+<summary><span class="num">28</span><h3>Parts of the House <span class="cn">房间</span></h3><span class="badge bg">Beginners D5</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">living room</td><td class="p"></td><td>客厅</td></tr>
+<tr><td class="w">kitchen</td><td class="p">/ˈkɪtʃɪn/</td><td>厨房</td></tr>
+<tr><td class="w">bedroom</td><td class="p">/ˈbedruːm/</td><td>卧室</td></tr>
+<tr><td class="w">bathroom</td><td class="p">/ˈbæθruːm/</td><td>浴室</td></tr>
+</table>
+<h4 class="sec">◆ 关键句</h4>
+<ol class="sent">
+<li><span class="en">Please, come in. This is our living room.</span><span class="zh">请进，这是我们的客厅。</span></li>
+<li><span class="en">You have a nice kitchen.</span><span class="zh">你家厨房真不错。</span></li>
+<li><span class="en">I often stay in my bedroom because it's comfortable.</span><span class="zh">我常待在卧室，因为很舒服。</span></li>
+<li><span class="en">I usually take a bubble bath in the bathroom.</span><span class="zh">我通常在浴室泡泡泡浴。</span></li>
+</ol>
+</div>
+</article>
+
+<article class="topic" id="t29">
+<summary><span class="num">29</span><h3>Amusement Park Rides <span class="cn">游乐设施</span></h3><span class="badge bg">Beginners D9</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">Ferris wheel</td><td class="p"></td><td>摩天轮</td></tr>
+<tr><td class="w">roller coaster</td><td class="p"></td><td>过山车</td></tr>
+<tr><td class="w">carousel</td><td class="p">/ˌkærəˈsel/</td><td>旋转木马</td></tr>
+<tr><td class="w">swing ride</td><td class="p"></td><td>海盗船/秋千椅</td></tr>
+</table>
+<h4 class="sec">◆ 关键句</h4>
+<ol class="sent">
+<li><span class="en">Have you ever ridden the Ferris wheel? <span class="tip">(现在完成时)</span></span><span class="zh">你坐过摩天轮吗？</span></li>
+<li><span class="en">Riding the roller coaster is scary. <span class="tip">(动名词作主语，串E1)</span></span><span class="zh">坐过山车很吓人。</span></li>
+<li><span class="en">You should try the carousel, too.</span><span class="zh">你也应该试试旋转木马。</span></li>
+<li><span class="en">I think riding the swing ride is scarier than riding the roller coaster. <span class="tip">(比较级+动名词)</span></span><span class="zh">我觉得坐海盗船比过山车更吓人。</span></li>
+</ol>
+</div>
+</article>
+
+<article class="topic" id="t30">
+<summary><span class="num">30</span><h3>Community Buildings <span class="cn">社区场所</span></h3><span class="badge bg">Beginners D10</span><span class="arrow">▶</span></summary>
+<div class="body">
+<h4 class="sec">◆ 核心词汇</h4>
+<table class="vocab">
+<tr><td class="w">clinic</td><td class="p">/ˈklɪnɪk/</td><td>诊所</td></tr>
+<tr><td class="w">school</td><td class="p">/skuːl/</td><td>学校</td></tr>
+<tr><td class="w">library</td><td class="p">/ˈlaɪbreri/</td><td>图书馆</td></tr>
+<tr><td class="w">grocery store</td><td class="p"></td><td>杂货店</td></tr>
+</table>
+<h4 class="sec">◆ 关键句</h4>
+<ol class="sent">
+<li><span class="en">Where can I find the clinic?</span><span class="zh">我在哪能找到诊所？</span></li>
+<li><span class="en">The school is next to the clinic. <span class="tip">(next to 相邻)</span></span><span class="zh">学校在诊所隔壁。</span></li>
+<li><span class="en">I will borrow some books from the library. <span class="tip">(borrow from)</span></span><span class="zh">我要从图书馆借些书。</span></li>
+<li><span class="en">The grocery store is far from here. <span class="tip">(far from)</span></span><span class="zh">杂货店离这里很远。</span></li>
+</ol>
+</div>
+</article>
+</section>
+
+<!-- ==================== 附录 ==================== -->
+<section class="group" id="ax">
+<h2>附录 <small>Appendices</small></h2>
+
+<article class="topic" id="ax-a">
+<summary><span class="num">A</span><h3>全部 Topic 定义自测 <span class="cn">先自己说，再对答案</span></h3><span class="arrow">▶</span></summary>
+<div class="body">
+<ol class="sent">
+<li><span class="en">______ are the principal activities you do to earn money.</span><span class="zh">答案: Jobs (and occupations) 工作</span></li>
+<li><span class="en">______ is the pressure or worry caused by the problems in somebody's life.</span><span class="zh">答案: Stress 压力</span></li>
+<li><span class="en">A ______ is a place where meals are prepared and served to customers.</span><span class="zh">答案: Restaurant 餐厅</span></li>
+<li><span class="en">______ is the food and drink usually eaten or drunk by a person or group.</span><span class="zh">答案: Diet 饮食</span></li>
+<li><span class="en">______ is a traditional treatment that is used instead of modern medicine.</span><span class="zh">答案: Alternative medicine 另类疗法</span></li>
+<li><span class="en">______ is a system of connected computers that allows people to share information and communicate with each other.</span><span class="zh">答案: (The) Internet 互联网</span></li>
+<li><span class="en">______ is the process of introducing something new, especially a product.</span><span class="zh">答案: Innovation 创新 (invention发明=全新创造 vs innovation创新=新应用)</span></li>
+<li><span class="en">______ is a vehicle or system of vehicles for getting from one place to another.</span><span class="zh">答案: Transportation 交通</span></li>
+<li><span class="en">______ is the style of clothing and accessories worn at a certain period of time.</span><span class="zh">答案: Fashion 时尚</span></li>
+<li><span class="en">______ are things you do often and regularly, sometimes without knowing that you are doing it.</span><span class="zh">答案: Habits 习惯</span></li>
+<li><span class="en">______ is the time a person does not work or study.</span><span class="zh">答案: Leisure 休闲</span></li>
+<li><span class="en">______ is the characteristics and qualities of a person.</span><span class="zh">答案: Personality 性格</span></li>
+<li><span class="en">A ______ is a set of pages that have been fastened together inside a cover to be read or written in.</span><span class="zh">答案: Book 书</span></li>
+<li><span class="en">A ______ is something that you want to happen very much while a ______ is a result or end that a person wants and works for.</span><span class="zh">答案: dream; goal (dream偏"想"，goal偏"做")</span></li>
+<li><span class="en">A ______ is a day for celebration when many people are allowed to stay away from work or school.</span><span class="zh">答案: Holiday 假日</span></li>
+<li><span class="en">______ is the conditions in the air above the earth such as wind, rain, or temperature.</span><span class="zh">答案: Weather 天气</span></li>
+<li><span class="en">______ is the job or activity of taking care of plants and keeping them look beautiful.</span><span class="zh">答案: Gardening 园艺</span></li>
+<li><span class="en">______ is the air, water, and land in or on which people, animals, and plants live.</span><span class="zh">答案: (The) Environment 环境</span></li>
+<li><span class="en">______ is the presence of unclean and harmful materials in the environment.</span><span class="zh">答案: Pollution 污染</span></li>
+<li><span class="en">______ is newly received information about recent or important events. <span class="tip">(⚠️ news 不可数，谓语用单数 News is…)</span></span><span class="zh">答案: News 新闻</span></li>
+<li><span class="en">______ is a condition in which a person or community lacks the financial resources and essentials for a minimum standard of living.</span><span class="zh">答案: Poverty 贫困</span></li>
+<li><span class="en">______ is a form of art created primarily for visual perception, such as drawing, painting, graphics, sculpture, and decorative arts.</span><span class="zh">答案: Visual art 视觉艺术</span></li>
+<li><span class="en">______ is the quality of being amusing or comic, especially as expressed in literature or speech.</span><span class="zh">答案: Humor 幽默</span></li>
+<li><span class="en">______ is a belief that is not based on human reason or scientific knowledge but is connected with old ideas about magic.</span><span class="zh">答案: Superstition 迷信</span></li>
+<li><span class="en">______ is an emotional and physical response when people are faced with a dangerous, unsafe, painful and strange situation.</span><span class="zh">答案: Fear 恐惧</span></li>
+</ol>
+<div class="note">💡 练习方法：遮住中文(点顶部"中文: 显示"按钮切换)，看英语定义说出是哪个话题，再反向——看中文说英语定义。26-30 为 Beginners 基础词汇，见第十组。</div>
+</div>
+</article>
+
+<article class="topic" id="ax-b">
+<summary><span class="num">B</span><h3>全书 PDF 勘误一览 <span class="cn">精华</span></h3><span class="arrow">▶</span></summary>
+<div class="body">
+<ol class="sent">
+<li><span class="en"><b>模板残留:</b> E1/E5、F2、G3/G5、H1/H3/H5 页面上的 "Television" 字样均为模板错误，以实际话题为准；F3/F4 有 "XXXX" 占位符残留。</span></li>
+<li><span class="en"><b>释义错误:</b> F1 charisma 不是"外貌美"，是个人魅力/感召力；G5 broadcast 印的是 public speaking 的释义。</span></li>
+<li><span class="en"><b>用法/语法错误:</b> D3 was craving for → craving sth / had a craving for；D4 request for a printout → request a printout(及物)；D1 he'sa → he's a；F2 bookworms favorite → bookworms' favorite；G6 News are → News is(news不可数)。</span></li>
+<li><span class="en"><b>词数不足:</b> D2、G4、H4 各只有 4 个目标词(正常应为 5 个)。</span></li>
+<li><span class="en"><b>印刷:</b> D1 "he'sa" 应为 "he's a"；D5 例句5缺句号。</span></li>
+</ol>
+</div>
+</article>
+
+<article class="topic" id="ax-c">
+<summary><span class="num">C</span><h3>跨话题串联图 <span class="cn">口语组合练习思路</span></h3><span class="arrow">▶</span></summary>
+<div class="body">
+<pre style="background:#fafbfc;border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;font-size:12.5px;line-height:1.7">
+  工作(01) → 压力(02) → 减压休闲(11) → 假期(15) → 交通(08)
+     │                                  └→ 天气(16)
+  性格(12) → 习惯(10) → 饮食(04/03)
+     ↓
+  幽默(23) / 迷信(24) / 创新(07) / 贫困(21) / 目标(14)
+     ↓
+  环保(18) / 污染(19) / 新闻(20) / 艺术(22) / 恐惧(25)
+</pre>
+<h4 class="sec">常用串联示例</h4>
+<ul class="exp">
+<li>💬 <span class="en">02压力 + 11休闲: How do you unwind when stressed out?</span></li>
+<li>💬 <span class="en">24迷信 + 05另类疗法: "信不信"话题共用 I'm skeptical of… 句型</span></li>
+<li>💬 <span class="en">08交通 + 07创新: Would you trust autonomous vehicles?</span></li>
+<li>💬 <span class="en">17园艺 + 18环保: Is organic gardening eco-friendly?</span></li>
+<li>💬 <span class="en">25恐惧 + 14目标: 克服恐惧也是扫清 obstacle</span></li>
+<li>💬 <span class="en">20新闻 + 24迷信: separate fact from fiction / fake news</span></li>
+</ul>
+</div>
+</article>
+
+<article class="topic" id="ax-d">
+<summary><span class="num">D</span><h3>学习建议 <span class="cn">How to Use</span></h3><span class="arrow">▶</span></summary>
+<div class="body">
+<ol class="sent">
+<li><span class="en">每天复习 1-2 个话题板块，先自测定义(附录A)，再过句子。</span><span class="zh">用左侧目录或搜索框快速定位。</span></li>
+<li><span class="en">点顶部"中文"按钮隐藏中文 → 看英文自译 → 再显示对照检查 → 最后大声朗读。</span></li>
+<li><span class="en">重点背"扩展词汇"里的习语和替换链(brave→dauntless, poor→impoverished 等)，这是口语从中级到高级的关键跳板。</span></li>
+<li><span class="en">用附录C串联图做 2-3 分钟连续独白，模拟真实话题切换。</span></li>
+<li><span class="en">⚠️ 勘误和辨析框是提分细节，别跳过。</span></li>
+</ol>
+<div class="note">📅 更新记录：2026/09/24 建立总汇并补齐全部30个话题的扩展语句。来源：NTC Intermediates D~H、Beginners D、课堂学习记录、话题扩展句子。</div>
+</div>
+</article>
+</section>
+
+
+</main>
+</div>
+
+<script>
+function toggleZh(){
+  document.body.classList.toggle('no-zh');
+  var b=document.getElementById('btnZh');
+  b.textContent='中文: '+(document.body.classList.contains('no-zh')?'隐藏':'显示');
+  b.classList.toggle('on',document.body.classList.contains('no-zh'));
+}
+function setAll(v){document.querySelectorAll('article.topic').forEach(function(d){d.open=v});}
+function doSearch(){
+  var q=document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('article.topic').forEach(function(t){
+    t.classList.toggle('dim', q!=='' && !t.textContent.toLowerCase().includes(q));
+  });
+  document.querySelectorAll('section.group').forEach(function(g){
+    var empty=[...g.querySelectorAll('article.topic')].every(t=>t.classList.contains('dim'));
+    g.classList.toggle('dim', empty && q!=='');
+  });
+}
+</script>
+</body>
+</html>
