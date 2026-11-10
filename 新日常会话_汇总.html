@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="page-tag" content="日常会话">
+<meta name="page-desc" content="新日常会话（NDE）3/4/5 级共 150 课汇总：每课核心句型公式、例句与对话典型句及中文翻译，附三级语法体系总结，支持进度勾选、级别筛选与隐藏中文自测。">
+<meta name="page-order" content="70">
+<title>新日常会话 NDE 3/4/5 级 · 150课汇总</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#0e7a5f; --accent-soft:#e6f4ef;
+  --en:#1a3c66; --zh:#57606a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+
+/* ── 工具栏 ── */
+.toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.toolbar h1{font-size:17px;margin:0 14px 0 0;white-space:nowrap}
+.toolbar h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 13px;
+  font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.progress-wrap{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.pbar{width:130px;height:8px;background:#eef0f3;border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1320px;margin:0 auto;align-items:flex-start}
+nav.toc{position:sticky;top:56px;width:230px;flex:none;padding:18px 8px 30px 14px;
+  max-height:calc(100vh - 56px);overflow-y:auto;font-size:13px}
+nav.toc .g{font-weight:600;color:var(--accent);margin:12px 0 4px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:3px 6px;border-radius:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+main{flex:1;min-width:0;padding:20px 26px 60px}
+
+/* ── 速览卡 ── */
+.overview{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:14px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.overview h2{font-size:17px;margin:0 0 10px}
+.overview p{margin:6px 0;color:var(--zh)}
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:14px}
+.route .stop{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#fbfcfd}
+.route .stop b{display:block;color:var(--accent);font-size:13px;margin-bottom:2px}
+.route .stop span{font-size:12.5px;color:var(--zh)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+.stats b{color:var(--accent);font-size:17px;margin-right:4px}
+
+/* ── 级别卡 ── */
+article.day{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow:hidden}
+article.day>header{padding:16px 24px 12px;background:linear-gradient(180deg,#fbfcfd,#f0f7f4);
+  border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+article.day>header .no{font-size:22px;font-weight:700;color:var(--accent)}
+article.day>header h2{font-size:18px;margin:0}
+article.day>header .theme{color:var(--muted);font-size:13.5px}
+section.lesson{padding:6px 24px 14px}
+section.lesson>h3{font-size:14.5px;color:var(--accent);margin:16px 0 6px;
+  border-left:4px solid var(--accent);padding-left:9px}
+table.sent{width:100%;border-collapse:collapse}
+table.sent th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;
+  padding:4px 10px;border-bottom:1px solid var(--line)}
+table.sent td{padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+tr.grp:hover td{background:#fafbfc}
+td.ck{width:30px}
+td.ck input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+tr.grp.done td{opacity:.55}
+tr.grp.done .en,.tr.grp.done .zh{text-decoration:line-through}
+td.num{width:44px;color:#c3c9d1;font-size:12.5px;white-space:nowrap}
+td.num b{color:var(--accent);font-weight:600}
+.tpc{font-weight:700;color:var(--ink);font-size:14px}
+.patf{display:block;font-size:12.5px;color:var(--accent);font-weight:600;margin-top:1px}
+.patf .zh{font-weight:400;font-size:12px}
+.en{color:var(--en);font-weight:600}
+.zh{color:var(--zh)}
+.sub{display:block;font-size:12.5px;color:#98a0aa;font-weight:400;margin-top:1px}
+.hide-zh .zh{visibility:hidden}
+
+/* ── 语法卡 ── */
+.patterns{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.patterns h2{font-size:17px;margin:0 0 4px}
+.patterns>p{color:var(--zh);margin:4px 0 14px;font-size:13.5px}
+.pat{border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:10px 0;background:#fbfcfd}
+.pat .formula{font-weight:700;color:var(--accent);font-size:14.5px}
+.pat .idx{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:5px;
+  font-size:11.5px;padding:0 7px;margin-left:8px;font-weight:600;vertical-align:1px}
+.pat .use{color:var(--muted);font-size:12.5px;margin-left:8px}
+.pat ul{margin:6px 0 2px;padding-left:0;list-style:none;font-size:13.5px}
+.pat li{margin:3px 0}
+.pat li .en{font-size:13.5px}
+
+/* ── 说明卡 ── */
+.notes{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.notes h2{font-size:16px;margin:0 0 8px}
+.notes ul{margin:6px 0;padding-left:22px;color:var(--zh);font-size:13.5px}
+.notes li{margin:4px 0}
+kbd{background:#f0f2f4;border:1px solid var(--line);border-radius:4px;padding:0 6px;font-size:12px}
+
+@media (max-width:900px){
+  nav.toc{display:none}
+  main{padding:14px}
+}
+@media print{
+  .toolbar,nav.toc{display:none}
+  article.day{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>新日常会话 NDE<small>3/4/5 级 · 150 课汇总</small></h1>
+  <button class="btn on" data-lv="all">全部</button>
+  <button class="btn" data-lv="3">3级</button>
+  <button class="btn" data-lv="4">4级</button>
+  <button class="btn" data-lv="5">5级</button>
+  <button class="btn" id="btnZh">隐藏中文（自测）</button>
+  <button class="btn" id="btnReset">重置进度</button>
+  <div class="progress-wrap">
+    <span id="ptext">0 / 150 课</span>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+</div>
+
+<div class="wrap">
+<nav class="toc" id="toc"></nav>
+<main id="main">
+
+  <div class="overview" id="overview">
+    <h2>课程速览</h2>
+    <p>原教材：<b>New Daily English（新日常会话）</b>，纯英文会话教材，共 <b>3 个级别 × 5 册（A–E）× 10 课 = 150 课</b>。
+    每课结构固定：<b>Example</b>（3–4 个例句，围绕一个句型）→ <b>Conversation</b>（6–8 句日常对话）→ <b>Grammar Focus</b>（句型公式表）。
+    3 级以 Serena 一家的起居生活为主线，4 级围绕 Naoto 在加拿大寄宿家庭的生活展开，5 级进入抽象话题与复杂句法。</p>
+    <div class="route">
+      <div class="stop"><b>3 级 · 基础起居</b><span>起床做家务、乘公交、购物问价、情绪身体、道歉致谢。句型：make + 名词、Did you…、祈使句、like + 动名词、-er than、used to、Have you ever been to…</span></div>
+      <div class="stop"><b>4 级 · 海外生活</b><span>寄宿家庭、购物就餐、打国际电话、节日、求职入学。句型：情态动词 should/must/have to、频率副词、现在完成进行、被动语态、不定式、附加疑问、时间定语从句</span></div>
+      <div class="stop"><b>5 级 · 高阶句法</b><span>抽象话题讨论（爱好恐惧、职业评价、工作抱怨）。句型：名词+介词+动名词、-ed/-ing 形容词、动名词与不定式句法功能、全套条件句与 wish、定语从句、名词性从句</span></div>
+    </div>
+    <div class="stats">
+      <span><b>3</b>个级别</span><span><b>15</b>册</span><span><b>150</b>课</span><span><b>150</b>个核心句型</span><span><b>300+</b>例句</span>
+    </div>
+  </div>
+
+  <div id="days"></div>
+
+  <div class="patterns" id="patterns">
+    <h2>语法体系总结</h2>
+    <p>150 课的 Grammar Focus 按语法主题聚类如下，每条给出课号索引与代表句，便于按语法点横向复习。</p>
+
+    <div class="pat"><span class="formula">一般现在时 · 第三人称单数<span class="idx">3A1 3A7 3B8 3C5 3C6 3C9</span></span><span class="use">He/She/It + 动词-s</span>
+      <ul>
+        <li><span class="en">She makes breakfast. / I make my bed.</span><span class="zh">　她做早餐。/ 我整理床铺。</span></li>
+        <li><span class="en">He likes painting. / She plays the piano. / He sweats when he's hot.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">一般过去时 · 否定与疑问<span class="idx">3A2 3C2 3D10 4E1</span></span><span class="use">Did you + 动词原形 / didn't + 动词原形 / 名词 + didn't work</span>
+      <ul>
+        <li><span class="en">Did you take a shower? / Did she clean her room?</span><span class="zh">　你洗澡了吗？/ 她打扫房间了吗？</span></li>
+        <li><span class="en">I didn't do my homework. / The water faucet didn't work. / I almost forgot her birthday.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">祈使句 · 叮嘱与指示<span class="idx">3A4 3A9 3E3 4A7 4A8</span></span><span class="use">动词原形开头 / Don't forget to… / Don't be…</span>
+      <ul>
+        <li><span class="en">Don't forget to clear the table. / Go to the supermarket.</span><span class="zh">　别忘了收拾桌子。/ 去超市。</span></li>
+        <li><span class="en">Turn down the TV. / Take off your shoes. / Don't be sad.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">be / feel / get / look + 形容词 · 表状态<span class="idx">3A10 3B3 3B6 3C1 3E6 3E7 4A2 4A4 4C2</span></span><span class="use">情绪、身体、天气、外观的最核心表达</span>
+      <ul>
+        <li><span class="en">It's windy today. / I feel so unhappy. / I am hungry.</span><span class="zh">　今天有风。/ 我很难过。/ 我饿了。</span></li>
+        <li><span class="en">I got lost. / Looks delicious. / He looks like his father. / You must be busy.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">动名词与不定式 · 入门到精通<span class="idx">3A7 3B7 3C4 3C10 4A5 4C8 5C1-5C10</span></span><span class="use">like + doing → want to do → 动名词/不定式短语作主语、宾语、介词宾语</span>
+      <ul>
+        <li><span class="en">I like swimming. / Let's go shopping. / Swimming is good exercise. / I want to buy a car.</span></li>
+        <li><span class="en">Finding a parking space is quite difficult. / To help other people feels good. / Will you allow me to use your telephone?</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">情态动词 can / should / must / have to / had better<span class="idx">3E1 3E2 3E9 4B3 5C10</span></span><span class="use">请求、建议、必要性与推测（must be = 想必）</span>
+      <ul>
+        <li><span class="en">Can you recommend something for my headache? / You should take medicine.</span><span class="zh">　能推荐点治头痛的药吗？/ 你该吃药。</span></li>
+        <li><span class="en">You must wear an ID. / You had better stop working. / We must keep quiet.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">比较级 · 最高级 · the best … ever<span class="idx">3C3 4E7</span></span><span class="use">-er than / the best + 名词 + I've ever + 过去分词</span>
+      <ul>
+        <li><span class="en">I'm smarter than you. / It's the best concert I've ever been to.</span><span class="zh">　我比你聪明。/ 这是我看过的最棒的演唱会。</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">经历与完成 · used to / ever been to / for·since / 完成进行<span class="idx">3C8 3D2 4B9 4C1</span></span><span class="use">过去习惯、人生经历、持续时间、持续至今的动作</span>
+      <ul>
+        <li><span class="en">I used to work in a fast-food restaurant. / Have you ever been to Mt. Fuji?</span><span class="zh">　我过去在快餐店打工。/ 你去过富士山吗？</span></li>
+        <li><span class="en">I've lived there since 2008. / He has been working two jobs.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">副词 · 频率与程度<span class="idx">4B2 4B5 4E3</span></span><span class="use">always/often/sometimes/never；very/fairly/really/extremely；First/Then/Next/Finally</span>
+      <ul>
+        <li><span class="en">I always meet my friends here. / I never smoke. / Canada is fairly big.</span><span class="zh">　我总在这见朋友。/ 我从不抽烟。/ 加拿大相当大。</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">被动语态与分词作形容词<span class="idx">4C5 4D2 4D8 5B1-5B10</span></span><span class="use">was written by / need to be done / -ing 与 -ed 形容词之辨</span>
+      <ul>
+        <li><span class="en">Mona Lisa was painted by Leonardo da Vinci. / The windows need to be cleaned. / The glass is cracked.</span></li>
+        <li><span class="en">The new manager is frightening. / I'm frightened about meeting her.</span><span class="zh">　新经理让人害怕。/ 要见她我很害怕。</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">名词 + 介词 + 动名词<span class="idx">5A1-5A5</span></span><span class="use">love of / talent for / fear of / addiction to / reason for + doing</span>
+      <ul>
+        <li><span class="en">My fear of flying made traveling difficult. / His addiction to smoking has become serious.</span><span class="zh">　对飞行的恐惧让旅行变得困难。/ 他的烟瘾已经很严重了。</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">形容词 + 介词搭配<span class="idx">5A6-5A10</span></span><span class="use">kind to / tired of / disappointed with / famous for / good at</span>
+      <ul>
+        <li><span class="en">She's friendly to everyone. / I'm disappointed with myself. / I'm good at English.</span><span class="zh">　她对谁都友好。/ 我对自己很失望。/ 我英语很好。</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">条件句全套与 wish<span class="idx">4D9 5D1-5D10</span></span><span class="use">零条件→一条件→二条件→三条件→混合条件→虚拟愿望</span>
+      <ul>
+        <li><span class="en">Plants die if they don't get enough water.（零）/ If it rains, I will stay at home.（一）</span></li>
+        <li><span class="en">If I were not busy, I would come to a party.（二）/ If I'd known you were coming, I would have baked a cake.（三）</span></li>
+        <li><span class="en">I wish she would stop complaining. / I wish I were a doctor.</span><span class="zh">　我希望她别再抱怨了。/ 我真希望自己是医生。</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">从句体系 · 定语从句 / 名词性从句 / 附加疑问<span class="idx">4D4 4E8 4E9 4E10 5E1-5E10</span></span><span class="use">who/that/where/when 定语从句；what/that 名词性从句五功能；反义疑问与附和</span>
+      <ul>
+        <li><span class="en">The woman who lives next door is my English teacher. / That restaurant is an expensive place where rich people eat.</span></li>
+        <li><span class="en">What he said was a lie. / She said that she was feeling sick. / The fact that the earthquake destroyed a lot of buildings is affecting the town.</span></li>
+        <li><span class="en">It is an interesting movie, isn't it? / I like traveling. — So do I.</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">疑问句全家桶 · 特殊问句与双宾语<span class="idx">3A5 3B1 3B2 3B9 3B10 3D3 4B1 4B8 4D5 4D7 4E4</span></span><span class="use">Who/What/Where/When/How much/How long/How + adj；主语+动词+间宾+直宾</span>
+      <ul>
+        <li><span class="en">What does he do? / How much is this? / How do I get to the train station? / How high is Mt. Fuji?</span></li>
+        <li><span class="en">I sent you a birthday card. / She told him the news.</span><span class="zh">　我寄了张生日卡给你。/ 她把消息告诉了他。</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="notes" id="notes">
+    <h2>使用说明</h2>
+    <ul>
+      <li>勾选每课前的复选框标记"已掌握"，进度自动保存在本机浏览器（localStorage），可用工具栏 <kbd>重置进度</kbd> 清空（需确认）。</li>
+      <li>工具栏 <kbd>全部 / 3级 / 4级 / 5级</kbd> 按钮可按级别筛选显示对应课程区块。</li>
+      <li>点 <kbd>隐藏中文（自测）</kbd> 可遮住所有中文翻译，看英文回想意思再核对。</li>
+      <li>每课一行：课号（如 3A1 = 3 级 A 册第 1 课）、中文主题、核心句型公式（Grammar Focus）、两条例句、一句对话典型句。中文翻译为本页编写。</li>
+      <li>5 级教材原文部分页面例句为填空/乱序练习，本页按其 Grammar Focus 公式与对话整理为代表句。</li>
+      <li>来源：<code>新日常会话 3/4/5 级 NDE3/4/5_A–E（15 册文本提取，仅提取文字，未含图片内容）</code>。</li>
+    </ul>
+  </div>
+
+</main>
+</div>
+
+<script>
+/* ── 课程数据：15 册 × 10 课。字段：id 课号 | t 主题 | p 句型公式 | pz 公式说明 | e1/e2 例句（en|zh）| c 对话典型句（en|zh，可空） ── */
+const LEVELS = [
+{lv:3, title:"基础日常起居", theme:"家庭生活 · 出行购物 · 情绪健康 · 旅行经历", books:[
+{b:"A", name:"3A · 家庭起居", lessons:[
+{id:"3A1",t:"整理与制作",p:"I/You + make + noun; He/She + makes",pz:"make 表「做/整理」，第三人称加 -s",e1:"I make my bed.|我整理床铺。",e2:"She makes breakfast.|她做早餐。",c:"Do you know what to do after you have showered?|洗完澡后你知道该做什么吗？"},
+{id:"3A2",t:"晨间询问",p:"Did + you/he/she + 动词原形?",pz:"一般过去时疑问，动词还原",e1:"Did you take a shower?|你洗澡了吗？",e2:"Did he check his e-mail?|他查邮件了吗？",c:"What are your plans for today?|你今天有什么安排？"},
+{id:"3A3",t:"夸赞擅长",p:"You are a good + noun",pz:"夸人「是个好……」",e1:"You're a good cook.|你做饭真好。",e2:"He is a good soccer player.|他足球踢得好。",c:"Can you teach me?|你能教教我吗？"},
+{id:"3A4",t:"别忘了",p:"Don't forget + to do",pz:"提醒别人别忘了做某事",e1:"Don't forget to clear the table.|别忘了收拾桌子。",e2:"Don't forget to set the table.|别忘了摆好餐具。",c:"I have just finished my meal.|我刚吃完饭。"},
+{id:"3A5",t:"问身份职业",p:"Who is…? / What does he do?",pz:"问人是谁与做什么工作",e1:"Who is that man?|那个男人是谁？",e2:"What does she do?|她是做什么工作的？",c:"He does research. He is a scientist.|他做研究，是个科学家。"},
+{id:"3A6",t:"受不了",p:"can't stand + noun",pz:"表达无法忍受",e1:"I can't stand the noise.|我受不了这噪音。",e2:"I can't stand the smell.|我受不了这气味。",c:"She nags at me.|她老唠叨我。"},
+{id:"3A7",t:"谈爱好",p:"like + gerund (verb-ing)",pz:"like 后接动名词表爱好",e1:"I like swimming.|我喜欢游泳。",e2:"She likes dancing.|她喜欢跳舞。",c:"Can you swim very well?|你游泳游得好吗？"},
+{id:"3A8",t:"介绍认识",p:"I would like + 宾格 + to meet + …",pz:"郑重介绍双方认识",e1:"I would like you to meet my mom.|我想让你认识我妈妈。",e2:"I would like them to meet my friend.|我想让他们见见我朋友。",c:"Nice to meet you too.|我也很高兴认识你。"},
+{id:"3A9",t:"发出指示",p:"Imperative verbs（动词原形开头）",pz:"祈使句直接下指令",e1:"Go to the supermarket.|去超市。",e2:"Buy the groceries.|把菜买了。",c:"Can I have the shopping list?|能给我购物清单吗？"},
+{id:"3A10",t:"谈天气",p:"It's + adjective",pz:"天气句型：It's + 形容词",e1:"It's windy today.|今天有风。",e2:"It's a cold day today.|今天是个大冷天。",c:"Wear a jacket.|穿上外套吧。"}]},
+{b:"B", name:"3B · 出行购物", lessons:[
+{id:"3B1",t:"问公交",p:"Does this bus go to + 地点?",pz:"问公交是否到达某处",e1:"Does this bus go to Aeon Mall?|这辆公交到永旺商场吗？",e2:"Do these buses go to the church?|这些公交到教堂吗？",c:"How much does the fare cost?|车票多少钱？"},
+{id:"3B2",t:"问价格",p:"How much does + 名词 + cost?",pz:"集体名词问价（一颗/一公斤…）",e1:"How much does a head of lettuce cost?|一颗生菜多少钱？",e2:"How much does a loaf of bread cost?|一条面包多少钱？",c:"That's expensive!|太贵了！"},
+{id:"3B3",t:"表达情绪",p:"I feel so + adjective",pz:"so 加强情绪形容词",e1:"I feel so unhappy.|我很难过。",e2:"I feel so tired.|我好累。",c:"Cheer up!|振作起来！"},
+{id:"3B4",t:"约时间",p:"Are you free + 时间?",pz:"问对方某时是否有空",e1:"Are you free today?|你今天有空吗？",e2:"Is she free tomorrow?|她明天有空吗？",c:"How about watching a movie?|去看电影怎么样？"},
+{id:"3B5",t:"印象深刻",p:"I was impressed with + noun",pz:"被……打动",e1:"I was impressed with the movie.|这部电影让我印象深刻。",e2:"I was impressed with her voice.|她的嗓音让我惊艳。",c:"I feel better now.|我现在好多了。"},
+{id:"3B6",t:"身体状态",p:"be 动词 + adjective",pz:"饿/饱/渴/困等身体感受",e1:"I am hungry.|我饿了。",e2:"I am so full.|我好饱。",c:"Let's have a hamburger and some fries.|我们吃个汉堡配薯条吧。"},
+{id:"3B7",t:"提议活动",p:"Let's go + gerund",pz:"一起去做某事",e1:"Let's go shopping.|我们去购物吧。",e2:"Let's go swimming.|我们去游泳吧。",c:"I'm going to buy a new cap!|我要买顶新帽子！"},
+{id:"3B8",t:"问喜好",p:"Do/Does + 主语 + like + 名词?",pz:"一般现在时喜好疑问",e1:"Do you like children's books?|你喜欢童书吗？",e2:"Does he like comic books?|他喜欢漫画书吗？",c:"I just love comic books.|我超爱漫画书。"},
+{id:"3B9",t:"问地点",p:"Where is + 名词短语?",pz:"问某场所在哪里",e1:"Where is the museum?|博物馆在哪？",e2:"Where is the hair salon?|理发店在哪？",c:"I need a haircut.|我该理发了。"},
+{id:"3B10",t:"问路",p:"How do I get to + 地点?",pz:"问怎么去某地",e1:"How do I get to the train station?|火车站怎么走？",e2:"How does she get to the post office?|她怎么去邮局？",c:"I'm afraid you've just missed the last train.|恐怕你刚错过末班车。"}]},
+{b:"C", name:"3C · 学习打工", lessons:[
+{id:"3C1",t:"迟到了",p:"be late for + 名词",pz:"做某事要迟到了",e1:"I'm late for my class.|我上课要迟到了。",e2:"She is late for her job.|她上班要迟到了。",c:"I forgot the time of my first class.|我忘了第一节课的时间。"},
+{id:"3C2",t:"没做某事",p:"didn't + 动词原形",pz:"过去时的否定",e1:"I didn't do my homework.|我没做作业。",e2:"I didn't do my best.|我没尽全力。",c:"My teacher is very hard.|我们老师很严。"},
+{id:"3C3",t:"互相比较",p:"-er + than",pz:"形容词比较级",e1:"I'm smarter than you.|我比你聪明。",e2:"I'm taller than her.|我比她高。",c:"What are you good at?|你擅长什么？"},
+{id:"3C4",t:"动名词主语",p:"Gerund as a subject",pz:"动名词短语作主语",e1:"Swimming is good exercise.|游泳是很好的运动。",e2:"Jogging is good exercise.|慢跑是很好的运动。",c:"What do you do to keep fit?|你怎么保持健康？"},
+{id:"3C5",t:"when 状语",p:"I sweat when I'm + adj.",pz:"一……就……的身体反应",e1:"I sweat when I'm hot.|我热了就出汗。",e2:"I sweat when I'm nervous.|我一紧张就出汗。",c:"Here's my fan.|用我的扇子吧。"},
+{id:"3C6",t:"弹奏乐器",p:"play + the + 乐器",pz:"西洋乐器前加 the",e1:"I play the piano.|我弹钢琴。",e2:"He plays the flute.|他吹长笛。",c:"I'm going to practice with my band.|我要和乐队排练。"},
+{id:"3C7",t:"不够了",p:"don't have enough + 不可数名词",pz:"钱/时间/精力不够",e1:"I don't have enough money.|我钱不够。",e2:"She doesn't have enough time.|她时间不够。",c:"I'm going to look for a part-time job.|我要去找份兼职。"},
+{id:"3C8",t:"过去习惯",p:"used to + 动词原形",pz:"过去常常做（现在不了）",e1:"I used to work in a fast-food restaurant.|我过去在快餐店打工。",e2:"I used to work in a coffee shop.|我以前在咖啡店工作。",c:"My school grades went down.|我的成绩下滑了。"},
+{id:"3C9",t:"问时间点",p:"When do/does + 主语 + 动词?",pz:"问动作何时发生",e1:"When do you start?|你什么时候开始？",e2:"When does he leave?|他什么时候走？",c:"I work in the morning and study in the afternoon.|我上午工作，下午学习。"},
+{id:"3C10",t:"表达愿望",p:"want to + 动词原形",pz:"想要做某事",e1:"I want to go on vacation.|我想去度假。",e2:"She wants to have a pet.|她想养只宠物。",c:"Where shall we go?|我们去哪儿好呢？"}]},
+{b:"D", name:"3D · 旅行经历", lessons:[
+{id:"3D1",t:"评价地点",p:"This is a very + 形容词 + 名词",pz:"very 加强评价",e1:"This is a very nice place.|这地方真不错。",e2:"This is a very crowded place.|这地方人真多。",c:"Why don't we eat first?|我们先吃点东西怎么样？"},
+{id:"3D2",t:"人生经历",p:"Have you ever been to + 地点?",pz:"问是否去过某地",e1:"Have you ever been to Mt. Fuji?|你去过富士山吗？",e2:"Has she ever been to New York?|她去过纽约吗？",c:"I've been there once.|我去过一次。"},
+{id:"3D3",t:"问耗时",p:"How long does it take by + 交通工具?",pz:"问某种方式需多久",e1:"How long does it take by train from Tokyo?|从东京坐火车要多久？",e2:"How long does it take by bus?|坐公交要多久？",c:"It takes three hours by train.|坐火车要三小时。"},
+{id:"3D4",t:"物主表达",p:"It's my + noun",pz:"说明物品归属",e1:"It's my camera.|这是我的相机。",e2:"It's my wallet.|这是我的钱包。",c:"Whose camera is this?|这是谁的相机？"},
+{id:"3D5",t:"落下物品",p:"I left my + noun",pz:"把某物落在某处",e1:"I left my ID card.|我把身份证落下了。",e2:"I left my keys.|我把钥匙落下了。",c:"I'm going back to the restaurant.|我回餐厅一趟。"},
+{id:"3D6",t:"评价一天",p:"I had a + 形容词 + day",pz:"总结今天过得如何",e1:"I had a bad day.|我今天糟透了。",e2:"I had a great day.|我今天过得特别好。",c:"Next time, I'll be more careful.|下次我会更小心。"},
+{id:"3D7",t:"目击叙述",p:"I saw + 宾格 + 介词短语",pz:"过去时 + 宾格 + 地点",e1:"I saw her at the museum.|我在博物馆见到她了。",e2:"I saw him on the street.|我在街上见到他了。",c:"Did you say hello to her?|你跟她打招呼了吗？"},
+{id:"3D8",t:"请人讲述",p:"Tell me about your + noun",pz:"让对方讲讲某事",e1:"Tell me about your trip.|跟我讲讲你的旅行。",e2:"Tell me about your class.|跟我讲讲你的课。",c:"Did you take pictures?|你拍照了吗？"},
+{id:"3D9",t:"第一次",p:"Was it your first time + doing?",pz:"问是否初次做某事",e1:"Was it your first time skiing?|那是你第一次滑雪吗？",e2:"Was it her first time skating?|那是她第一次滑冰吗？",c:"It was very scary.|太吓人了。"},
+{id:"3D10",t:"东西坏了",p:"名词 + didn't work",pz:"设备故障的表达",e1:"The water faucet didn't work.|水龙头坏了。",e2:"The heater didn't work.|暖气坏了。",c:"There was a problem.|出了点问题。"}]},
+{b:"E", name:"3E · 健康道歉", lessons:[
+{id:"3E1",t:"药店求助",p:"Can you recommend something for + 病症?",pz:"请推荐药物",e1:"Can you recommend something for my headache?|能推荐点治头痛的药吗？",e2:"Can you recommend something for my cough?|能推荐点治咳嗽的药吗？",c:"I don't feel good.|我不舒服。"},
+{id:"3E2",t:"给建议",p:"You should take + noun",pz:"should 表建议",e1:"You should take medicine.|你应该吃药。",e2:"You should take the doctor's advice.|你应该听医生的话。",c:"You should get some rest.|你该休息休息。"},
+{id:"3E3",t:"出门提醒",p:"Don't forget your + 名词",pz:"别忘了带某物",e1:"Don't forget your medicine.|别忘了带药。",e2:"Don't forget your umbrella.|别忘了带伞。",c:"I feel better now.|我现在好多了。"},
+{id:"3E4",t:"弄坏东西",p:"I broke + someone's + noun",pz:"过去时 broke 表弄坏了",e1:"I broke my friend's phone.|我把朋友的手机摔坏了。",e2:"I broke my friend's watch.|我把朋友的手表弄坏了。",c:"Just apologize and replace it.|道个歉再赔一个吧。"},
+{id:"3E5",t:"道歉",p:"I'm sorry about + 名词短语",pz:"为某事道歉",e1:"I'm sorry about the phone.|手机的事对不起。",e2:"I'm sorry about the broken glasses.|打碎眼镜的事对不起。",c:"I didn't mean to do it.|我不是故意的。"},
+{id:"3E6",t:"下决心",p:"I will be more + 形容词",pz:"承诺下次改进",e1:"I will be more careful.|我会更小心。",e2:"I will be more punctual.|我会更守时。",c:"She didn't get mad at me.|她没有生我的气。"},
+{id:"3E7",t:"状态变化",p:"I got + 形容词",pz:"got 表「变得」",e1:"I got nervous.|我紧张了。",e2:"I got lost.|我迷路了。",c:"I got hurt.|我受伤了。"},
+{id:"3E8",t:"突发灾害",p:"There was a/an + 名词",pz:"there be 过去时叙述事件",e1:"There was an earthquake.|发生了地震。",e2:"There was a typhoon.|来了台风。",c:"Many buildings were destroyed.|很多建筑被毁了。"},
+{id:"3E9",t:"征求意见",p:"Can you give me some + 名词?",pz:"请求建议/时间等",e1:"Can you give me some advice?|能给我点建议吗？",e2:"Can you give me some suggestions?|能给我点提议吗？",c:"What should I do?|我该怎么办？"},
+{id:"3E10",t:"致谢",p:"Thank you for your + 名词",pz:"为对方的某样东西道谢",e1:"Thank you for your advice.|谢谢你的建议。",e2:"Thank you for your help.|谢谢你的帮助。",c:"I'm glad you are managing your time well.|很高兴你把时间安排得很好。"}]}
+]},
+{lv:4, title:"海外生活进阶", theme:"寄宿家庭 · 购物就餐 · 校园求职 · 电话节日", books:[
+{b:"A", name:"4A · 寄宿家庭", lessons:[
+{id:"4A1",t:"随意使用",p:"Feel free to use + 名词短语",pz:"主人客气地请对方随便用",e1:"Feel free to use the TV.|电视随便看。",e2:"Feel free to use the washing machine.|洗衣机随便用。",c:"Welcome to our humble home.|欢迎来我们家。"},
+{id:"4A2",t:"看起来",p:"Looks + adjective",pz:"省略主语的直观评价",e1:"Looks delicious.|看起来很好吃。",e2:"Looks clean.|看起来很干净。",c:"I can't wait.|我等不及了。"},
+{id:"4A3",t:"让我来",p:"Let me + 动词短语",pz:"主动提出帮忙",e1:"Let me do the dishes.|让我来洗碗。",e2:"Let me drive you home.|我开车送你回家吧。",c:"I'll take care of it.|我来处理就好。"},
+{id:"4A4",t:"长得像",p:"look like + 名词 / look + 形容词",pz:"像某人 vs 看起来怎样",e1:"He looks like his father.|他长得像他爸爸。",e2:"He looks strict.|他看起来很严厉。",c:"He looks like a young John.|他像年轻时的约翰。"},
+{id:"4A5",t:"求人教",p:"Teach me how to + 动词",pz:"请对方教某技能",e1:"Teach me how to play the guitar.|教我弹吉他吧。",e2:"Teach me how to drive a car.|教我开车吧。",c:"Can you play the guitar?|你会弹吉他吗？"},
+{id:"4A6",t:"太……了",p:"too + adjective",pz:"too 表过度、过头",e1:"The TV is too loud.|电视太吵了。",e2:"These shoes are too big.|这鞋太大了。",c:"We might bother your mom and dad.|我们可能会吵到你爸妈。"},
+{id:"4A7",t:"双词动词",p:"Turn down / Take off / Turn off / Clean up",pz:"动词+副词的两部分动词",e1:"Turn down the TV.|把电视调小声。",e2:"Take off your shoes.|脱掉鞋子。",c:"Don't stay up late.|别熬夜。"},
+{id:"4A8",t:"劝慰鼓励",p:"Don't be + adjective",pz:"别难过/别生气等",e1:"Don't be sad.|别难过。",e2:"Don't be lazy.|别偷懒。",c:"I'm homesick.|我想家了。"},
+{id:"4A9",t:"委婉提议",p:"Why don't + 主语 + 动词?",pz:"何不……（建议）",e1:"Why don't we eat out?|我们出去吃怎么样？",e2:"Why don't you study hard?|你为什么不努力学习呢？",c:"I am really hungry now.|我现在真饿了。"},
+{id:"4A10",t:"请求带路",p:"Take me to + 地点",pz:"请人带去某处",e1:"Take me to the mall.|带我去商场吧。",e2:"Take me to Niagara Falls.|带我去看尼亚加拉瀑布吧。",c:"I'm not sure where to go.|我不知道该去哪。"}]},
+{b:"B", name:"4B · 购物描述", lessons:[
+{id:"4B1",t:"指示代词问价",p:"How much is this/that…? are these/those…?",pz:"is 接单数，are 接复数",e1:"How much is this?|这个多少钱？",e2:"How much are these?|这些多少钱？",c:"It's only $30.|只要三十美元。"},
+{id:"4B2",t:"程度副词",p:"副词 + 形容词",pz:"very/fairly/really/extremely",e1:"These shoes are very expensive.|这鞋太贵了。",e2:"Canada is fairly big.|加拿大相当大。",c:"Let's look for another pair.|我们再看看别的吧。"},
+{id:"4B3",t:"情态动词",p:"should / have to / must / had better + 动词",pz:"建议与必要性",e1:"You should try some local food.|你应该尝尝当地菜。",e2:"You must wear an ID.|你必须佩戴证件。",c:"Let's grab a bite.|我们随便吃点吧。"},
+{id:"4B4",t:"使动感受",p:"It makes me feel + 形容词",pz:"某物使我感到……",e1:"It makes me feel good.|这让我感觉很好。",e2:"It makes me feel jealous.|这让我嫉妒。",c:"I always try to keep up with the latest trends.|我一直紧跟最新潮流。"},
+{id:"4B5",t:"频率副词",p:"always / often / sometimes / never",pz:"频率副词位于实义动词前",e1:"I always meet my friends here.|我总在这和朋友见面。",e2:"I never smoke.|我从不抽烟。",c:"How often do you meet them here?|你们多常在这见面？"},
+{id:"4B6",t:"到点了",p:"It's time for + 名词短语",pz:"该做某事了",e1:"It's time for a walk.|该散步了。",e2:"It's time for a change.|该做点改变了。",c:"I'm stuffed.|我吃饱了。"},
+{id:"4B7",t:"表兴趣",p:"I'm interested in + 名词",pz:"对……感兴趣",e1:"I'm interested in sports.|我对体育感兴趣。",e2:"I'm interested in business.|我对商业感兴趣。",c:"I have never played it.|我从没玩过。"},
+{id:"4B8",t:"How + 形容词",p:"How high/far/cold/big is…?",pz:"问程度的具体疑问",e1:"How high is Mt. Fuji?|富士山有多高？",e2:"How far is Niagara Falls from here?|尼亚加拉瀑布离这多远？",c:"It's about 3,776 meters.|大约三千七百七十六米。"},
+{id:"4B9",t:"for 与 since",p:"…for + 时段 / …since + 时点",pz:"过去时长 vs 起始点",e1:"I lived there for ten years.|我在那住了十年。",e2:"I've lived there since 2008.|我从 2008 年起住在这。",c:"It was crowded but convenient.|拥挤但方便。"},
+{id:"4B10",t:"在路上",p:"on one's way to + 地点",pz:"正在去某地途中",e1:"We are on our way to the bus station.|我们正在去车站的路上。",e2:"She is on her way to the office.|她正在去办公室的路上。",c:"Get home safe.|到家注意安全。"}]},
+{b:"C", name:"4C · 职业与学业", lessons:[
+{id:"4C1",t:"完成进行",p:"have/has been + verb-ing",pz:"现在完成进行时",e1:"He has been working two jobs.|他一直打着两份工。",e2:"I have been saving money.|我一直在攒钱。",c:"That sounds like a lot of work.|那听起来很辛苦。"},
+{id:"4C2",t:"推测 must",p:"You must be + adjective",pz:"must 表肯定推测",e1:"You must be smart.|你一定很聪明。",e2:"You must be busy.|你肯定很忙。",c:"I can manage.|我应付得来。"},
+{id:"4C3",t:"-ing 形容词",p:"名词 + is + interesting/boring…",pz:"现在分词作形容词",e1:"My work is interesting.|我的工作很有趣。",e2:"The news is surprising.|这消息出人意料。",c:"I follow a strict schedule.|我遵循严格的时间表。"},
+{id:"4C4",t:"委婉拒绝",p:"I'm afraid I can't + 动词",pz:"恐怕我不能……",e1:"I'm afraid I can't finish my article.|恐怕我写不完文章了。",e2:"I'm afraid I can't join the meeting.|恐怕我参不了会。",c:"I believe you will make it.|我相信你能做到。"},
+{id:"4C5",t:"被动语态",p:"was + 过去分词 + by + 施动者",pz:"一般过去时被动",e1:"The Sherlock Holmes series was written by Arthur Conan Doyle.|福尔摩斯系列是柯南·道尔写的。",e2:"Mona Lisa was painted by Leonardo da Vinci.|蒙娜丽莎是达·芬奇画的。",c:"I prefer mystery novels.|我更喜欢推理小说。"},
+{id:"4C6",t:"期待",p:"I'm looking forward to + verb-ing",pz:"期待做某事（to 是介词）",e1:"I'm looking forward to reading your articles.|我期待读你的文章。",e2:"I'm looking forward to meeting your family.|我期待见你家人。",c:"I can give you a free copy.|我可以给你一份免费的。"},
+{id:"4C7",t:"祝贺",p:"Congratulations on + 名词短语",pz:"为某事道贺",e1:"Congratulations on your wedding.|恭喜新婚。",e2:"Congratulations on your graduation.|恭喜毕业。",c:"I won first prize in the contest.|我在比赛中得了一等奖。"},
+{id:"4C8",t:"动词+不定式",p:"want / hope / plan + to do",pz:"动词后接不定式",e1:"I hope to buy a big house.|我希望买栋大房子。",e2:"I plan to get married.|我打算结婚。",c:"I think you will have a bright future.|我觉得你前途光明。"},
+{id:"4C9",t:"理应被",p:"be supposed/expected to + 动词",pz:"按规定/被期望做某事",e1:"You're expected to call your university.|你得给你学校打电话。",e2:"You're not supposed to hit him.|你不应该打他。",c:"I feel a little scared.|我有点害怕。"},
+{id:"4C10",t:"来此目的",p:"I'm here to + 动词短语",pz:"说明自己来的目的",e1:"I'm here to support you.|我是来支持你的。",e2:"I'm here to show you around.|我是来带你四处转转的。",c:"Don't forget to take your ID to school.|别忘了带证件去学校。"}]},
+{b:"D", name:"4D · 校园生活", lessons:[
+{id:"4D1",t:"不想做",p:"I don't feel like + verb-ing",pz:"没心情做某事",e1:"I don't feel like eating.|我不想吃东西。",e2:"I don't feel like going out.|我不想出门。",c:"I'm very nervous about the interview.|面试让我很紧张。"},
+{id:"4D2",t:"分词作形容词",p:"名词 + is/are + 过去分词",pz:"damaged/cracked/stained 等",e1:"The glass is cracked.|杯子裂了。",e2:"My pants are stained.|我裤子弄脏了。",c:"I don't want to be late.|我不想迟到。"},
+{id:"4D3",t:"委婉请求",p:"Would you mind (+ not) + verb-ing?",pz:"您介意（不）……吗",e1:"Would you mind repeating that, please?|请再说一遍好吗？",e2:"Would you mind not talking so loudly?|能别那么大声说话吗？",c:"Fill out this form.|填一下这张表。"},
+{id:"4D4",t:"宾语从句",p:"I know + who/where/what/why 从句",pz:"know 后接从句作宾语",e1:"I know where he lives.|我知道他住哪。",e2:"I know what you mean.|我懂你的意思。",c:"It's Tom. He is a graduate here.|是汤姆，他是这儿的毕业生。"},
+{id:"4D5",t:"问场所",p:"Where is the + 场所?",pz:"校园设施在哪",e1:"Where is the post office?|邮局在哪？",e2:"Where is the taxi stand?|出租车候车点在哪？",c:"Go straight and you can see it in the left-hand corner.|直走就能在左手角看到。"},
+{id:"4D6",t:"处境表达",p:"I'm in + 名词",pz:"处于某种状态（麻烦/恋爱/负债）",e1:"I'm in trouble.|我有麻烦了。",e2:"I'm in love.|我恋爱了。",c:"I forgot my way home.|我忘了回家的路。"},
+{id:"4D7",t:"关心询问",p:"What happened…? / What's wrong…?",pz:"问出了什么事",e1:"What happened to your car?|你的车怎么了？",e2:"What's the matter with your tooth?|你的牙怎么了？",c:"I got on the wrong bus.|我上错公交了。"},
+{id:"4D8",t:"需要被做",p:"need to be + 过去分词",pz:"被动含义的待办事项",e1:"The windows need to be cleaned.|窗户该擦了。",e2:"The plants need to be watered.|植物该浇水了。",c:"I'll do it later.|我待会儿就做。"},
+{id:"4D9",t:"条件句一",p:"If + 现在时, will + 动词",pz:"真实条件句（第一条件）",e1:"If it rains, I will stay at home.|如果下雨我就待在家。",e2:"If it rains, I won't water the plants.|如果下雨我就不浇花了。",c:"I don't think it will rain today.|我看今天不会下雨。"},
+{id:"4D10",t:"受伤部位",p:"I hurt my + 身体部位",pz:"hurt 表弄伤了",e1:"I hurt my elbow.|我伤到肘部了。",e2:"I hurt my lower back.|我伤到腰了。",c:"I slipped while I was cleaning the windows.|我擦窗时滑倒了。"}]},
+{b:"E", name:"4E · 电话与节日", lessons:[
+{id:"4E1",t:"差点忘了",p:"I almost forgot + 名词短语",pz:"almost 表差一点",e1:"I almost forgot her birthday.|我差点忘了她生日。",e2:"I almost forgot the present.|我差点忘了礼物。",c:"My mother prepares for everything.|一切都是我妈操办。"},
+{id:"4E2",t:"Will you 请求",p:"Will you + 动词?",pz:"请求对方做某事",e1:"Will you call her on her birthday?|她生日你会打电话给她吗？",e2:"Will you give her a card?|你会送她贺卡吗？",c:"There is a stationery store across the bank.|银行对面有家文具店。"},
+{id:"4E3",t:"顺序衔接",p:"First, / Then, / Next, / Finally,",pz:"时间顺序连接词",e1:"First, get the country code.|首先查国家区号。",e2:"Finally, press the call key.|最后按拨号键。",c:"Let me help you.|我来帮你。"},
+{id:"4E4",t:"双宾语",p:"主语 + 动词 + 间宾 + 直宾",pz:"give/send/tell/make 双宾结构",e1:"I sent you a birthday card.|我寄了张生日卡给你。",e2:"She told him the news.|她把消息告诉了他。",c:"It made me happy.|这让我很开心。"},
+{id:"4E5",t:"物主形容词",p:"my/his/her/our/their + 名词",pz:"形容词性物主代词",e1:"My boss is nice.|我老板人很好。",e2:"Our neighbor is friendly.|我们邻居很友善。",c:"He gave me a holiday.|他给我放了天假。"},
+{id:"4E6",t:"不感兴趣",p:"I'm not into + 名词",pz:"be into 表喜欢，not into 不感冒",e1:"I'm not into concerts.|我对演唱会不感兴趣。",e2:"I'm not into opera.|我对歌剧不感冒。",c:"I hate crowded places.|我讨厌人多的地方。"},
+{id:"4E7",t:"最……过",p:"the best + 名词 + I've ever + 过去分词",pz:"最高级+完成时表人生之最",e1:"It's the best concert I've ever been to.|这是我看过的最棒的演唱会。",e2:"It's the best food I've ever tasted.|这是我吃过最好吃的东西。",c:"The performance was fantastic.|演出太精彩了。"},
+{id:"4E8",t:"附和赞同",p:"So do I. / Neither do I.",pz:"附和肯定句/否定句",e1:"I like traveling. — So do I.|我喜欢旅行。——我也是。",e2:"I don't like talking on a cell phone. — Neither do I.|我不喜欢打电话。——我也不喜欢。",c:"What do you like doing?|你喜欢做什么？"},
+{id:"4E9",t:"反义疑问",p:"陈述句, isn't/aren't + 主语?",pz:"be 动词附加疑问句",e1:"It is an interesting movie, isn't it?|这电影很有意思，不是吗？",e2:"We are late, aren't we?|我们迟到了，是吧？",c:"Have you ever watched this movie?|你看过这部电影吗？"},
+{id:"4E10",t:"时间定语从句",p:"a day when + 从句",pz:"when 引导修饰时间的定语从句",e1:"Children's Day is a day when people celebrate children's happiness.|儿童节是庆祝孩子幸福健康的日子。",e2:"Thanksgiving is a day when people celebrate the harvest.|感恩节是庆祝丰收的日子。",c:"What is your favorite holiday?|你最喜欢哪个节日？"}]}
+]},
+{lv:5, title:"高阶句法与表达", theme:"介词搭配 · -ed/-ing 形容词 · 动名词与不定式 · 条件句 · 从句", books:[
+{b:"A", name:"5A · 名词介词搭配", lessons:[
+{id:"5A1",t:"热爱与天赋",p:"love of / talent for + verb-ing",pz:"名词+介词+动名词",e1:"His love of learning foreign languages made him a famous linguist.|对外语的热爱让他成为著名语言学家。",e2:"Her talent for dancing brought her fame.|她的舞蹈天赋给她带来名声。",c:"My love of singing developed when I was a child.|我对唱歌的热爱从小就开始了。"},
+{id:"5A2",t:"恐惧与劣势",p:"fear of / disadvantage of + verb-ing",pz:"对某事的恐惧/某事的不利处",e1:"My fear of flying made traveling difficult.|对飞行的恐惧让旅行变得困难。",e2:"The disadvantage of traveling by plane is that you cannot see the view.|坐飞机的坏处是看不到沿途风景。",c:"I'm afraid I will have this fear for the rest of my life.|恐怕这恐惧会伴我一生。"},
+{id:"5A3",t:"名声与说辞",p:"reputation for / story about + verb-ing",pz:"以……出名/关于……的说法",e1:"His reputation for lying is well-known.|他爱撒谎是出了名的。",e2:"I don't believe his story about winning the lottery.|我不信他中了彩票的说法。",c:"I don't buy his story.|我不信他的话。"},
+{id:"5A4",t:"成瘾与习惯",p:"addiction to / habit of + verb-ing",pz:"对某事上瘾/有某习惯",e1:"His addiction to smoking has become serious.|他的烟瘾已经很严重了。",e2:"His habit of smoking causes him many problems.|吸烟的习惯给他带来很多问题。",c:"He smokes two packs a day.|他一天抽两包。"},
+{id:"5A5",t:"理由与优势",p:"reason for / advantage of + verb-ing",pz:"做某事的理由/好处",e1:"The main reason for taking this course is to improve my language skills.|修这门课主要是为了提高语言能力。",e2:"You have the advantage of speaking English fluently.|你有英语流利的优势。",c:"I hope to get a high-paying job.|我希望找到高薪工作。"},
+{id:"5A6",t:"待人友好",p:"kind to / friendly to + 人",pz:"对某人友善",e1:"She's friendly to all the people in the neighborhood.|她对街坊邻居都很友好。",e2:"She's kind to everyone.|她对谁都和善。",c:"She's throwing a party at her place.|她要在家里办派对。"},
+{id:"5A7",t:"厌倦与害怕",p:"tired of / scared of + 名词/动词-ing",pz:"对……厌倦/害怕",e1:"I'm tired of reading books.|我书读腻了。",e2:"I'm scared of watching horror movies.|我不敢看恐怖片。",c:"I'm not really into it.|我对它没什么兴趣。"},
+{id:"5A8",t:"失望与满意",p:"disappointed with / happy with + 对象",pz:"对……失望/满意",e1:"I'm disappointed with myself.|我对自己很失望。",e2:"My boss was not happy with my performance.|老板对我的表现不满意。",c:"Better luck next time.|下次运气会好的。"},
+{id:"5A9",t:"负责与闻名",p:"responsible for / famous for + 名词",pz:"对……负责/以……闻名",e1:"Brad was responsible for managing the entire project.|布拉德负责管理整个项目。",e2:"He is famous for his communication skills.|他以沟通能力闻名。",c:"The president was really impressed by his work.|总裁对他的工作印象深刻。"},
+{id:"5A10",t:"擅长与不擅长",p:"good at / bad at + 名词/动词-ing",pz:"擅长/不擅长某事",e1:"I'm good at English.|我英语很好。",e2:"I'm bad at Math.|我数学很差。",c:"Shall we start then?|那我们开始吧？"}]},
+{b:"B", name:"5B · -ed/-ing 形容词", lessons:[
+{id:"5B1",t:"吓人vs害怕",p:"frightening（吓人）/ frightened（害怕）",pz:"-ing 修饰事物，-ed 描述人的感受",e1:"Our new manager is frightening.|新经理让人害怕。",e2:"I'm frightened about meeting her.|要见她我很害怕。",c:"She left strict instructions.|她留下了严格的指示。"},
+{id:"5B2",t:"信服",p:"convincing（有说服力）/ convinced（被说服）",pz:"说服与被说服之辨",e1:"She sounded convincing to the clients.|她的说辞让客户信服。",e2:"The CEO is convinced that she can do the job well.|总裁确信她能胜任。",c:"She has already closed a deal.|她已经谈成一笔生意。"},
+{id:"5B3",t:"挑战性",p:"challenging（有挑战）/ challenged（被挑战）",pz:"有挑战 vs 感到被挑战",e1:"I find it challenging.|我觉得这很有挑战性。",e2:"I like to be challenged.|我喜欢被挑战。",c:"Don't you think she can be a threat to your promotion?|你不觉得她会威胁你的升职吗？"},
+{id:"5B4",t:"迷人",p:"fascinating（迷人）/ fascinated（着迷）",pz:"迷人的事物与着迷的人",e1:"The place was really fascinating.|那地方真迷人。",e2:"They will be fascinated by the view.|他们会被这景色迷住的。",c:"My two cousins are arriving from Canada next week.|我两个表亲下周从加拿大来。"},
+{id:"5B5",t:"恼人",p:"annoying（烦人）/ annoyed（恼火）",pz:"烦人的事与恼火的人",e1:"The process was really annoying.|流程烦死人了。",e2:"Some of the voters looked annoyed.|一些选民看起来很恼火。",c:"They introduced a new machine for the election.|他们为选举启用了新机器。"},
+{id:"5B6",t:"疲惫",p:"exhausted（精疲力尽）/ exhausting（累人）",pz:"自己累 vs 令人累",e1:"I feel exhausted after working long hours.|长时间工作后我精疲力尽。",e2:"My colleague never stops talking. I find her exhausting.|同事话不停口，我觉得她真累人。",c:"You've got to learn how to deal with your colleagues.|你得学会和同事相处。"},
+{id:"5B7",t:"震惊",p:"devastated（悲痛欲绝）/ devastating（毁灭性的）",pz:"人的震惊 vs 事的惨烈",e1:"I was absolutely devastated to see the destroyed houses.|看到被毁的房子我震惊不已。",e2:"Just the sight alone was devastating.|光是那景象就令人心碎。",c:"The cars were piled up everywhere.|汽车堆得到处都是。"},
+{id:"5B8",t:"沮丧",p:"depressed（沮丧）/ depressing（令人沮丧）",pz:"心情低落 vs 消息糟心",e1:"I just heard some very depressing news.|我刚听到很令人沮丧的消息。",e2:"Don't feel so depressed.|别那么沮丧。",c:"I'm going to lose my job.|我要失业了。"},
+{id:"5B9",t:"有趣",p:"amused（被逗乐）/ amusing（好笑）",pz:"逗乐的人 vs 好笑的事",e1:"Do you want to hear an amusing story?|想听个有趣的故事吗？",e2:"Make sure I'm amused!|可得把我逗乐了！",c:"It will sure make you laugh.|保准让你笑。"},
+{id:"5B10",t:"失望",p:"disappointed（失望）/ disappointing（令人失望）",pz:"人对结果失望 vs 结果令人失望",e1:"I was disappointed with the performance of the English team.|我对英格兰队的表现很失望。",e2:"Their coaches also found it disappointing.|他们的教练也觉得很令人失望。",c:"They played much worse than I expected.|他们踢得比我预想的差多了。"}]},
+{b:"C", name:"5C · 动名词与不定式", lessons:[
+{id:"5C1",t:"动名词主语",p:"Gerund phrase as a subject",pz:"动名词短语作主语",e1:"Finding a parking space is quite difficult in this area.|在这带找车位相当难。",e2:"Working overtime is quite common in this company.|在这家公司加班很常见。",c:"Teaching children is really satisfying.|教孩子真的很有成就感。"},
+{id:"5C2",t:"动名词宾语",p:"Gerund phrase as an object",pz:"enjoy/deny/love + 动名词",e1:"I enjoy playing tennis.|我喜欢打网球。",e2:"He denies stealing the money.|他否认偷了钱。",c:"Tennis makes you fitter.|网球能让你更健康。"},
+{id:"5C3",t:"介词+动名词",p:"介词 + verb-ing",pz:"动名词作介词宾语",e1:"I am interested in learning English.|我对学英语感兴趣。",e2:"I look forward to meeting your friend.|我期待见到你朋友。",c:"The police arrested him for driving too fast.|他因超速驾驶被警方逮捕。"},
+{id:"5C4",t:"去从事活动",p:"Go + verb-ing",pz:"go + 动名词表从事活动",e1:"Let's go skiing next weekend.|下周末我们去滑雪吧。",e2:"Did you go shopping last Saturday?|上周六你去购物了吗？",c:"I often go fishing with my family on the weekends.|我周末常和家人去钓鱼。"},
+{id:"5C5",t:"同时动作",p:"While/When + verb-ing",pz:"一边……一边……",e1:"Do you snore while sleeping?|你睡觉打呼吗？",e2:"Do you feel happy when dancing?|你跳舞时开心吗？",c:"Jerry hurt his wrist while playing volleyball.|杰瑞打排球时伤了手腕。"},
+{id:"5C6",t:"不定式主语",p:"Infinitive phrase as a subject",pz:"不定式短语作主语",e1:"To help other people feels good.|帮助别人感觉很好。",e2:"To drive a car requires a driver's license.|开车需要有驾照。",c:"To read a good book is my favorite kind of relaxation.|读本好书是我最喜欢的放松方式。"},
+{id:"5C7",t:"不定式宾语",p:"动词 + to do",pz:"promise/prefer/hope + 不定式",e1:"I promise to do my best.|我保证尽全力。",e2:"She hopes to get a promotion this year.|她希望今年升职。",c:"I learned to speak English when I was a child.|我小时候就学会了说英语。"},
+{id:"5C8",t:"宾补不定式",p:"动词 + 宾语 + to do",pz:"ask/persuade/allow + sb + to do",e1:"Will you allow me to use your telephone?|能让我用下你的电话吗？",e2:"My colleague asked me to send an email to the customer.|同事让我给客户发封邮件。",c:"We persuaded her to come to the party.|我们劝她来参加派对。"},
+{id:"5C9",t:"宾补原形",p:"动词 + 宾语 + 动词原形",pz:"see/watch/feel/make + sb + do",e1:"I saw my brother climb up the tree quickly.|我看见弟弟飞快地爬上树。",e2:"He watched the thieves steal a car.|他眼看着小偷偷了一辆车。",c:"It made grandma worry.|这让奶奶很担心。"},
+{id:"5C10",t:"情态+原形",p:"情态动词 + 动词原形",pz:"must/can't 后接不带 to 的不定式",e1:"We must keep quiet while he's sleeping.|他睡觉时我们必须保持安静。",e2:"He can't remember where he put the tickets.|他不记得把票放哪了。",c:"I can't stay long.|我不能久留。"}]},
+{b:"D", name:"5D · 条件句与 wish", lessons:[
+{id:"5D1",t:"零条件 If",p:"If + 现在时, 现在时",pz:"恒常真理（零条件）",e1:"Plants die if they don't get enough water.|植物缺水就会死。",e2:"If you don't eat, you get sick.|不吃东西就会生病。",c:"Plants are like humans.|植物和人一样。"},
+{id:"5D2",t:"零条件 When",p:"When + 现在时, 现在时",pz:"when 引导的惯常结果",e1:"When he comes to town, we have dinner together.|他来城里时我们一起吃饭。",e2:"My roof leaks when it rains.|一下雨我家屋顶就漏。",c:"I usually go to the beach when I'm off from work.|我下班休息时常去海边。"},
+{id:"5D3",t:"一条件",p:"If + 现在时, will + 动词",pz:"真实条件（将来可能）",e1:"If you invite me to dinner tonight, I will bring a bottle of wine.|如果你今晚请我吃饭，我就带瓶酒去。",e2:"If you help me with these bags, I will make you a delicious dinner.|你帮我拎这些袋子，我就给你做顿好吃的。",c:"Are you having a party tonight?|你今晚要开派对吗？"},
+{id:"5D4",t:"情态条件",p:"If + 现在时, 情态动词 + 动词",pz:"条件句结果用 can/might",e1:"If Ben gets up early, he can catch the bus.|本早起就能赶上公交。",e2:"If I get this work finished, I might take the rest of the day off.|干完这活，我也许下午就休假了。",c:"This headache is killing me.|头疼得要命。"},
+{id:"5D5",t:"三条件",p:"If + had done, would have done",pz:"过去虚拟（三条件）",e1:"If I'd known you were coming, I would have baked a cake.|早知道你要来我就烤蛋糕了。",e2:"I would have bought you a present if I'd known it was your birthday.|早知道是你生日我就买礼物了。",c:"Sorry for the sudden visit.|突然造访不好意思。"},
+{id:"5D6",t:"过去真实",p:"If/When + 过去时, 过去时",pz:"过去惯常（过去真实条件）",e1:"If the weather was nice, I would often walk to work.|过去天气好我常走路去上班。",e2:"I always used to help my brother when I had time.|过去一有时间我就帮弟弟。",c:"How I miss the things I used to do!|真怀念过去做的事！"},
+{id:"5D7",t:"二条件",p:"If + 过去时, would + 动词原形",pz:"现在虚拟（二条件）",e1:"If I had a day off, I would go to the beach.|要是有天假我就去海边。",e2:"If I were not busy, I would come to a party.|要是不忙我就来派对了。",c:"I got so tied up with work.|我工作忙得脱不开身。"},
+{id:"5D8",t:"混合条件",p:"If + 过去时, would have done",pz:"过去时条件+虚拟完成结果",e1:"If I spoke English well, I would have gotten a better job.|要是我英语好，早就找到更好的工作了。",e2:"If you were there, you would have witnessed my wedding.|你要是在场，就能见证我的婚礼了。",c:"Didn't you get my invitation?|你没收到我的请柬吗？"},
+{id:"5D9",t:"wish+情态",p:"wish + would/could + 动词",pz:"希望他人改变/自己能做",e1:"I wish she would stop complaining.|我希望她别再抱怨了。",e2:"I wish I could afford a new car.|我要是买得起新车就好了。",c:"Our boss declined our project proposal.|老板否了我们的项目提案。"},
+{id:"5D10",t:"wish+were",p:"wish + 主语 + were",pz:"对现状的虚拟",e1:"I wish I were a doctor.|我真希望自己是医生。",e2:"I wish I were ten years younger.|我要是年轻十岁就好了。",c:"To be famous is exciting but tough.|出名既刺激又辛苦。"}]},
+{b:"E", name:"5E · 从句体系", lessons:[
+{id:"5E1",t:"who 主语定从",p:"名词 + who + 从句(作主语)",pz:"who 引导定语从句修饰主语",e1:"The woman who lives next door is my English teacher.|住在隔壁的女士是我的英语老师。",e2:"The man who sat next to me talked all the time.|坐我旁边的男人说个不停。",c:"She's really clever.|她真的很聪明。"},
+{id:"5E2",t:"that 宾语定从",p:"名词 + that + 从句(作宾语)",pz:"that 引导定语从句修饰宾语",e1:"The thief stole the car that I rented.|小偷偷走了我租的车。",e2:"He makes up stories that aren't true.|他编的故事都不是真的。",c:"I informed a policeman who was patrolling around the area.|我告知了在附近巡逻的警察。"},
+{id:"5E3",t:"介词宾语定从",p:"介词 + 名词 + who/whom 从句",pz:"定语从句修饰介词宾语",e1:"I was annoyed with the man who sat next to me on the plane.|飞机上坐我旁边的人让我很烦。",e2:"He was in love with my friend whom he met last year.|他爱着我朋友，他们去年认识的。",c:"What a small world!|世界真小！"},
+{id:"5E4",t:"where 定从",p:"地点名词 + where + 从句",pz:"where 引导修饰地点的定从",e1:"That restaurant is an expensive place where rich people eat.|那家餐厅是有钱人消费的昂贵去处。",e2:"I want to take you to a nice place where you can enjoy good food.|我想带你去个能享受美食的好地方。",c:"Thanks for the dinner last Sunday.|谢谢你上周日请的晚餐。"},
+{id:"5E5",t:"when 定从",p:"时间名词 + when + 从句",pz:"when 引导修饰时间的定从",e1:"February is the month when people give presents to the ones they love.|二月是人们送礼物给爱人的月份。",e2:"It is the time when people give chocolates and flowers.|这是人们送巧克力和鲜花的时候。",c:"We call it Valentine's Day.|我们叫它情人节。"},
+{id:"5E6",t:"主语从句",p:"What/Who + 从句 + 动词",pz:"名词性从句作主语",e1:"What he said was a lie.|他说的全是谎话。",e2:"Who he loves remains a secret.|他爱着谁仍是个秘密。",c:"He never tells me the truth.|他从不跟我说实话。"},
+{id:"5E7",t:"宾语从句",p:"动词 + that/what/how 从句",pz:"名词性从句作宾语",e1:"She said that she was feeling sick.|她说她不舒服。",e2:"She knows how to take care of herself.|她知道怎么照顾自己。",c:"I hope she gets better soon.|我希望她快点好起来。"},
+{id:"5E8",t:"介词宾语从句",p:"介词 + what 从句",pz:"名词性从句作介词宾语",e1:"Akio listened to what the teacher explained.|阿基奥认真听老师讲解。",e2:"He was interested in what she had to say.|他对她要说的很感兴趣。",c:"He was seated in the front row.|他坐在第一排。"},
+{id:"5E9",t:"补语从句",p:"call + 宾语 + what 从句",pz:"名词性从句作宾语补足语",e1:"You can call him what you want.|你想叫他什么都行。",e2:"You can invite the person whom you want.|你想请谁就请谁。",c:"He is a liar.|他是个骗子。"},
+{id:"5E10",t:"同位语从句",p:"the fact + that 从句",pz:"that 从句解释抽象名词",e1:"The fact that the earthquake destroyed a lot of buildings is affecting the entire town.|地震摧毁大量建筑这一事实正影响着整个小镇。",e2:"The president, who was elected last year, seems to be looking for help.|去年当选的总统似乎正在寻求帮助。",c:"The families who got hurt really need some serious help.|受灾家庭真的急需帮助。"}]}
+]}
+];
+
+/* ── 渲染 ── */
+const KEY = "nde-all-v1";
+let store = {};
+try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) { store = {}; }
+
+const daysEl = document.getElementById("days");
+LEVELS.forEach(L => {
+  const art = document.createElement("article");
+  art.className = "day"; art.id = "lv" + L.lv; art.dataset.lv = L.lv;
+  let rows = "";
+  L.books.forEach(bk => {
+    rows += `<section class="lesson"><h3>${bk.name}</h3>
+      <table class="sent"><thead><tr><th></th><th>课号</th><th>主题 · 核心句型</th><th>例句一</th><th>例句二</th><th>对话典型句</th></tr></thead><tbody>`;
+    bk.lessons.forEach(ls => {
+      const [e1en, e1zh] = ls.e1.split("|");
+      const [e2en, e2zh] = ls.e2.split("|");
+      const [cen, czh] = ls.c ? ls.c.split("|") : ["", ""];
+      rows += `<tr class="grp" data-id="${ls.id}">
+        <td class="ck"><input type="checkbox" ${store[ls.id] ? "checked" : ""}></td>
+        <td class="num"><b>${ls.id}</b></td>
+        <td><span class="tpc zh">${ls.t}</span><span class="patf">${ls.p}<span class="zh">　${ls.pz}</span></span></td>
+        <td><span class="en">${e1en}</span><span class="sub zh">${e1zh}</span></td>
+        <td><span class="en">${e2en}</span><span class="sub zh">${e2zh}</span></td>
+        <td><span class="en">${cen}</span><span class="sub zh">${czh}</span></td>
+      </tr>`;
+    });
+    rows += `</tbody></table></section>`;
+  });
+  art.innerHTML = `<header><span class="no">${L.lv} 级</span><h2>${L.title}</h2><span class="theme">${L.theme}</span></header>${rows}`;
+  daysEl.appendChild(art);
+});
+
+/* ── 目录 ── */
+const toc = document.getElementById("toc");
+toc.innerHTML = `<div class="g">总览</div>
+  <a href="#overview">课程速览</a>` +
+  LEVELS.map(L => `<div class="g">${L.lv} 级 · ${L.title}</div>` +
+    L.books.map(bk => `<a href="#lv${L.lv}">${bk.name}</a>`).join("")).join("") +
+  `<div class="g">总结</div><a href="#patterns">语法体系总结</a><a href="#notes">使用说明</a>`;
+
+/* ── 勾选进度 ── */
+const total = LEVELS.reduce((n, L) => n + L.books.reduce((m, b) => m + b.lessons.length, 0), 0);
+function refresh() {
+  const done = Object.values(store).filter(Boolean).length;
+  document.getElementById("ptext").textContent = `${done} / ${total} 课`;
+  document.getElementById("pfill").style.width = (done / total * 100) + "%";
+}
+daysEl.addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  const tr = e.target.closest("tr");
+  store[tr.dataset.id] = e.target.checked;
+  tr.classList.toggle("done", e.target.checked);
+  localStorage.setItem(KEY, JSON.stringify(store));
+  refresh();
+});
+daysEl.querySelectorAll("tr.grp").forEach(tr => tr.classList.toggle("done", !!store[tr.dataset.id]));
+refresh();
+
+/* ── 级别筛选 ── */
+const lvBtns = document.querySelectorAll(".toolbar .btn[data-lv]");
+lvBtns.forEach(btn => {
+  btn.onclick = () => {
+    lvBtns.forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    const lv = btn.dataset.lv;
+    daysEl.querySelectorAll("article.day").forEach(a => {
+      a.style.display = (lv === "all" || a.dataset.lv === lv) ? "" : "none";
+    });
+  };
+});
+
+/* ── 隐藏中文自测 ── */
+const btnZh = document.getElementById("btnZh");
+btnZh.onclick = () => {
+  document.body.classList.toggle("hide-zh");
+  btnZh.classList.toggle("on");
+  btnZh.textContent = document.body.classList.contains("hide-zh") ? "显示中文" : "隐藏中文（自测）";
+};
+
+/* ── 重置 ── */
+document.getElementById("btnReset").onclick = () => {
+  if (!confirm("确定清空全部学习进度吗？")) return;
+  store = {};
+  localStorage.removeItem(KEY);
+  daysEl.querySelectorAll("tr.grp").forEach(tr => { tr.classList.remove("done"); tr.querySelector("input").checked = false; });
+  refresh();
+};
+</script>
+</body>
+</html>

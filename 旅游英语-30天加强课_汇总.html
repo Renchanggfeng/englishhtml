@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="page-tag" content="旅游英语">
+<meta name="page-desc" content="Welcome Aboard! 30天加强课：QQ English 出品的纯英文旅游教材，15 个 Unit（每 Unit 2 天）沿一次赴英旅行完整路线展开——订票、机场、登机、机上、入境、住宿、市内交通、观光、外出就餐、银行购物、买手信退房，本页提炼各单元对话精华、核心词汇与语法点并配中文翻译。">
+<meta name="page-order" content="50">
+<title>旅游英语 · 30天加强课 汇总</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#0e7a5f; --accent-soft:#e6f4ef;
+  --en:#1a3c66; --zh:#57606a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+
+/* ── 工具栏 ── */
+.toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.toolbar h1{font-size:17px;margin:0 14px 0 0;white-space:nowrap}
+.toolbar h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 13px;
+  font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.progress-wrap{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.pbar{width:130px;height:8px;background:#eef0f3;border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1280px;margin:0 auto;align-items:flex-start}
+nav.toc{position:sticky;top:56px;width:225px;flex:none;padding:18px 8px 30px 14px;
+  max-height:calc(100vh - 56px);overflow-y:auto;font-size:13px}
+nav.toc .g{font-weight:600;color:var(--accent);margin:12px 0 4px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:3px 6px;border-radius:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+main{flex:1;min-width:0;padding:20px 26px 60px}
+
+/* ── 速览卡 ── */
+.overview{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:14px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.overview h2{font-size:17px;margin:0 0 10px}
+.overview p{margin:6px 0;color:var(--zh)}
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin-top:14px}
+.route .stop{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#fbfcfd}
+.route .stop b{display:block;color:var(--accent);font-size:13px;margin-bottom:2px}
+.route .stop span{font-size:12.5px;color:var(--zh)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+.stats b{color:var(--accent);font-size:17px;margin-right:4px}
+
+/* ── 每单元卡 ── */
+article.unit{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow:hidden}
+article.unit>header{padding:14px 24px 12px;background:linear-gradient(180deg,#fbfcfd,#f0f7f4);
+  border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+article.unit>header .no{font-size:21px;font-weight:700;color:var(--accent)}
+article.unit>header h2{font-size:17.5px;margin:0}
+article.unit>header .zh-title{color:var(--ink);font-size:14.5px}
+article.unit>header .scene{color:var(--muted);font-size:13px;margin-left:auto}
+article.unit>header .done-ck{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:pointer}
+article.unit>header .done-ck input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+article.unit.checked>header{opacity:.6}
+section.blk{padding:4px 24px 12px}
+section.blk>h3{font-size:14.5px;color:var(--accent);margin:14px 0 6px;
+  border-left:4px solid var(--accent);padding-left:9px}
+table.sent{width:100%;border-collapse:collapse}
+table.sent th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;
+  padding:4px 10px;border-bottom:1px solid var(--line)}
+table.sent td{padding:7px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+tr.row:hover td{background:#fafbfc}
+td.num{width:34px;color:#c3c9d1;font-size:12.5px}
+.en{color:var(--en);font-weight:600}
+.zh{color:var(--zh)}
+.sub{display:block;font-size:12.5px;color:#98a0aa;font-weight:400;margin-top:1px}
+.hide-zh .zh{visibility:hidden}
+.hide-zh th.hzh{color:transparent}
+
+/* ── 词汇 ── */
+ul.words{list-style:none;margin:6px 0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 22px}
+ul.words li{font-size:13.5px;padding:3px 0;border-bottom:1px dashed var(--line)}
+ul.words li b{color:var(--en);font-weight:600;margin-right:6px}
+ul.words li i{color:var(--zh);font-style:normal}
+
+/* ── 语法块 ── */
+.gram{border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:8px 0;background:#fbfcfd}
+.gram .t{font-weight:700;color:var(--accent);font-size:14.5px}
+.gram .d{color:var(--zh);font-size:13.5px;margin:3px 0}
+.gram .ex{font-size:13px;margin:3px 0 0;padding-left:0;list-style:none}
+.gram .ex li{margin:2px 0}
+
+/* ── 语法总结表 ── */
+.patterns{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.patterns h2{font-size:17px;margin:0 0 4px}
+.patterns>p{color:var(--zh);margin:4px 0 14px;font-size:13.5px}
+table.gsum{width:100%;border-collapse:collapse;font-size:13.5px}
+table.gsum th{background:#f0f7f4;color:var(--accent);text-align:left;padding:8px 10px;
+  border-bottom:2px solid var(--accent-soft);font-size:12.5px}
+table.gsum td{padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top;color:var(--zh)}
+table.gsum td.g{font-weight:700;color:var(--en);white-space:nowrap}
+table.gsum tr:hover td{background:#fafbfc}
+
+/* ── 说明卡 ── */
+.notes{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.notes h2{font-size:16px;margin:0 0 8px}
+.notes ul{margin:6px 0;padding-left:22px;color:var(--zh);font-size:13.5px}
+.notes li{margin:4px 0}
+kbd{background:#f0f2f4;border:1px solid var(--line);border-radius:4px;padding:0 6px;font-size:12px}
+
+@media (max-width:900px){
+  nav.toc{display:none}
+  main{padding:14px}
+}
+@media print{
+  .toolbar,nav.toc{display:none}
+  article.unit{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>旅游英语 · 30天加强课<small>Welcome Aboard! 汇总</small></h1>
+  <button class="btn" id="btnZh">隐藏中文（自测）</button>
+  <button class="btn" id="btnReset">重置进度</button>
+  <div class="progress-wrap">
+    <span id="ptext">0 / 15 组</span>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+</div>
+
+<div class="wrap">
+<nav class="toc" id="toc"></nav>
+<main id="main">
+
+  <div class="overview" id="overview">
+    <h2>课程速览</h2>
+    <p>原教材：<b>Welcome Aboard! — 30 Day Intensive Course</b>（旅游英语·30天加强课，Student's Book，QQ English 出品）。
+    作者 Yoshito Miyosawa（前外交官、TOEIC 满分讲师）与 James Webb（牛津语言学背景、QQ English 语言顾问）。
+    教材为<b>纯英文</b>编写，共 <b>15 个 Unit</b>，按“<b>每 Unit 2 天</b>”的节奏构成 30 天课程：
+    12 个主题单元 + 3 个复习单元（Unit 6 / 11 / 15）。每单元结构为
+    <b>场景对话 → Key Words → Using the language → Exercises → Grammar Spot/Reference</b>，
+    主人公 Naomi Abe 的伦敦之行串起全书：</p>
+    <div class="route">
+      <div class="stop"><b>Unit 1 · 订票</b><span>旅行社预订机票</span></div>
+      <div class="stop"><b>Unit 2 · 机场</b><span>问询处 + 值机柜台</span></div>
+      <div class="stop"><b>Unit 3 · 登机与机上</b><span>登机广播 + 机上服务</span></div>
+      <div class="stop"><b>Unit 4 · 机上问题</b><span>座位/毛毯/耳机 + 入境表格</span></div>
+      <div class="stop"><b>Unit 5 · 入境英国</b><span>护照查验 + 海关申报</span></div>
+      <div class="stop"><b>Unit 6 · 复习一</b><span>Unit 1–5 词汇总复习</span></div>
+      <div class="stop"><b>Unit 7 · 住宿</b><span>订房中介 + 酒店入住</span></div>
+      <div class="stop"><b>Unit 8 · 酒店服务</b><span>叫醒服务 + 客房问题 + 就医</span></div>
+      <div class="stop"><b>Unit 9 · 打车地铁</b><span>伦敦出租车 + 地铁攻略</span></div>
+      <div class="stop"><b>Unit 10 · 观光问路</b><span>礼宾建议 + 问路指路</span></div>
+      <div class="stop"><b>Unit 11 · 复习二</b><span>Unit 7–10 词汇总复习</span></div>
+      <div class="stop"><b>Unit 12 · 外出就餐</b><span>餐厅推荐/订位/点餐</span></div>
+      <div class="stop"><b>Unit 13 · 银行购物</b><span>兑换支票 + 买鞋买衣</span></div>
+      <div class="stop"><b>Unit 14 · 手信与退房</b><span>买纪念品 + 结账争议</span></div>
+      <div class="stop"><b>Unit 15 · 复习三</b><span>Unit 12–14 词汇总复习</span></div>
+    </div>
+    <div class="stats">
+      <span><b>30</b>天</span><span><b>15</b>个 Unit</span><span><b>12</b>主题单元</span><span><b>3</b>复习单元</span>
+    </div>
+    <p style="margin-top:12px"><b>学习节奏建议</b>：每 Unit 花 2 天——第 1 天听对话、记 Key Words、做 Exercises；第 2 天复习 Grammar Spot、角色扮演（Role-playing）并完成词汇回顾。复习单元（6/11/15）可用作阶段自测。</p>
+  </div>
+
+  <div id="units"></div>
+
+  <div class="patterns" id="patterns">
+    <h2>语法与句型点总结</h2>
+    <p>15 个 Unit 涉及的语法/句型汇总。教材语法体系循序渐进：情态动词 → 疑问句三步 → 进行时与将来时 → 现在完成时 → 比较级/使役。</p>
+    <table class="gsum">
+      <thead><tr><th style="width:20%">语法 / 句型</th><th style="width:45%">要点</th><th>教材例句</th><th style="width:9%">出处</th></tr></thead>
+      <tbody>
+        <tr><td class="g">would like（'d like）</td><td>礼貌表达“想要”。would 是情态动词，各人称同形、不加 -s</td><td><span class="en">I'd like a return air ticket from Narita to London, please.</span></td><td>U1</td></tr>
+        <tr><td class="g">be 动词</td><td>I am / You·We·They are / He·She·It is；两大功能：存在（There is…）与系词（A = B）</td><td><span class="en">There's one right in front here. / My name is Naomi Abe.</span></td><td>U1·U2</td></tr>
+        <tr><td class="g">疑问句 Part 1（情态动词）</td><td>陈述句直接把情态动词提前 = Yes/No 问句；前面再加疑问词 = WH 问句</td><td><span class="en">Would you like a first class ticket? / When would you like to go?</span></td><td>U1</td></tr>
+        <tr><td class="g">疑问句 Part 2（be 动词）</td><td>把 be 动词提前构成疑问；否定 not 紧跟 be/助动词之后</td><td><span class="en">Is this the check-in for the flight to London? / Where is the check-in desk?</span></td><td>U2</td></tr>
+        <tr><td class="g">疑问句 Part 3（实义动词）</td><td>一般现在时借助 do/does 构成疑问与否定（does 用于第三人称单数）</td><td><span class="en">Do you have a return ticket? / Does he want a room with seaview?</span></td><td>U4·U5</td></tr>
+        <tr><td class="g">疑问词八件套</td><td>what/who/where/when/which/whose/why/how 分别问信息、身份、地点、时间、选择、所属、原因、方式</td><td><span class="en">What time do you start work? / Which one do you want?</span></td><td>U1</td></tr>
+        <tr><td class="g">May I…? / Could you…?</td><td>May I 请求许可（主语是 I）；Could you 请求对方做事，比 can you 客气</td><td><span class="en">May I have your ticket and passport? / Could you put your baggage on this scale?</span></td><td>U2</td></tr>
+        <tr><td class="g">Can I…?</td><td>询问“我可不可以做某事”</td><td><span class="en">Can I take this briefcase as hand baggage?</span></td><td>U2·U13</td></tr>
+        <tr><td class="g">will（将来）</td><td>谈未来的情态动词；will + be + …ing 表示不久将来的动作</td><td><span class="en">We will be landing in about 2 hours. / I'll get one for you.</span></td><td>U3·U4</td></tr>
+        <tr><td class="g">现在进行时</td><td>be + 现在分词，表示说话时正在进行的临时动作</td><td><span class="en">We are waiting for take-off clearance.</span></td><td>U3</td></tr>
+        <tr><td class="g">祈使句 + please</td><td>祈使句隐含主语 you，动词原形；加 please 变礼貌请求，否定用 Don't；也用于指路</td><td><span class="en">Please fasten your seat belts. / Don't inflate it inside the aircraft. / Turn left and keep on the main road.</span></td><td>U3·U9·U10</td></tr>
+        <tr><td class="g">have 作实义动词</td><td>疑问/否定要借 do/does（英国英语 have got 除外）</td><td><span class="en">Do you have a return ticket? / He doesn't have a ticket.</span></td><td>U5</td></tr>
+        <tr><td class="g">be going to</td><td>表示已计划好的将来</td><td><span class="en">How long are you going to stay in the UK?</span></td><td>U5</td></tr>
+        <tr><td class="g">现在完成时</td><td>have/has + 过去分词：过去发生的动作对现在有影响，或过去的经历；不与过去时间状语连用</td><td><span class="en">You've come into the Green Channel. / I've been to Italy.</span></td><td>U5</td></tr>
+        <tr><td class="g">可数 / 不可数名词</td><td>luggage、baggage、furniture 不可数，无复数，量用 piece 表示</td><td><span class="en">Some new pieces of furniture have arrived.</span></td><td>U2</td></tr>
+        <tr><td class="g">比较级与最高级</td><td>fast–faster–fastest / good–better–best / cheap–cheaper–cheapest</td><td><span class="en">What's the fastest way to get to central London?</span></td><td>U7</td></tr>
+        <tr><td class="g">强调式 do</td><td>助动词 do/does 强调谓语动词，表示“确实、真的”</td><td><span class="en">We do serve dinner in the Roof Garden.</span></td><td>U7</td></tr>
+        <tr><td class="g">使役动词</td><td>get/ask/tell/want + sb + to do；have + sb + do（美式更常用）</td><td><span class="en">I'll get a porter to take your luggage up. / I'll have a taxi waiting for you.</span></td><td>U7·U8</td></tr>
+        <tr><td class="g">let / help + sb + (to) do</td><td>let 后接不带 to 的动词原形；help 的 to 可省</td><td><span class="en">Let me help you. / Could you help me put this bag in the overhead compartment?</span></td><td>U3·U4</td></tr>
+        <tr><td class="g">缩写形式</td><td>'d like = would like；Where's/That's/There's；I'll = I will；you've = you have；isn't = is not</td><td><span class="en">I'll have the chicken, please.</span></td><td>各单元</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="notes" id="notes">
+    <h2>使用说明</h2>
+    <ul>
+      <li>本页为英文教材的中文辅助汇总：对话句保留教材英文原文，中文翻译为本页配译；Key Words 的中文释义由教材英文释义转译。</li>
+      <li>勾选每个 Unit 右上角的<b>“已掌握”</b>复选框标记该单元完成（组 = Unit，共 15 组），进度自动保存在本机浏览器（localStorage），可用工具栏 <kbd>重置进度</kbd> 清空（需确认）。</li>
+      <li>点 <kbd>隐藏中文（自测）</kbd> 可遮住全部中文（对话译文、词汇释义、语法说明中的中文），看英文回想意思再核对。</li>
+      <li>建议节奏：每 Unit 2 天，共 30 天；Unit 6 / 11 / 15 是复习单元，作阶段自测用。</li>
+      <li>对话取每单元最核心句（6–10 句），非全文；Key Words 挑高频词 8–12 个。完整内容请配合原教材音频练习听力。</li>
+      <li>来源文件：<code>tmp/extract/旅游英语-30天加强课__WelcomeAboardUnit1.txt ~ Unit15.txt</code>（共 15 个提取文本，Unit 1 前的封面与作者介绍已略）。</li>
+    </ul>
+  </div>
+
+</main>
+</div>
+
+<script>
+/* ── 单元数据 ── */
+const UNITS = [
+{no:1, en:"Making Travel Arrangements", zh:"安排行程", scene:"At a travel agency · 旅行社订票",
+ dlg:[
+  ["Good afternoon. I'd like a return air ticket from Narita to London, please.","下午好。我想买一张成田到伦敦的往返机票。"],
+  ["Certainly. When would you like to go?","好的。您想什么时候出发？"],
+  ["I'd like to take the flight on Sunday and come back next Friday.","我想乘周日的航班，下周五回来。"],
+  ["Would you like to buy a first class air ticket?","您要买头等舱机票吗？"],
+  ["No. Economy class.","不，经济舱。"],
+  ["And your name is . . .?","请问您的名字是……？"],
+  ["How would you like to pay, Ms. Abe?","Abe 女士，您想怎么付款？"],
+  ["I'd like to pay by credit card.","我想用信用卡支付。"],
+  ["Certainly. Here is your ticket.","好的。这是您的机票。"]
+ ],
+ words:[
+  ["travel agency","旅行社（购买机票的地方）"],["'d like","would like 的缩写，礼貌地说“想要”"],
+  ["return (UK) / round trip (US)","往返"],["single (UK) / one way (US)","单程"],
+  ["certainly","当然，好的"],["Ms /məz/","女士（婚否不详时用）"],
+  ["flight","航班；乘飞机的旅程"],["economy class","经济舱"]
+ ],
+ gram:[
+  {t:"would like = 礼貌的 want", d:"would 是情态动词（modal auxiliary），表达说话者的态度；各人称同形，绝不能加 -s。缩写 'd like。", ex:["I'd like a return air ticket, please.","She would like to book a table for this evening."]},
+  {t:"一般现在时：第三人称单数加 -s", d:"I/You/We/They want；He/She wants。情态动词不受此影响。", ex:["He wants a business class ticket."]},
+  {t:"疑问句入门（Part 1）：情态动词疑问句", d:"先把陈述句中的情态动词提到句首 = Yes/No 问句；再在句首加疑问词（When/Why…）= WH 问句。", ex:["Would you like a first class ticket?（Yes/No）","When would you like to go?（WH）"]},
+  {t:"be 动词与疑问词", d:"I am / you are / he·she is；常用疑问词：what, who, where, when, which, whose, why, how。", ex:["My name is Naomi Abe.","Which time do you start work? → What time do you start work?"]}
+ ]},
+
+{no:2, en:"At the Airport", zh:"在机场", scene:"Information desk & check-in · 问询处与值机",
+ dlg:[
+  ["Excuse me. Where's the check-in desk for Eurasia Airlines?","打扰一下，欧亚航空的值机柜台在哪里？"],
+  ["That's in Terminal 2. This is Terminal 1.","在 2 号航站楼，这里是 1 号。"],
+  ["Is there a shuttle bus between terminals?","航站楼之间有摆渡车吗？"],
+  ["Yes. There's one right in front here.","有，就在前面。"],
+  ["Is this the check-in for the flight to London?","这里是飞伦敦航班的值机柜台吗？"],
+  ["May I have your ticket and your passport, please?","请出示您的机票和护照。"],
+  ["Could you put your baggage on this scale, please?","请把行李放到秤上。"],
+  ["Where would you like to sit? Smoking or no smoking?","您想坐哪里？吸烟区还是无烟区？"],
+  ["Would you like an aisle or a window seat?","您要过道座还是靠窗座？"],
+  ["Here is your boarding card and this is your baggage label. Your gate number is 18.","这是您的登机牌和行李标签，登机口是 18 号。"]
+ ],
+ words:[
+  ["check-in","值机（报到）处"],["terminal","航站楼"],
+  ["shuttle bus","摆渡车（两点间往返接送）"],["baggage / luggage","行李（不可数）"],
+  ["scale","秤"],["aisle seat","过道座位"],
+  ["board","登机（上飞机、船、车）"],["boarding card (UK) = boarding pass (US)","登机牌"],
+  ["proceed to","前往"],["Excuse me","打扰一下（引起注意）"]
+ ],
+ gram:[
+  {t:"缩写（Contraction）", d:"Where's = Where is；That's = That is；There's = There is。", ex:["There's one right in front here."]},
+  {t:"be 动词的两大功能", d:"① 存在（某处有某物）：There is a book on the desk. ② 系词（A = B）：My name is Naomi.", ex:["Is there a shuttle bus between terminals?"]},
+  {t:"May I…? / Could you…? 礼貌请求", d:"May I 请求许可（主语 I）；Could you 请求对方做某事。", ex:["May I borrow your pen?","Could you pass me the butter, please?"]},
+  {t:"Can I…? 询问可否", d:"问自己能不能做某事。", ex:["Can I take this briefcase as hand baggage?"]},
+  {t:"疑问句 Part 2：be 动词疑问句与否定", d:"be 动词提前构成疑问；not 紧跟 be/助动词之后（isn't = is not）。", ex:["Is this the check-in for the flight to London? / No, it isn't."]},
+  {t:"可数与不可数名词", d:"furniture、luggage、baggage 不可数：不说 two luggages，要说 two bags / pieces of luggage。", ex:["Some new pieces of furniture have arrived."]}
+ ]},
+
+{no:3, en:"At the Gate & On the Plane (1)", zh:"登机口与机上（一）", scene:"Gate announcements & in-flight service · 登机广播与机上服务",
+ dlg:[
+  ["We would like to invite our first- and business-class passengers to board at gate 18.","请头等舱和商务舱乘客到 18 号登机口登机。"],
+  ["We would now like to invite all passengers seated in Zone 2 – that's rows 16-35 – to begin boarding.","现在请 2 区（16–35 排）乘客开始登机。"],
+  ["Excuse me. Could you help me put this bag in the overhead compartment?","打扰一下，能帮我把包放到头顶行李舱吗？"],
+  ["Certainly. There you go.","好的，放好了。"],
+  ["Welcome aboard Eurasia Airlines flight 401 bound for London.","欢迎乘坐欧亚航空 401 航班，飞往伦敦。"],
+  ["We are sorry for the delay in our departure from Narita.","很抱歉从成田出发有所延误。"],
+  ["We are waiting for take-off clearance from the Air Traffic Control tower.","我们正在等待塔台的起飞许可。"],
+  ["Please fasten your seat belts and secure all baggage underneath your seat or in the overhead compartments.","请系好安全带，把行李放在座位下方或头顶行李舱内。"],
+  ["Would you like fish or chicken?","您要鱼肉还是鸡肉？"],
+  ["I'll have the chicken, please. A Diet Coke, no ice, please.","我要鸡肉，再来一杯健怡可乐，不加冰。"]
+ ],
+ words:[
+  ["passenger","乘客"],["invite","邀请（请某人做某事）"],
+  ["assistance","帮助"],["aboard","在（上）飞机/船/车"],
+  ["bound for (a place)","开往/飞往（某地）"],["delay","延误"],
+  ["departure","出发"],["take-off","起飞"],
+  ["clearance","（官方）许可"],["fasten","系紧（安全带）"],
+  ["secure","固定好"],["compartment","（行李）隔舱；compartment 行李舱"]
+ ],
+ gram:[
+  {t:"will：谈将来的情态动词", d:"广播、预告常用。", ex:["We will be landing shortly."]},
+  {t:"help sb (to) do sth", d:"help 后动词不定式的 to 可省略。", ex:["Could you help me put this bag in the overhead compartment?"]},
+  {t:"现在进行时 be + doing", d:"表示说话时正在进行的临时动作；一般现在时表习惯或事实。", ex:["We are waiting for take-off clearance.（正在等）","I speak Japanese.（习惯）"]},
+  {t:"祈使句变礼貌请求", d:"祈使句（隐含主语 you，动词原形）加 please 即礼貌；更客气用 Could you please…? / May I…?", ex:["Fasten your seat belts. → Please fasten your seat belts. / Could you please fasten your seat belts?"]},
+  {t:"没听清时说 Sorry?（升调）", d:"请对方重复。机上点餐时 Fish or chicken? 听不清可直接回 Sorry?", ex:["Sorry? — Would you like fish or chicken?"]}
+ ]},
+
+{no:4, en:"On the Plane (2)", zh:"机上（二）", scene:"Problems on board & arrival forms · 机上问题与入境表格",
+ dlg:[
+  ["Excuse me. I think you are in my seat.","打扰一下，我想您坐的是我的座位。"],
+  ["Oh, let me check my boarding card. . . Yes, I'm sorry. My mistake.","哦，我看看登机牌……对不起，我搞错了。"],
+  ["Excuse me. Could you give me another blanket?","打扰一下，能再给我一条毯子吗？"],
+  ["Would you like a pillow as well?","还要枕头吗？"],
+  ["Excuse me. My headset doesn't work. Could you have another one?","打扰一下，我的耳机坏了，能换一个吗？"],
+  ["In a moment, we will be distributing Arrival Cards and Customs Declaration forms.","稍后我们将发放入境卡和海关申报单。"],
+  ["Please fill in the forms in BLOCK letters by the time we arrive.","请在抵达前用大写字母填写表格。"],
+  ["May I borrow a pen to fill in all these forms for customs and immigration?","能借支笔填这些海关和入境表格吗？"],
+  ["I don't have one on me right now, but I'll get one for you.","我手头没有，我去给您拿一支。"],
+  ["Do you know when we will be landing? — In about 2 hours.","您知道我们什么时候降落吗？——大约两小时后。"]
+ ],
+ words:[
+  ["distribute","分发"],["arrival card / disembarkation card","入境卡（着陆卡）"],
+  ["customs declaration form","海关申报单"],["fill in (UK) = fill out (US)","填写（表格）"],
+  ["by the time","在……之前（不迟于）"],["borrow","借（入）"],
+  ["customs","海关（检查行李处）"],["immigration","入境检查处（查验证件）"],
+  ["form","表格"],["block letters","大写字母（LIKE THESE）"],
+  ["land","降落"],["occupation","职业"]
+ ],
+ gram:[
+  {t:"let sb do sth", d:"let 后接不带 to 的动词原形。", ex:["Let me check my boarding card. / Let me help you."]},
+  {t:"疑问句 Part 3：实义动词疑问句", d:"一般现在时借助 do（第三人称单数用 does）构成疑问与否定；WH 问句 = 疑问词 + do/does 问句。", ex:["You want a room with seaview. → Do you want a room with seaview?","Why does he want a room with seaview?"]},
+  {t:"will + be + …ing：不久的将来", d:"表示很快就要发生的动作。", ex:["We will be distributing Arrival Cards in a moment."]},
+  {t:"one 作代词", d:"one = a + 名词，避免重复。", ex:["I don't have one on me right now.（one = a pen）"]}
+ ]},
+
+{no:5, en:"Entering the UK", zh:"入境英国", scene:"Passport control & customs · 护照查验与海关",
+ dlg:[
+  ["May I have your passport and arrival card, please?","请出示您的护照和入境卡。"],
+  ["What's the nature of your visit? Business or pleasure?","您来访的目的是什么？商务还是旅游？"],
+  ["Pleasure. I'm on holiday.","旅游，我来度假。"],
+  ["How long are you going to stay in the UK?","您要在英国停留多久？"],
+  ["About one week. I work as an accountant for a Japanese trading company.","大约一周。我在一家日本贸易公司做会计。"],
+  ["Do you have a return ticket? — Yes, here it is.","您有返程机票吗？——有，在这里。"],
+  ["That's fine. Enjoy your stay.","好的，祝您逗留愉快。"],
+  ["Can I see your passport, please? How long are you staying in the UK?","能看下您的护照吗？您在英国停留多久？"],
+  ["You've come into the Green Channel and it means you have nothing to declare.","您走的是绿色通道，就是说您没有需要申报的物品。"],
+  ["Do you have any spirits, wine or tobacco in excess of the duty free allowance?","您有超过免税额的烈酒、葡萄酒或烟草吗？"]
+ ],
+ words:[
+  ["immigration","入境（进入他国）"],["occupation","职业"],
+  ["accountant","会计"],["goods","物品，商品"],
+  ["allow","允许"],["provided","如果，只要"],
+  ["intend","打算，计划"],["souvenir","纪念品"],
+  ["prohibit","禁止"],["restrict","限制"],
+  ["unless","除非（if…not）"],["spirits","烈性酒"]
+ ],
+ gram:[
+  {t:"have 作实义动词", d:"疑问、否定要借 do/does（不像 have got）。", ex:["Do you have a return ticket? / He doesn't have a ticket."]},
+  {t:"be going to：已计划的将来", d:"表示事先安排好的事。", ex:["How long are you going to stay in the UK?","She is going to visit her uncle this weekend."]},
+  {t:"现在完成时 have/has + 过去分词", d:"过去发生的动作对现在有影响，或表述经历；不能与过去时间状语（at 12 noon, two years ago）连用。", ex:["You've come into the Green Channel.","I've been to Italy. / I went to Italy two years ago."]},
+  {t:"海关小知识", d:"欧盟外入境英国免税额：200 支香烟、4 升葡萄酒、1 升 22 度以上烈酒、16 升啤酒、其他物品价值不超过 £390。超出或携带违禁品走红色通道申报，否则走绿色通道。", ex:[]}
+ ]},
+
+{no:6, en:"Review 1", zh:"复习一", scene:"Vocab review of Units 1–5 · 第 1–5 单元词汇总复习（无新对话）",
+ dlg:[
+  ["I'd like a return air ticket from Narita to London, please.","（U1）我想买一张成田到伦敦的往返机票。"],
+  ["Where's the check-in desk for Eurasia Airlines?","（U2）欧亚航空的值机柜台在哪里？"],
+  ["Would you like an aisle or a window seat?","（U2）您要过道座还是靠窗座？"],
+  ["We are waiting for take-off clearance.","（U3）我们正在等待起飞许可。"],
+  ["Please fill in the forms in BLOCK letters.","（U4）请用大写字母填写表格。"],
+  ["What's the nature of your visit? Business or pleasure?","（U5）您来访的目的是商务还是旅游？"],
+  ["Do you have anything to declare?","（U5）您有需要申报的物品吗？"]
+ ],
+ words:[
+  ["travel agency","旅行社"],["return / single","往返 / 单程"],
+  ["terminal / shuttle bus","航站楼 / 摆渡车"],["boarding card","登机牌"],
+  ["take-off / landing","起飞 / 降落"],["compartment","行李舱"],
+  ["disembarkation card","入境卡"],["customs / immigration","海关 / 入境检查"],
+  ["allowance","（免税）限额"],["declare","申报"]
+ ],
+ gram:[
+  {t:"阶段自测", d:"本单元是 Unit 1–5 的词汇连线复习，无新语法。建议遮住右栏中文，看英文词回想释义。", ex:[]}
+ ]},
+
+{no:7, en:"Accommodation", zh:"住宿安顿", scene:"Accommodation agency & hotel check-in · 订房中介与酒店入住",
+ dlg:[
+  ["Good afternoon. I'm looking for some accommodation, please.","下午好，我想找住处。"],
+  ["Could you spell it out for me, please? — A-B-E.","请拼写一下您的名字。——A-B-E。"],
+  ["What kind of accommodation would you like?","您想要什么样的住宿？"],
+  ["A single room with bathroom, please.","一间带浴室的单人间。"],
+  ["And how much would you like to pay? — Will £50 be all right?","您想付多少钱？——50 英镑可以吗？"],
+  ["What's the fastest way to get to central London from here?","从这里到伦敦市中心最快的方式是什么？"],
+  ["Take the Heathrow Express. Journey time is 15 minutes.","乘希思罗快线，行程 15 分钟。"],
+  ["Good afternoon. I have a reservation here under the name of Abe.","下午好，我以 Abe 的名字订了房。"],
+  ["Would you like to register? Just fill in this form, please.","请您登记一下，填这张表格。"],
+  ["And how will you be paying? — Is Visa OK?","您怎么付款？——Visa 卡可以吗？"]
+ ],
+ words:[
+  ["accommodation","住处；住宿"],["be looking for","正在找"],
+  ["spell (out)","拼写（逐字母念出）"],["single room / double room","单人间 / 双人间"],
+  ["book / reservation","预订"],["receptionist","接待员"],
+  ["register","登记"],["serve","供应（餐食）；上菜"],
+  ["available","可用的"],["porter","行李员"]
+ ],
+ gram:[
+  {t:"最高级问路：What's the fastest way to…?", d:"形容词三级：fast–faster–fastest，good–better–best，cheap–cheaper–cheapest。", ex:["What's the fastest way to get to central London?","What's the best way to learn English?"]},
+  {t:"强调式 do", d:"助动词 do/does 加在谓语动词前表强调：“确实、真的”。", ex:["We do serve dinner in the Roof Garden.","You do look nice today!"]},
+  {t:"使役动词", d:"get/ask/tell/want + sb + to do；have + sb + do（美式常用，get 英式口语常用）。", ex:["I'll get a porter to take your luggage up.","I'll have the waiter bring you the menu."]}
+ ]},
+
+{no:8, en:"At the Hotel", zh:"酒店服务", scene:"Wake-up call, problems & at the hospital · 叫醒服务、客房问题与就医",
+ dlg:[
+  ["Could you give me a wake-up call tomorrow morning? I'm in 425.","能明天早上给我打个叫醒电话吗？我住 425 房。"],
+  ["What time would you like us to call you? — At 7, please.","您希望我们几点叫您？——7 点。"],
+  ["We'll call you tomorrow morning at 7. Can I help you with anything else?","我们明早 7 点叫您。还有别的事吗？"],
+  ["The heating in my room is not working and it's very cold here.","我房间的暖气坏了，这里很冷。"],
+  ["I'll send someone immediately to fix it. Anything else?","我马上派人去修。还有别的吗？"],
+  ["Could you tell the people in the room next to me to be quiet at night? They were screaming all night and I couldn't sleep.","能告诉隔壁房客晚上安静点吗？他们整夜大叫，我没法睡。"],
+  ["Could you tell me where I could make a photocopy of a document?","请问在哪里可以复印文件？"],
+  ["Is there a hospital near here? I'm not feeling well. I would like to see a doctor.","附近有医院吗？我不舒服，想看医生。"],
+  ["What seems to be the trouble? — I have a sore throat.","您哪里不舒服？——我嗓子疼。"],
+  ["You have a temperature, but it's nothing serious. It's probably just the flu. Take one tablet every four hours.","您有点发烧，但不严重，可能只是流感。每四小时服一片药。"]
+ ],
+ words:[
+  ["Front Desk","前台（= reception）"],["That's about it","就这些了"],
+  ["work","（机器）正常运转"],["immediately","立刻"],
+  ["fix","修理"],["scream","尖叫"],
+  ["absolutely","完全（同意）"],["in the vicinity","在附近"],
+  ["destination","目的地"],["sore","疼痛的"],
+  ["symptom","症状"],["prescription","处方"]
+ ],
+ gram:[
+  {t:"症状表达三件套", d:"head→headache 头疼；stomach→stomachache 胃疼；back→backache 背疼；dizzy 头晕、nauseous 恶心、diarrhea 腹泻、vomit 呕吐。", ex:["If your head hurts, you have a headache.","If you feel you need to vomit, you feel nauseous."]},
+  {t:"使役句式复习", d:"tell/ask sb to do 在酒店求助时高频使用。", ex:["Could you tell the people next to me to be quiet?","I'll have a taxi waiting for you at three thirty."]}
+ ]},
+
+{no:9, en:"Taking a Taxi & the Tube", zh:"打车与地铁", scene:"London cab & the Underground · 伦敦出租车与地铁",
+ dlg:[
+  ["Taxi! Taxi! — Where to, madam?","出租车！——女士，去哪儿？"],
+  ["Covent Garden, please. I have to go to the Royal Opera House.","请去科文特花园，我要去皇家歌剧院。"],
+  ["The performance starts at 7:30. Do you think I'll make it?","演出 7 点半开始，您觉得我赶得上吗？"],
+  ["Yes, easily. It's only five past seven. Don't worry. I'm taking a route without much traffic.","轻松赶得上。现在才 7 点 5 分，别担心，我走一条不堵的路线。"],
+  ["How much is it? — It's twenty-two pounds on the meter.","多少钱？——计价器上是 22 英镑。"],
+  ["Here's twenty-five. Keep the change.","给您 25，不用找了。"],
+  ["Could you tell me how to ride the Tube in London?","能告诉我怎么坐伦敦地铁吗？"],
+  ["Purchase an off-peak one-day Travelcard for Zone 1 and 2.","买一张非高峰时段的 1、2 区单日旅行卡。"],
+  ["Have your Travelcard ready as soon as you reach the ticket barrier and pass it through the slot.","到检票闸口前把卡准备好，从闸口插槽刷过去。"],
+  ["Try to have some small change on you in case you need to use the bathroom at a Tube station.","随身带些零钱，以防需要在地铁站上厕所。"]
+ ],
+ words:[
+  ["madam (UK) / ma'am (US)","女士（尊称）"],["performance","演出"],
+  ["meter","（出租车）计价器"],["keep the change","不用找零"],
+  ["the Tube","伦敦地铁"],["barrier","（检票）闸口"],
+  ["slot","（投卡）狭槽"],["change","零钱"],
+  ["off-peak","非高峰时段的"],["Travelcard","（伦敦）旅行卡"]
+ ],
+ gram:[
+  {t:"祈使句指路", d:"祈使句也用于指路/给操作指引：Find…, Pick up…, Purchase…, Have… ready。", ex:["Pick up a paper map from the holder next to the wall map."]},
+  {t:"Do you think I'll make it?", d:"make it = 赶上/办成。will 谈将来。", ex:["The performance starts at 7:30. Do you think I'll make it?"]}
+ ]},
+
+{no:10, en:"Sightseeing & Directions", zh:"观光与问路", scene:"Concierge advice & asking the way · 礼宾建议与问路",
+ dlg:[
+  ["The front desk told me to ask you for sightseeing advice.","前台让我来找您咨询观光建议。"],
+  ["I'd be more than happy to help. I am the hotel's concierge.","非常乐意效劳，我是酒店礼宾。"],
+  ["A concierge directs hotel visitors to popular places to visit, shop, and eat.","礼宾为住客指引游览、购物和用餐的热门去处。"],
+  ["How about starting at Big Ben, one of London's most famous landmarks?","从大本钟开始怎么样？它是伦敦最著名的地标之一。"],
+  ["People say don't leave London without visiting Big Ben!","人们说：来伦敦不能不看大本钟！"],
+  ["Excuse me. Could you tell me the way to the post office, please?","打扰一下，请问去邮局怎么走？"],
+  ["Turn left outside the hotel and go straight ahead until you get to the main road.","出酒店左转，一直走到大路。"],
+  ["Turn left there and you'll easily find the post office. You can't miss it.","在那里左转就能轻松找到邮局，不会错过的。"],
+  ["Is it far to walk? — It's within walking distance. It's a ten-minute walk.","走路远吗？——步行可达，约十分钟。"],
+  ["It's opposite the theatre, on the right hand side.","在右手边，剧院对面。"]
+ ],
+ words:[
+  ["concierge","礼宾（司）"],["be familiar with","熟悉，了解"],
+  ["landmark","地标"],["museum / gallery","博物馆 / 美术馆"],
+  ["spectacular","壮观的，极好的"],["illuminate","照亮"],
+  ["in fact","事实上（强调刚说的话）"],["traffic lights","红绿灯"],
+  ["opposite","在……对面"],["pedestrian crossing","人行横道"],
+  ["within walking distance","步行可达"],["You can't miss it","你不会错过的"]
+ ],
+ gram:[
+  {t:"问路与指路句型", d:"问：Could you tell me the way to…? / Is it far to walk? 指：Turn left/right, go straight ahead, keep on the main road, It's on the right hand side, It's next to/opposite…", ex:["Could you tell me the way to the nearest bank, please?","Go up there and the bank is about fifty meters up there on the right."]},
+  {t:"In fact 表强调", d:"用于强调刚说过的内容。", ex:["I know the mayor really well. In fact, I had dinner with him last week."]}
+ ]},
+
+{no:11, en:"Review 2", zh:"复习二", scene:"Vocab review of Units 7–10 · 第 7–10 单元词汇总复习（无新对话）",
+ dlg:[
+  ["I'm looking for some accommodation, please.","（U7）我在找住处。"],
+  ["What's the fastest way to get to central London from here?","（U7）到伦敦市中心最快怎么走？"],
+  ["I have a reservation here under the name of Abe.","（U7）我以 Abe 的名字订了房。"],
+  ["Could you give me a wake-up call tomorrow morning?","（U8）明早能给我打叫醒电话吗？"],
+  ["The heating in my room is not working.","（U8）我房间的暖气坏了。"],
+  ["Here's twenty-five. Keep the change.","（U9）给您 25，不用找了。"],
+  ["Could you tell me the way to the post office, please?","（U10）请问去邮局怎么走？"]
+ ],
+ words:[
+  ["accommodation","住处"],["register","登记"],
+  ["wake-up call","叫醒服务"],["in the vicinity","在附近"],
+  ["meter","计价器"],["the Tube","伦敦地铁"],
+  ["concierge","礼宾"],["landmark","地标"],
+  ["pedestrian crossing","人行横道"],["within walking distance","步行可达"]
+ ],
+ gram:[
+  {t:"阶段自测", d:"本单元是 Unit 7–10 的词汇连线与填空复习。填空题如：Could you ___ it out for me?（spell）/ I'll just ___ a porter to take your luggage up.（get）。", ex:[]}
+ ]},
+
+{no:12, en:"Eating Out", zh:"外出就餐", scene:"Restaurant advice, reservation & ordering · 餐厅推荐、订位与点餐",
+ dlg:[
+  ["I'd like to eat out at a good restaurant tomorrow evening. Could you recommend one?","明晚我想去家好餐厅吃饭，能推荐一家吗？"],
+  ["I'm always at your service! What is your budget for the dinner?","随时为您效劳！晚餐预算是多少？"],
+  ["I'm prepared to spend up to £50.","我准备花最多 50 英镑。"],
+  ["In that case, may I suggest QQ Brasserie? It's a very popular tourist spot, with great food and music.","那样的话，我推荐 QQ Brasserie，很受游客欢迎，美食音乐俱佳。"],
+  ["I'd like to reserve a table for one. It's for tomorrow at 7 o'clock.","我想订一张一人桌，明天晚上 7 点。"],
+  ["Let me repeat back to you the information I have. Is that correct?","我向您重复一下订单信息，对吗？"],
+  ["Are you ready to order? — Yes, I think so. I'll have home made soup as a starter.","可以点餐了吗？——可以了。我先要一份家常汤作开胃菜。"],
+  ["And for the main course? — I'll have the fillet steak, please.","主菜要什么？——请给我菲力牛排。"],
+  ["Well-done, medium or rare? — Medium, please.","要全熟、五分还是三分？——五分熟。"],
+  ["Is there a good French wine you can recommend? — The Asda Beaujolais 2009 is very nice.","有可以推荐的法国红酒吗？——Asda 的博若莱 2009 很不错。"],
+  ["Would you like a dessert? — Just a single espresso, please. And could I have the bill, please?","要甜点吗？——只要一杯浓缩咖啡，麻烦结账。"]
+ ],
+ words:[
+  ["recommend","推荐"],["be at sb's service","随时为您效劳"],
+  ["budget","预算"],["be prepared to","愿意（花费）"],
+  ["reserve / reservation","预订"],["starter (UK) / appetizer (US)","开胃菜"],
+  ["main course","主菜"],["well-done / medium / rare","全熟 / 五分 / 三分熟"],
+  ["dessert","甜点"],["bill (UK) / check (US)","账单"],
+  ["correct","正确的"]
+ ],
+ gram:[
+  {t:"点餐两句型：I'll have… / I'd like…", d:"I'll have… 当场决定点某样菜；I'd like… 礼貌地说想要。", ex:["I'll have the fillet steak, please.","I'd like some red wine."]},
+  {t:"may I suggest…?", d:"May I + 动词原形，提出建议的客气说法。", ex:["In that case, may I suggest QQ Brasserie?"]}
+ ]},
+
+{no:13, en:"At a Bank & Shopping", zh:"银行与购物", scene:"Traveler's checks, shoes & dresses · 兑换支票与买鞋买衣",
+ dlg:[
+  ["Can I change some yen traveler's checks into pounds, please?","我能把日元旅行支票换成英镑吗？"],
+  ["How much would you like to change? — 20,000 yen, please.","您想换多少？——2 万日元。"],
+  ["Could you sign the checks, please? — Yes. May I borrow a pen?","请在支票上签名。——好的，能借支笔吗？"],
+  ["By the way, can I use my card in this cash machine?","顺便问下，这台取款机能用我的卡吗？"],
+  ["I like these shoes, but do you have them in white?","我喜欢这双鞋，有白色的吗？"],
+  ["They feel a bit tight actually. Do you have a larger size?","其实有点紧，有大一号的吗？"],
+  ["Are these shoes leather? — Yes, they are.","这鞋是皮的吗？——是的。"],
+  ["Are you being served? — No, I'm not. I'd like a navy blue dress.","有人接待您吗？——还没有，我想要一条藏青色连衣裙。"],
+  ["Could you measure me? — Size 30 should fit you.","能帮我量一下吗？——30 号应该合您身。"],
+  ["I'd like to try it on, please. Where is the fitting room?","我想试穿一下，试衣间在哪里？"],
+  ["How are you getting on, madam? Oh, that looks very nice on you.","女士，试得怎么样？哦，您穿着真好看。"]
+ ],
+ words:[
+  ["teller / cashier","银行柜员"],["cash machine (UK) / ATM (US)","自动取款机"],
+  ["by the way","顺便说一句"],["shop assistant (UK) / sales clerk (US)","店员"],
+  ["tight","（衣服鞋）紧"],["fit","合身"],
+  ["try on","试穿"],["fitting room","试衣间"],
+  ["stand","（挂衣服的）衣架杆"],["label","标签（尺码价格）"],
+  ["washable","可水洗的"]
+ ],
+ gram:[
+  {t:"in + 材质/颜色", d:"用 in 表示某物的材质或颜色。", ex:["Do you have them in white?","I would prefer it in blue instead of red."]},
+  {t:"买或不买", d:"要买说 I'll take it/them；不买委婉说 I'll leave it/them. Thanks.", ex:["Good. I think I'll take them."]},
+  {t:"货币无复数", d:"100 pounds, 100 dollars, 100 euros，但日语日元单位不加 s（不说 100 yens）。", ex:[]}
+ ]},
+
+{no:14, en:"Buying Gifts and Checking Out", zh:"买手信与退房", scene:"Souvenirs & checking out · 纪念品与酒店结账",
+ dlg:[
+  ["Yes, does this scarf come in beige?","请问这条围巾有米色的吗？"],
+  ["No, we don't have it in beige . . . only in orange, red, and grey.","没有米色，只有橙色、红色和灰色。"],
+  ["And it's on offer, right? — Yes. All our scarves are 20% off today and tomorrow.","这条在打折对吧？——是的，今明两天所有围巾七折（减 20%）。"],
+  ["I'll take three orange scarves and four grey ones. Could you gift-wrap them individually?","我要三条橙的、四条灰的，能分开做礼品包装吗？"],
+  ["We sell souvenirs, too. Some mugs, fridge magnets, T-shirts and more.","我们也卖纪念品：马克杯、冰箱贴、T 恤等等。"],
+  ["Let me browse around the shop.","我随便逛逛。"],
+  ["Could you tell me what time I have to check out tomorrow?","请问明天几点前要退房？"],
+  ["You'll have to leave your room by 12pm.","中午 12 点前要退房。"],
+  ["I'm checking out. Here is the key to my room.","我要退房，这是房间钥匙。"],
+  ["My bill says that I owe £10 for a movie, but I never ordered one.","账单上写着电影费 10 镑，可我从没点过电影。"],
+  ["That's absolutely wrong! I was out at a restaurant Wednesday evening.","这完全不对！周三晚上我在外面餐厅吃饭。"]
+ ],
+ words:[
+  ["souvenir","纪念品"],["on offer (UK) / on sale (US)","特价，打折"],
+  ["20% off","减价 20%（七折）"],["gift-wrap","做礼品包装"],
+  ["individually","分开地，逐个地"],["fridge magnet","冰箱贴"],
+  ["browse","随便逛看（商品）"],["check out","退房"],
+  ["owe","欠（钱）"],["charge","收取（费用）"],
+  ["storage","（行李）寄存处"]
+ ],
+ gram:[
+  {t:"come in + 颜色", d:"表示某商品“有……颜色的款式”。", ex:["Does this scarf come in beige?"]},
+  {t:"账单争议表达", d:"My bill says… / I never ordered… / We can take the £10 off your bill.（从账单里减去）", ex:["Let's see what I can do. Yes, we can take the £10 off your bill."]}
+ ]},
+
+{no:15, en:"Review 3", zh:"复习三", scene:"Vocab review of Units 12–14 · 第 12–14 单元词汇总复习（无新对话）",
+ dlg:[
+  ["What is your budget for the dinner?","（U12）您晚餐预算是多少？"],
+  ["I'd like to reserve a table for one.","（U12）我想订一张一人桌。"],
+  ["Could I have the bill, please?","（U12）麻烦结账。"],
+  ["Can I change some yen traveler's checks into pounds, please?","（U13）我能把日元旅行支票换成英镑吗？"],
+  ["Are you being served?","（U13）有人接待您吗？"],
+  ["Does this scarf come in beige?","（U14）这条围巾有米色的吗？"],
+  ["Could you gift-wrap them individually?","（U14）能分开做礼品包装吗？"],
+  ["I'm checking out. Here is the key to my room.","（U14）我要退房，这是房卡。"]
+ ],
+ words:[
+  ["budget","预算"],["starter / main course / dessert","开胃菜 / 主菜 / 甜点"],
+  ["bill","账单"],["teller","银行柜员"],
+  ["fitting room","试衣间"],["on offer","特价"],
+  ["owe / charge","欠费 / 收费"],["check out","退房"]
+ ],
+ gram:[
+  {t:"结业自测", d:"本单元是 Unit 12–14 的词汇连线与填空复习，也是全书的最后测验。填空示例：Let me ___ back to you the information.（repeat）/ I'm ___ out.（checking）/ Are you ___ served?（being）。", ex:[]}
+ ]}
+];
+
+/* ── 渲染 ── */
+const KEY = "travel30d-v1";
+let store = {};
+try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) { store = {}; }
+
+const unitsEl = document.getElementById("units");
+UNITS.forEach(u => {
+  const art = document.createElement("article");
+  art.className = "unit"; art.id = "unit" + u.no;
+  const dlgRows = u.dlg.map((s, i) =>
+    `<tr class="row"><td class="num">${i+1}</td>
+     <td><span class="en">${s[0]}</span><span class="sub zh">${s[1]}</span></td></tr>`).join("");
+  const wordList = u.words.map(w => `<li><b>${w[0]}</b><i class="zh">${w[1]}</i></li>`).join("");
+  const grams = u.gram.map(g => {
+    const exs = (g.ex || []).map(e => `<li><span class="en">${e}</span></li>`).join("");
+    return `<div class="gram"><div class="t">${g.t}</div><div class="d zh">${g.d}</div>
+      ${exs ? `<ul class="ex">${exs}</ul>` : ""}</div>`;
+  }).join("");
+  art.innerHTML = `
+    <header><span class="no">UNIT ${u.no}</span>
+      <h2>${u.en}</h2><span class="zh-title zh">${u.zh}</span>
+      <label class="done-ck">已掌握<input type="checkbox" data-id="u${u.no}" ${store["u"+u.no] ? "checked" : ""}></label>
+      <span class="scene">${u.scene}</span></header>
+    <section class="blk"><h3>场景对话精华</h3>
+      <table class="sent"><thead><tr><th></th><th>English（原文）<span class="zh hzh"> / 中文译文</span></th></tr></thead>
+      <tbody>${dlgRows}</tbody></table></section>
+    <section class="blk"><h3>Key Words 核心词汇</h3><ul class="words">${wordList}</ul></section>
+    <section class="blk"><h3>Grammar Spot 语法与句型</h3>${grams}</section>`;
+  unitsEl.appendChild(art);
+});
+
+/* ── 目录 ── */
+const toc = document.getElementById("toc");
+toc.innerHTML = `<div class="g">总览</div>
+  <a href="#overview">课程速览</a>
+  <div class="g">15 个 Unit（每 Unit 2 天）</div>` +
+  UNITS.map(u => `<a href="#unit${u.no}">Unit ${u.no} · ${u.zh}</a>`).join("") +
+  `<div class="g">总结</div><a href="#patterns">语法与句型点总结</a><a href="#notes">使用说明</a>`;
+
+/* ── 勾选进度（组 = Unit，共 15 组）── */
+const total = UNITS.length;
+function refresh() {
+  const done = UNITS.filter(u => store["u" + u.no]).length;
+  document.getElementById("ptext").textContent = `${done} / ${total} 组`;
+  document.getElementById("pfill").style.width = (done / total * 100) + "%";
+}
+unitsEl.addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  store[e.target.dataset.id] = e.target.checked;
+  e.target.closest("article").classList.toggle("checked", e.target.checked);
+  localStorage.setItem(KEY, JSON.stringify(store));
+  refresh();
+});
+unitsEl.querySelectorAll("article.unit").forEach(a => {
+  a.classList.toggle("checked", !!store["u" + a.id.slice(4)]);
+});
+refresh();
+
+/* ── 隐藏中文自测 ── */
+const btnZh = document.getElementById("btnZh");
+btnZh.onclick = () => {
+  document.body.classList.toggle("hide-zh");
+  btnZh.classList.toggle("on");
+  btnZh.textContent = document.body.classList.contains("hide-zh") ? "显示中文" : "隐藏中文（自测）";
+};
+
+/* ── 重置 ── */
+document.getElementById("btnReset").onclick = () => {
+  if (!confirm("确定清空全部学习进度吗？")) return;
+  store = {};
+  localStorage.removeItem(KEY);
+  unitsEl.querySelectorAll("article.unit").forEach(a => {
+    a.classList.remove("checked");
+    a.querySelector("input[type=checkbox]").checked = false;
+  });
+  refresh();
+};
+</script>
+</body>
+</html>

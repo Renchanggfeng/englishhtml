@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="page-tag" content="旅游英语">
+<meta name="page-desc" content="标准课程 10 册 × 10 单元共 100 个场景单元，覆盖机场飞行、兑换交通、旅馆、餐厅、速食、观光、购物、租车、意外应急与看病就医，每单元提炼核心句型与 Language Focus 替换练习并附对话精华句。">
+<meta name="page-order" content="60">
+<title>旅游英语 · 标准课程 汇总</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#0e7a5f; --accent-soft:#e6f4ef;
+  --en:#1a3c66; --zh:#57606a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+
+/* ── 工具栏 ── */
+.toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.toolbar h1{font-size:17px;margin:0 14px 0 0;white-space:nowrap}
+.toolbar h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 13px;
+  font-size:13px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.progress-wrap{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.pbar{width:130px;height:8px;background:#eef0f3;border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+/* ── 布局 ── */
+.wrap{display:flex;max-width:1280px;margin:0 auto;align-items:flex-start}
+nav.toc{position:sticky;top:56px;width:225px;flex:none;padding:18px 8px 30px 14px;
+  max-height:calc(100vh - 56px);overflow-y:auto;font-size:13px}
+nav.toc .g{font-weight:600;color:var(--accent);margin:12px 0 4px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:3px 6px;border-radius:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.toc a:hover{background:var(--accent-soft);color:var(--accent)}
+main{flex:1;min-width:0;padding:20px 26px 60px}
+
+/* ── 速览卡 ── */
+.overview{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:14px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.overview h2{font-size:17px;margin:0 0 10px}
+.overview p{margin:6px 0;color:var(--zh)}
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:14px}
+.route .stop{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#fbfcfd}
+.route .stop b{display:block;color:var(--accent);font-size:13px;margin-bottom:2px}
+.route .stop span{font-size:12.5px;color:var(--zh)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+.stats b{color:var(--accent);font-size:17px;margin-right:4px}
+
+/* ── 每册卡 ── */
+article.day{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow:hidden}
+article.day>header{padding:16px 24px 12px;background:linear-gradient(180deg,#fbfcfd,#f0f7f4);
+  border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+article.day>header .no{font-size:22px;font-weight:700;color:var(--accent)}
+article.day>header h2{font-size:18px;margin:0}
+article.day>header .theme{color:var(--muted);font-size:13.5px}
+section.lesson{padding:6px 24px 14px}
+section.lesson>h3{font-size:14.5px;color:var(--accent);margin:16px 0 6px;
+  border-left:4px solid var(--accent);padding-left:9px}
+section.lesson>h3 .ue{color:var(--muted);font-weight:400;font-size:12.5px;margin-left:6px}
+table.sent{width:100%;border-collapse:collapse}
+table.sent th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;
+  padding:4px 10px;border-bottom:1px solid var(--line)}
+table.sent td{padding:8px 10px;border-bottom:1px dashed var(--line);vertical-align:top}
+tr.grp:hover td{background:#fafbfc}
+td.ck{width:30px}
+td.ck input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+tr.grp.done td{opacity:.55}
+tr.grp.done .en,tr.grp.done .zh{text-decoration:line-through}
+td.num{width:34px;color:#c3c9d1;font-size:12.5px}
+.en{color:var(--en);font-weight:600}
+.zh{color:var(--zh)}
+.sub{display:block;font-size:12.5px;color:#98a0aa;font-weight:400;margin-top:1px}
+.tip{margin:6px 0 0;font-size:12.5px;color:var(--muted);background:#fbfcfd;
+  border:1px dashed var(--line);border-radius:6px;padding:4px 10px}
+.tip b{color:var(--accent);font-weight:600}
+.hide-zh .zh{visibility:hidden}
+.hide-zh th.hzh{color:transparent}
+
+/* ── 句型卡 ── */
+.patterns{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.patterns h2{font-size:17px;margin:0 0 4px}
+.patterns>p{color:var(--zh);margin:4px 0 14px;font-size:13.5px}
+.pat{border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:10px 0;background:#fbfcfd}
+.pat .formula{font-weight:700;color:var(--accent);font-size:15px}
+.pat .use{color:var(--muted);font-size:12.5px;margin-left:8px}
+.pat ul{margin:6px 0 2px;padding-left:0;list-style:none;font-size:13.5px}
+.pat li{margin:3px 0}
+.pat li .en{font-size:13.5px}
+
+/* ── 说明卡 ── */
+.notes{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 24px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.notes h2{font-size:16px;margin:0 0 8px}
+.notes ul{margin:6px 0;padding-left:22px;color:var(--zh);font-size:13.5px}
+.notes li{margin:4px 0}
+kbd{background:#f0f2f4;border:1px solid var(--line);border-radius:4px;padding:0 6px;font-size:12px}
+
+@media (max-width:900px){
+  nav.toc{display:none}
+  main{padding:14px}
+}
+@media print{
+  .toolbar,nav.toc{display:none}
+  article.day{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>旅游英语 · 标准课程<small>汇总总结</small></h1>
+  <button class="btn" id="btnZh">隐藏中文（自测）</button>
+  <button class="btn" id="btnReset">重置进度</button>
+  <div class="progress-wrap">
+    <span id="ptext">0 / 0 组</span>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+</div>
+
+<div class="wrap">
+<nav class="toc" id="toc"></nav>
+<main id="main">
+
+  <div class="overview" id="overview">
+    <h2>课程速览</h2>
+    <p>原教材：<b>旅游英语 · 标准课程</b>（Travel English，共 10 册，每册 10 个单元、共 100 个场景单元）。
+    每个单元围绕一个旅行场景给出 <b>2 句核心句</b>，再用 <b>Language Focus 替换练习</b>（同一句型换宾语）扩展表达，
+    最后以一段对话和自测问答巩固——记住一个句型，换掉关键词就能应对一个新场景。
+    全书按一次出国旅行的完整时间线展开：</p>
+    <div class="route" id="route"></div>
+    <div class="stats">
+      <span><b>10</b>册</span><span><b>100</b>个场景单元</span>
+      <span><b id="stGroups">0</b>组句型（可勾选）</span><span><b id="stSents">0</b>句中英对照</span>
+    </div>
+  </div>
+
+  <div id="days"></div>
+
+  <div class="patterns" id="patterns">
+    <h2>高频万能句型总结</h2>
+    <p>把 100 个单元的核心句拆开看，其实只反复使用下面 11 个句型骨架——先掌握骨架，再往里填单词即可举一反三。</p>
+
+    <div class="pat"><span class="formula">I'd like (to) …　我想要……</span><span class="use">全课程最高频：订票 / 选座 / 订房 / 租车 / 看病全靠它</span>
+      <ul>
+        <li><span class="en">I'd like to book a flight to Rome. / I'd like a window seat, please.</span><span class="zh">　订去罗马的机票 / 要靠窗座位</span></li>
+        <li><span class="en">I'd like a room for two nights. / I'd like a wake-up call, please.</span><span class="zh">　住两晚的房间 / 要叫早服务</span></li>
+        <li><span class="en">I'd like to rent a car. / I'd like to see a doctor.</span><span class="zh">　租车 / 看医生</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Could / Can I have …?　我能要……吗</span><span class="use">向对方索要东西或服务，点单万能句</span>
+      <ul>
+        <li><span class="en">Could I have a large pizza? / Could I have some more water?</span><span class="zh">　要大号披萨 / 再加点水</span></li>
+        <li><span class="en">Can I have a city map? / Can I have a tour brochure, please?</span><span class="zh">　要城市地图 / 旅游手册</span></li>
+        <li><span class="en">Could I have a round-trip ticket to Central Park, please?</span><span class="zh">　一张中央公园往返票</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Could you …? / Would you …?　您能……吗</span><span class="use">客气地请对方做事</span>
+      <ul>
+        <li><span class="en">Could you recommend a local dish? / Could you suggest a cheaper hotel?</span><span class="zh">　推荐本地菜 / 便宜点的旅馆</span></li>
+        <li><span class="en">Could you hurry to the railroad station? / Would you take a picture of me?</span><span class="zh">　开快点去火车站 / 帮拍张照</span></li>
+        <li><span class="en">Could you wrap this as a gift? / Could you write it down in English?</span><span class="zh">　按礼物包装 / 用英语写下来</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Do you have …? / Do you carry …?　你们有……吗</span>
+      <ul>
+        <li><span class="en">Do you have a package tour? / Do you have anything on sale?</span><span class="zh">　有跟团游吗 / 有打折商品吗</span></li>
+        <li><span class="en">Do you have a twin room? / Do you have this suit in size 7?</span><span class="zh">　有双人房吗 / 这套有7号吗</span></li>
+        <li><span class="en">Do you accept credit cards? / Do you carry Italian brand items?</span><span class="zh">　收信用卡吗 / 有意大利品牌吗</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Where can I find / get …?　哪里能找到……</span><span class="use">问地点、要资料</span>
+      <ul>
+        <li><span class="en">Where can I find the check-in counter for CAL? / Where can I find a money changer?</span><span class="zh">　值机柜台 / 兑换处</span></li>
+        <li><span class="en">Where can I get a transportation map? / Where can I buy a transfer ticket?</span><span class="zh">　交通图 / 换乘票</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">How can I get to …? / How do I …?　怎么去 / 怎么做</span><span class="use">问路 + 问用法</span>
+      <ul>
+        <li><span class="en">How can I get to the boarding gate? / How can I get to the musical theater from here?</span><span class="zh">　去登机口 / 从这里去剧院</span></li>
+        <li><span class="en">How do I use the safe? / How do I make an international call?</span><span class="zh">　用保险箱 / 打国际电话</span></li>
+        <li><span class="en">How do I take this medicine?</span><span class="zh">　这药怎么服用</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">How much is / are …?　……多少钱</span><span class="use">is 接单数、are 接复数</span>
+      <ul>
+        <li><span class="en">How much is the fare to the railroad station? / How much is this?</span><span class="zh">　到火车站车费 / 这件多少钱</span></li>
+        <li><span class="en">How much are the tickets for two adults? / How much are those?</span><span class="zh">　两张成人票 / 那些多少钱</span></li>
+        <li><span class="en">How much is the mileage charge?</span><span class="zh">　里程费多少</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">Is there …? / Are there any …?　有……吗</span><span class="use">问某处是否存在某物</span>
+      <ul>
+        <li><span class="en">Is there a shuttle bus that goes to terminal 1? / Is there a non-smoking section?</span><span class="zh">　有去1号航站楼的接驳车吗 / 有禁烟区吗</span></li>
+        <li><span class="en">Are there any available tickets? / Are there any discount tickets?</span><span class="zh">　还有票吗 / 有打折票吗</span></li>
+        <li><span class="en">Is there an emergency treatment hospital near here?</span><span class="zh">　附近有急诊医院吗</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">What time does …? / Until when …?　问时间</span>
+      <ul>
+        <li><span class="en">What time does the tour start? / What time does the musical begin?</span><span class="zh">　观光几点开始 / 音乐剧几点开演</span></li>
+        <li><span class="en">Until when is breakfast served? / Until when is check-out?</span><span class="zh">　早餐到几点 / 几点退房</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">I have a …　我患……/ 我有……</span><span class="use">描述症状与随身物品</span>
+      <ul>
+        <li><span class="en">I have a fever. / I have a bad headache. / I have a stomachache.</span><span class="zh">　发烧 / 头痛得厉害 / 胃痛</span></li>
+        <li><span class="en">I have a piece of luggage to check in. / I have nothing to declare.</span><span class="zh">　一件托运行李 / 无申报物品</span></li>
+      </ul>
+    </div>
+
+    <div class="pat"><span class="formula">I feel … / It hurts …　感觉与疼痛</span><span class="use">就医描述身体状况</span>
+      <ul>
+        <li><span class="en">I feel nauseous. / I feel like fainting. / I feel cold.</span><span class="zh">　恶心 / 要晕倒 / 发冷</span></li>
+        <li><span class="en">It hurts here. / It hurts when I touch it. / It hurts every five minutes.</span><span class="zh">　这里疼 / 一碰就疼 / 每5分钟疼一次</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="notes" id="notes">
+    <h2>使用说明与文本清理</h2>
+    <ul>
+      <li>勾选每组句型前的复选框标记"已掌握"，划线消隐并计入进度条；进度自动保存在本机浏览器（localStorage），可用工具栏 <kbd>重置进度</kbd> 清空（需确认）。</li>
+      <li>点 <kbd>隐藏中文（自测）</kbd> 可遮住全部中文，看英文回想意思再核对，再点一次恢复显示。</li>
+      <li>本页为<b>汇总版</b>：每单元完整收录 2 句核心句及其 Language Focus 替换句（主句 + 替换句成对呈现），对话部分只精选 1 句最实用的补充句（"对话精华"），Questions 自测问答与核心句重复故未单列。</li>
+      <li>已清理 PDF 提取文本中的版式噪音：重复标题（如 "Language Focus Language Focus"）、单词粘连（如 doesit / tobook）、日文残留字符（如"赛琳娜ナ"）、乱序的中英对话行等。</li>
+      <li>个别原文小误已顺手规范：大小写（Can i → Can I）、标点与中英数量不一致处（如兑换金额按英文对齐）。</li>
+      <li>册 J《健康》后半部分（单元 6-10）原文为多句并列的症状表达而非替换表，本页按"句型成对"方式整理呈现。</li>
+      <li>来源文件：<code>旅游英语-标准课程/TravelEnglishCNA~CNJ.txt</code>（共 10 册提取文本，仅含文字，未含图片内容）。</li>
+    </ul>
+  </div>
+
+</main>
+</div>
+
+<script>
+/* ── 课程数据：10 册 BOOKS，每册 10 个单元 units。
+   每单元 {t:中文场景, e:英文场景, rows:[[主句英,主句中,替换句英,替换句中],...], tip:[对话精华英,中]} ── */
+const BOOKS = [
+{code:"A", title:"机场与飞行", theme:"订票 · 值机 · 机上服务 · 入境海关", units:[
+{t:"订机票",e:"BOOKING",rows:[
+["I'd like to book a flight to Rome.","我想订一张去罗马的机票。","I'd like to book two seats.","我想订两个座位。"],
+["Do you have a package tour?","你们有包价旅游（跟团游）吗？","Do you have an individual tour?","你们有自由行吗？"]],
+tip:["May I know the date of your departure?","您什么时候出发？（附：How much does it cost? 多少钱？）"]},
+{t:"航站楼",e:"TERMINAL",rows:[
+["Where can I find the check-in counter for CAL?","中华航空的值机柜台在哪里？","Where can I find the souvenir shop?","哪里有卖纪念品的商店？"],
+["Is there a shuttle bus that goes to terminal 1?","有去1号航站楼的接驳车吗？","Is there a Duty Free shop near here?","附近有免税店吗？"]],
+tip:["Where can I wait for it?","在哪里等车？"]},
+{t:"值机托运",e:"CHECK-IN",rows:[
+["I have a piece of luggage to check in.","我有一件行李要托运。","I have nothing to check in.","我没有托运行李。"],
+["I'd like a window seat, please.","我想要靠窗的座位。","I'd like an aisle seat, please.","我想要靠走廊的座位。"]],
+tip:["I would like to hand-carry this baggage.","我想随身携带这个包。"]},
+{t:"航班与登机口",e:"FLIGHT INFO",rows:[
+["Is the flight on time?","航班准点吗？","Is the flight delayed?","航班晚点了吗？"],
+["How can I get to the boarding gate?","怎么去登机口？","How can I get to the Duty Free shop?","怎么去免税店？"]],
+tip:["Just walk straight and you can see it on the left side.","直走，它就在你的左边。"]},
+{t:"机舱座位",e:"ON BOARD",rows:[
+["Where's my seat?","我的座位在哪里？","Where's the lavatory?","洗手间在哪里？"],
+["Could I change my seat?","可以换座位吗？","Could I change the channel?","可以换频道吗？"]],
+tip:["You can transfer after the plane takes off if there is an available seat.","起飞后如有空位可以换座。"]},
+{t:"行李架",e:"OVERHEAD BIN",rows:[
+["There's no space in the overhead bin.","行李架上没有空间了。","There's no space on the table.","桌子上没有空间了。"],
+["Would you store this jacket?","能帮我保管一下这件外套吗？","Would you store this bag?","能帮我保管一下这个包吗？"]],
+tip:["I'll find space for your stuff.","我帮您的物品找个地方。"]},
+{t:"机上餐食",e:"IN-FLIGHT MEAL",rows:[
+["I'd like some beef, please.","我想要牛肉。","I'd like some coffee, please.","我想要咖啡。"],
+["Could you clean up this table for me?","能帮我清理一下这张桌子吗？","Could you clean up this mess for me?","能帮我清理一下这里吗？"]],
+tip:["What would you like for your meal, chicken or beef?","机上餐要鸡肉还是牛肉？"]},
+{t:"机上娱乐",e:"ENTERTAINMENT",rows:[
+["How do I use the entertainment controls?","怎么使用娱乐系统遥控器？","How do I use the reading light?","怎么使用阅读灯？"],
+["Which channel has the movie with Chinese subtitles?","哪个频道有中文字幕的电影？","What channel has the flight information?","哪个频道有航行信息？"]],
+tip:["Just press this button then you can find the menu.","按这个键就能看到菜单。"]},
+{t:"入境审查",e:"IMMIGRATION",rows:[
+["I'll be here for five days.","我将停留五天。","I'll be here for one month.","我将停留一个月。"],
+["I am here for sightseeing.","我来旅游。","I am here for work.","我来工作。"]],
+tip:["What is the purpose of your visit?","您来访的目的是什么？"]},
+{t:"海关申报",e:"CUSTOMS",rows:[
+["I have nothing to declare.","我没有要申报的东西。","I have a bottle of whiskey to declare.","我带了一瓶威士忌要申报。"],
+["These are just my personal belongings.","这些只是我的私人物品。","These are just gifts for my friends.","这些是给朋友的礼物。"]],
+tip:["Do you have any cigarettes or alcohol?","有带烟或酒吗？"]}
+]},
+{code:"B", title:"兑换与交通", theme:"货币兑换 · 公交 · 出租车 · 火车", units:[
+{t:"货币兑换",e:"MONEY EXCHANGE",rows:[
+["I'd like to exchange some money.","我想兑换一些钱。","I'd like to exchange 30,000 yuan to dollars.","我想把3万元换成美元。"],
+["Where can I find a money changer?","哪里有货币兑换处？","Where can I find a bank?","银行在哪里？"]],
+tip:["How much would you like to change?","您要兑换多少？"]},
+{t:"汇率与零钱",e:"EXCHANGE RATE",rows:[
+["What's the exchange rate for yuan to US dollar?","人民币兑美元的汇率是多少？","What's today's rate for yuan?","人民币今天的汇率是多少？"],
+["In small bills, please.","请换成小面额纸币。","In new bills, please.","请换成新纸币。"]],
+tip:["That comes to $462.","一共是462美元。"]},
+{t:"地图与资讯",e:"MAPS & INFO",rows:[
+["Where can I get a transportation map?","哪里能拿到交通线路图？","Where can I get the tour pamphlet?","哪里有观光手册？"],
+["Can I get a city map?","能给我一份城市地图吗？","Can I get some information on local sights?","能给我一些本地景区的资讯吗？"]],
+tip:["You can have it at the airport information office.","在机场问询处可以拿到。"]},
+{t:"乘公交",e:"BY BUS",rows:[
+["Can I use this bus to get downtown?","这班公交去市中心吗？","Can I use this bus to get to the cathedral?","这班公交去大教堂吗？"],
+["How do I buy a bus ticket?","怎么买公交票？","Where can I buy a transfer ticket?","哪里可以买换乘票？"]],
+tip:["You can buy a ticket at the newsstand in front of the bus stop.","可以在站前报刊亭买票。"]},
+{t:"乘出租车",e:"BY TAXI",rows:[
+["Where can I find the taxi stand?","出租车候车点在哪里？","Where can I find the QQ Hotel?","QQ酒店在哪里？"],
+["How much is the fare to the railroad station?","到火车站车费多少？","How much is the fare to the convention centre?","到会议中心车费多少？"]],
+tip:["It depends on the traffic.","要看交通状况。"]},
+{t:"出租车指路",e:"TAXI DIRECTIONS",rows:[
+["Could you hurry to the railroad station?","能开快点去火车站吗？","Could you hurry to the QQ Hotel?","能开快点去QQ酒店吗？"],
+["Turn right at the next corner, please.","请在下一个路口右转。","Turn right at the main street, please.","请在主路右转。"]],
+tip:["Could you stop at the main entrance?","能停在大门口吗？"]},
+{t:"车费与计价器",e:"FARE & METER",rows:[
+["The fare is different from the meter.","车费和计价器显示的不一样。","The fare is bigger than the meter.","车费比计价器显示的高。"],
+["Please keep the change.","不用找零了。","Please use the meter.","请打表。"]],
+tip:["There is an additional fee because we used the highway.","走了高速要加收费用。"]},
+{t:"乘车时间",e:"TRAVEL TIME",rows:[
+["Could you tell me what time we can get to Central Park?","请问几点能到中央公园？","Could you tell me what time the train leaves?","请问火车几点发车？"],
+["How long will it take to get to Central Park?","到中央公园要多久？","How long will it take to get to QQ Hotel?","到QQ酒店要多久？"]],
+tip:["It takes about 1 hour to get there.","到那里大约1小时。"]},
+{t:"购票订座",e:"TRAIN TICKET",rows:[
+["I'd like to reserve a seat on the Express Train, please.","我想订一张特快列车座位。","I'd like to reserve a seat on a local train, please.","我想订一张普通列车座位。"],
+["Could I have a round-trip ticket to Central Park, please?","请给我一张中央公园的往返票。","Could I have a one-way ticket to Los Angeles, please?","请给我一张去洛杉矶的单程票。"]],
+tip:["Is it a round-trip ticket or a one-way ticket?","要往返票还是单程票？"]},
+{t:"换乘",e:"TRANSFER",rows:[
+["Which train goes to Central Park?","哪趟列车去中央公园？","Which train goes to Central Terminal?","哪趟列车去中央车站？"],
+["Is it necessary to transfer?","需要换乘吗？","Is it necessary to change trains?","需要换车吗？"]],
+tip:["Get off at the Central Park Station.","在中央公园站下车。"]}
+]},
+{code:"C", title:"旅馆住宿", theme:"选房入住 · 客房服务 · 退房结账", units:[
+{t:"选旅馆",e:"FINDING A HOTEL",rows:[
+["I'd like to stay near the station.","我想住在车站附近。","I'd like to stay in a cheaper hotel.","我想住便宜一点的旅馆。"],
+["Could you suggest a cheaper hotel?","能推荐一家便宜点的旅馆吗？","Could you suggest a good B&B?","能推荐一家含早餐的旅馆吗？"]],
+tip:["Okay, I'll reserve it for you.","好，我帮您预订。"]},
+{t:"办理入住",e:"CHECK-IN",rows:[
+["I have a reservation.","我有预订。","I have a voucher.","我有住宿凭证。"],
+["I made my reservation at the information office.","我是在问询处预订的。","I made my reservation on the internet.","我是在网上预订的。"]],
+tip:["Did you make your reservation on the internet?","您是在网上预订的吗？"]},
+{t:"选房型",e:"ROOM TYPE",rows:[
+["I'd like a room for two nights.","我想要一间住两晚的房间。","I'd like a room with an ocean view.","我想要海景房。"],
+["Do you have a twin room?","有双人房吗？","Do you have any cheaper rooms?","有便宜一点的房间吗？"]],
+tip:["We are sorry, the single rooms are fully-booked.","抱歉，单人房订满了。"]},
+{t:"看房问价",e:"ROOM & PRICE",rows:[
+["Is it possible to see the room?","可以先看一下房间吗？","Is it possible to use the telephone?","可以用一下电话吗？"],
+["How much is a room for two nights?","住两晚多少钱？","How much is a room per night?","一晚多少钱？"]],
+tip:["It's $150 per night.","一晚150美元。"]},
+{t:"房费与早餐",e:"RATE & BREAKFAST",rows:[
+["Does the room rate include breakfast?","房费含早餐吗？","Does the room rate include service charge?","房费含服务费吗？"],
+["Until when is breakfast served?","早餐供应到几点？","Until when is check-out?","几点退房？"]],
+tip:["Breakfast is served from 7 to 9 in the morning.","早餐7点到9点供应。"]},
+{t:"客房设施",e:"ROOM FACILITIES",rows:[
+["I'd like a wake-up call, please.","我想要叫早服务。","I'd like room service, please.","我想要客房服务。"],
+["How do I use the safe?","怎么使用保险箱？","How do I use the air conditioning?","怎么使用空调？"]],
+tip:["What time will I wake you up?","要几点叫醒您？"]},
+{t:"电话",e:"TELEPHONE",rows:[
+["How do I make an international call?","怎么打国际电话？","How do I make a local call?","怎么打本地电话？"],
+["I'd like to charge the call to my room, please.","请把电话费记到房费上。","I'd like to charge the meal to my room, please.","请把餐费记到房费上。"]],
+tip:["Just press 0 and then dial the number.","先拨0再拨号码。"]},
+{t:"钥匙麻烦",e:"LOST KEY",rows:[
+["I'm afraid I've lost my key.","我恐怕把钥匙弄丢了。","I'm afraid I can't make it.","恐怕我赶不上。"],
+["I've locked my key in my room.","我把钥匙锁在房间里了。","I've locked my passport in my room.","我把护照锁在房间里了。"]],
+tip:["I will give you a spare key.","我给您一把备用钥匙。"]},
+{t:"客房报修",e:"ROOM REPAIR",rows:[
+["Could you send someone to fix the Wi-Fi router?","能派人修一下无线路由器吗？","Could you send a bellboy?","能派一名行李员来吗？"],
+["There's no hair dryer in the bathroom.","浴室里没有吹风机。","There's no Wi-Fi connection in my room.","我的房间里没有Wi-Fi。"]],
+tip:["I'll send someone right away.","我马上派人过去。"]},
+{t:"退房结账",e:"CHECK-OUT",rows:[
+["I'd like to pay my bills.","我想结账。","I'd like to get the receipt.","我想要收据。"],
+["I think there's a mistake with my bill.","我觉得账单有错误。","I think there's a mistake in the phone call charge.","我觉得电话费有错误。"]],
+tip:["What's this charge for?","这一项是什么费用？"]}
+]},
+{code:"D", title:"餐厅用餐", theme:"预订 · 点菜 · 打包 · 买单", units:[
+{t:"订位",e:"RESERVATION",rows:[
+["Could I make a reservation at 6 p.m.?","可以预订晚上6点吗？","Could I make a reservation for two?","可以订两人的位子吗？"],
+["I'd like a table near the window.","我想要靠窗的位子。","I'd like a table outside.","我想要室外的位子。"]],
+tip:["How many persons?","几位？"]},
+{t:"菜单与推荐",e:"MENU",rows:[
+["Could I see the menu?","可以看一下菜单吗？","Could I check the menu?","可以核对一下菜单吗？"],
+["Could you recommend a local dish?","有推荐的本地菜吗？","Could you recommend a nice wine?","有推荐的葡萄酒吗？"]],
+tip:["I recommend grilled lobster.","我推荐烤龙虾。"]},
+{t:"点菜",e:"ORDERING",rows:[
+["I'd like to have today's special.","我想要今日特色菜。","I'd like to have one burger and coke.","我想要一个汉堡和可乐。"],
+["I'll have a glass of house wine.","我要一杯招牌葡萄酒。","I'll have steamed pork.","我要蒸肉。"]],
+tip:["What's today's special?","今天的特色菜是什么？"]},
+{t:"忌口",e:"ALLERGY",rows:[
+["I'm allergic to oysters.","我对牡蛎过敏。","I'm allergic to sesame seeds.","我对芝麻过敏。"],
+["Do you have something good for vegetarians?","有适合素食者的菜吗？","Do you have something good for children?","有适合小孩子的菜吗？"]],
+tip:["I'm sorry to hear that.","哦，很抱歉。"]},
+{t:"加东西",e:"EXTRA ITEMS",rows:[
+["Could you bring an extra plate?","能再拿一个盘子来吗？","Could you bring some chopsticks?","能拿双筷子来吗？"],
+["Could I have some more water?","能再给我加点水吗？","Could I have some olive oil?","能给我加点橄榄油吗？"]],
+tip:["Anything else?","还需要别的吗？"]},
+{t:"甜点",e:"DESSERT",rows:[
+["What kind of dessert do you have?","你们有什么甜点？","What kind of dressing do you have?","你们有什么调料？"],
+["Could I have chocolate cake, please?","我可以要巧克力蛋糕吗？","Could I have fresh fruits, please?","我可以要新鲜水果吗？"]],
+tip:["I'd like to have something sweet.","我想吃点甜的。"]},
+{t:"称赞与打包",e:"WRAPPING",rows:[
+["I enjoyed the lobster.","龙虾很好吃。","I enjoyed the spaghetti.","这道意大利面很好吃。"],
+["Could I get this food wrapped?","可以把这道菜打包吗？","Could I get this leftover wrapped?","可以把剩菜打包吗？"]],
+tip:["Are you enjoying your food, sir?","先生，您吃得还满意吗？"]},
+{t:"支付方式",e:"PAYMENT",rows:[
+["Do you accept credit cards?","你们收信用卡吗？","Do you accept traveler's checks?","你们收旅行支票吗？"],
+["I'll pay cash.","我付现金。","I'll pay at the counter.","我在柜台付。"]],
+tip:["Would you like to order anything else?","还要点别的吗？"]},
+{t:"结账要票",e:"CHECK PLEASE",rows:[
+["Check, please.","请结账。","Bill, please.","请买单。"],
+["Could you give me a receipt?","能给我一张收据吗？","Could you issue me a receipt?","能给我开一张收据吗？"]],
+tip:["I'll be back with the receipt.","我把收据给您拿来。"]},
+{t:"请客与AA",e:"TREATING",rows:[
+["It's on me.","我请客。","It's on you.","你请客。"],
+["Let's go Dutch.","我们各付各的吧。","Let's split the bill.","我们分摊账单吧。"]],
+tip:["Next time, we'll go Dutch.","下次我们各付各的。"]}
+]},
+{code:"E", title:"速食快餐", theme:"点单 · 堂食外带 · 加购 · 餐具", units:[
+{t:"开始点单",e:"MAY I TAKE YOUR ORDER",rows:[
+["May I take your order?","您要点什么？","May I know the price?","可以告诉我价格吗？"],
+["Could I have a large pizza?","我可以要一个大号披萨吗？","Could I have a regular soda?","我可以要一杯常规杯苏打水吗？"]],
+tip:["Let me repeat your order.","我重复一下您的订单。"]},
+{t:"堂食或外带",e:"FOR HERE OR TO GO",rows:[
+["For here or to go?","堂食还是外带？","Dine in or take out?","店内吃还是外带？"],
+["I'll eat here.","我在店里吃。","I'll take it out.","我要外带。"]],
+tip:["Can I have a cheeseburger and fries?","我可以要芝士汉堡和薯条吗？"]},
+{t:"选配料",e:"TOPPINGS",rows:[
+["Could I pick some toppings for each half?","可以每半边选不同配料吗？","Could I pick the flavor?","可以选口味吗？"],
+["Which toppings would you like?","您要加什么配料？","Which flavor would you like?","您要什么口味的？"]],
+tip:["Hawaiian and pepperoni.","夏威夷和意大利辣香肠（口味）。"]},
+{t:"半份拼披萨",e:"HALF & HALF",rows:[
+["I'd like a half-size of Hawaiian and pepperoni pizza.","我要半份夏威夷半份辣香肠披萨。","I'd like a half-size of meat lover's pizza.","我要半份肉类爱好者披萨。"],
+["Would that be all?","就这些了吗？","Would that be fine?","这样可以吗？"]],
+tip:["Would you like something to drink?","要喝的吗？"]},
+{t:"有没有·多大",e:"SIZE",rows:[
+["Do you have coke?","有可乐吗？","Do you have fries?","有炸薯条吗？"],
+["What size would you like?","您要多大杯的？","What flavor would you like?","您要什么口味的？"]],
+tip:["Is there anything you'd like to add?","还要加别的吗？"]},
+{t:"饮料",e:"DRINKS",rows:[
+["Would you like something to drink?","要来点喝的吗？","Would you like something to eat?","要来点吃的吗？"],
+["I'll have a regular soda, please.","请给我常规杯苏打水。","I'll have a large soda, please.","请给我大杯苏打水。"]],
+tip:["I'll be back in a minute.","马上就来。"]},
+{t:"再加一份",e:"ADDITIONAL ORDER",rows:[
+["Could I have an additional order of fries?","我可以再加点一份薯条吗？","Could I have an additional order of apple pie?","我可以再加点一份苹果派吗？"],
+["It may take a while. Is that OK?","可能要等一会儿，可以吗？","It may take five minutes for your order.","您的餐要等5分钟。"]],
+tip:["Yes, I can wait.","好的，我可以等。"]},
+{t:"确认订单",e:"TOTAL",rows:[
+["Let me repeat your order.","我再重复一下您的订单。","Let me take your order.","我来为您点单。"],
+["How much is it?","这个多少钱？","How much are those?","那些多少钱？"]],
+tip:["It's $7.00 in total.","一共7美元。"]},
+{t:"找座位",e:"FINDING A SEAT",rows:[
+["Have you found a seat?","找到位子了吗？","Have you found the sugar?","找到糖了吗？"],
+["Is there a non-smoking section?","有禁烟区吗？","Is there a smoking section?","有吸烟区吗？"]],
+tip:["Do you have a vacant seat available?","有空位吗？"]},
+{t:"餐具",e:"CUTLERY",rows:[
+["Could I get a knife and fork?","能给我一副刀叉吗？","Could I get a glass?","能给我一个杯子吗？"],
+["The knives and forks are over there.","刀叉在那边。","The cups and saucers are over there.","杯子和碟子在那边。"]],
+tip:["What can I do for you?","有什么可以帮您？"]}
+]},
+{code:"F", title:"观光游览", theme:"旅行团 · 问路 · 拍照 · 看演出", units:[
+{t:"旅行团咨询",e:"TOUR INFO",rows:[
+["Can I have a tour brochure, please?","能给我一本旅游手册吗？","Can I have some information about the tour?","能给我一些线路资讯吗？"],
+["Do you have tours with Chinese-speaking guides?","有带中文导游的团吗？","Do you have tours with meals for vegetarians?","有含素食餐的团吗？"]],
+tip:["What kind of tour would you like?","您想要哪种行程？"]},
+{t:"报名与兴趣",e:"JOINING A TOUR",rows:[
+["I want to join the morning tour.","我想参加上午的团。","I want to join the sunset dinner tour.","我想参加日落晚餐之旅。"],
+["I'm interested in museums.","我对博物馆感兴趣。","I'm interested in castles.","我对城堡感兴趣。"]],
+tip:["Is lunch included?","含午餐吗？"]},
+{t:"团费与时间",e:"PRICE & TIME",rows:[
+["What is the price of a three-hour tour?","三小时观光多少钱？","What is the price of the one-day tour?","一日游多少钱？"],
+["What time does the tour start?","观光几点开始？","What time does the museum open?","博物馆几点开门？"]],
+tip:["I'd like two tickets, please.","我要两张票。"]},
+{t:"找景点",e:"FINDING SPOTS",rows:[
+["I'm looking for the museum.","我在找博物馆。","I'm looking for the palace.","我在找宫殿。"],
+["Can I get to the museum on foot?","能步行到博物馆吗？","Can I get to the palace by bus?","能坐公交到宫殿吗？"]],
+tip:["It will take around 10 minutes. Just walk straight.","大约10分钟，直走就到。"]},
+{t:"中文资料",e:"INFO IN CHINESE",rows:[
+["Do you have any information in Chinese?","有中文版资料吗？","Do you have a brochure in Chinese?","有中文手册吗？"],
+["Can I have a floor guide?","能给我一份楼面指南吗？","Can I have a brochure in the local language?","能给我一份当地语言的手册吗？"]],
+tip:["You can find that in the lobby.","在大厅可以找到。"]},
+{t:"拍照",e:"TAKING PICTURES",rows:[
+["Can I take a picture in the museum?","可以在博物馆里拍照吗？","Can I take a picture with you?","可以和您合影吗？"],
+["Would you take a picture of me?","能帮我拍张照吗？","Would you take a picture with that statue?","能帮我和那座雕像合张影吗？"]],
+tip:["Where do you want it?","您想在哪拍？"]},
+{t:"问路",e:"ASKING DIRECTIONS",rows:[
+["Where is the musical theater?","音乐剧院在哪里？","Where is the monument?","纪念碑在哪里？"],
+["How can I get to the musical theater from here?","从这里怎么去音乐剧院？","How can I get to the church from here?","从这里怎么去教堂？"]],
+tip:["You can take a taxi and ask the taxi driver.","可以打车并问司机。"]},
+{t:"看演出",e:"SHOW TICKETS",rows:[
+["I'd like to see a musical.","我想看音乐剧。","I'd like to see a concert.","我想听音乐会。"],
+["Are there any available tickets?","还有票吗？","Are there any discount tickets?","有打折票吗？"]],
+tip:["Are there any discount tickets for today's show?","今天的演出有优惠票吗？"]},
+{t:"门票",e:"TICKETS",rows:[
+["How much are the tickets for two adults?","两张成人票多少钱？","How much is the ticket for an adult?","一张成人票多少钱？"],
+["Where is the entrance?","入口在哪里？","Where is the exit?","出口在哪里？"]],
+tip:["Is it already discounted?","已经打折了吗？"]},
+{t:"演出与纪念品",e:"SHOWTIME",rows:[
+["What time does the musical begin?","音乐剧几点开始？","What time does the musical end?","音乐剧几点结束？"],
+["I'd like to buy a playbill.","我想买一份节目册。","I'd like to buy a souvenir.","我想买个纪念品。"]],
+tip:["You should be here 10 minutes before.","请提前10分钟到场。"]}
+]},
+{code:"G", title:"购物血拼", theme:"找店 · 挑款试穿 · 砍价 · 包装", units:[
+{t:"找商场",e:"FINDING A MALL",rows:[
+["Where's the outlet mall?","奥特莱斯购物中心在哪里？","Where's the duty-free shop?","免税店在哪里？"],
+["How can I get to the outlet mall?","怎么去奥特莱斯？","How can I get to the shopping mall?","怎么去商场？"]],
+tip:["You have to take a shuttle bus at the bus terminal.","要到公交总站坐班车。"]},
+{t:"找店铺",e:"FINDING A SHOP",rows:[
+["I'm looking for a blouse.","我在找一件女士衬衫。","I'm looking for something brighter in color.","我在找颜色亮一点的。"],
+["Is there a select shop for women?","有女士精品店吗？","Is there a select shop for sports?","有运动品牌精品店吗？"]],
+tip:["It's on the second floor across from the escalator.","在二楼扶梯对面。"]},
+{t:"随便看看",e:"JUST LOOKING",rows:[
+["I'm just looking around.","我只是随便看看。","I'm just window shopping.","我只是逛逛橱窗。"],
+["Do you carry Italian brand items?","有意大利品牌的商品吗？","Do you carry cosmetic items?","有化妆品吗？"]],
+tip:["Can I help you find something?","需要我帮您找什么吗？"]},
+{t:"表明喜好",e:"PREFERENCES",rows:[
+["Do you have a blouse?","有女士衬衫吗？","Do you have a red one?","有红色的吗？"],
+["I'm interested in fancy blouses.","我喜欢时尚款的女士衬衫。","I'm interested in Italian brand blouses.","我喜欢意大利品牌的女士衬衫。"]],
+tip:["I'll show you.","我拿给您看。"]},
+{t:"折扣商品",e:"ON SALE",rows:[
+["Do you have anything on sale?","有打折的商品吗？","Do you have another color?","有别的颜色吗？"],
+["It looks elegant.","看起来很优雅。","It looks fashionable.","看起来很时尚。"]],
+tip:["It looks elegant but it's not my type.","好看，但不是我想要的款。"]},
+{t:"看货问材质",e:"SHOW ME THAT",rows:[
+["Could you show me that one?","能给我看一下那件吗？","Could you show me a sample?","能给我看一下样品吗？"],
+["That is cotton, isn't it?","那是棉的，对吗？","That is silk, isn't it?","那是丝绸的，对吗？"]],
+tip:["This is made of silk.","这是丝绸的。"]},
+{t:"尺码与试穿",e:"SIZE & FITTING",rows:[
+["Can I have a smaller size?","能拿小一号的吗？","Can I have a bigger size?","能拿大一号的吗？"],
+["Can I try it on?","能试穿吗？","Can I get it?","能买这件吗？"]],
+tip:["Do you have other colors available?","有其他颜色吗？"]},
+{t:"问价",e:"HOW MUCH",rows:[
+["Do you have this suit in size 7?","这套西装有7号的吗？","Do you have this suit in green?","这套西装有绿色的吗？"],
+["How much is this?","这件多少钱？","How much is that for two?","那两件多少钱？"]],
+tip:["Red looks perfect on you.","您穿红色特别好看。"]},
+{t:"砍价与购买",e:"BARGAINING",rows:[
+["Can you give me a better price?","能再便宜一点吗？","Can you give me a discount?","能打个折吗？"],
+["I'll take it.","这件我要了。","I'll take the blue one.","我要这件蓝色的。"]],
+tip:["That's already a discounted price.","这已经是折扣价了。"]},
+{t:"去标签与包装",e:"WRAPPING",rows:[
+["Would you remove the price tag?","能把价格标签去掉吗？","Would you remove the box?","能把包装盒拆掉吗？"],
+["Could you wrap them separately?","能分开包装吗？","Could you wrap this as a gift?","能按礼物包装吗？"]],
+tip:["I'd like to have that sent to Japan.","我想把它寄到日本。"]}
+]},
+{code:"H", title:"租车自驾", theme:"选车 · 保险 · 加油 · 抛锚事故", units:[
+{t:"租车选车",e:"RENTING A CAR",rows:[
+["I'd like to rent a car.","我想租一辆车。","I'd like to return the car to the airport.","我想把车还到机场。"],
+["What kind of cars do you have?","你们有什么车型？","What kind of car insurance do you have?","你们有什么车险？"]],
+tip:["I'll take the sedan.","我要轿车。"]},
+{t:"验车",e:"CHECKING THE CAR",rows:[
+["Before I rent a car, I'd like to look at it.","租车前我想先看一下车。","Before I rent a car, I'd like to test drive it.","租车前我想先试驾一下。"],
+["There is a scratch on the door.","车门上有划痕。","There is a stain on the seat cover.","座椅套上有污渍。"]],
+tip:["You can choose another car if you want.","您也可以选另一辆。"]},
+{t:"挡位与费用",e:"TRANSMISSION",rows:[
+["Does it have an automatic transmission?","这辆车是自动挡吗？","Does it have a manual transmission?","这辆车是手动挡吗？"],
+["How much is the mileage charge?","里程费多少？","How much is the gasoline price?","油价多少？"]],
+tip:["It's already unlimited mileage.","已经是不限里程了。"]},
+{t:"定车",e:"TAKING THE CAR",rows:[
+["A compact car would be fine.","小型轿车就行。","A compact car would be great.","小型轿车很好。"],
+["I'll take it.","我要这辆。","I'll have it.","我要这辆。"]],
+tip:["That's reasonable.","价格挺合理。"]},
+{t:"购买保险",e:"CAR INSURANCE",rows:[
+["I want to get car insurance.","我想买车险。","I want to get a new car.","我想要一辆新车。"],
+["I'd like to get full coverage, please.","我想买全险。","I'd like to get a receipt, please.","我想要一份收据。"]],
+tip:["Does the rental fee include insurance?","租金含保险吗？"]},
+{t:"问路出发",e:"HEADING FOR",rows:[
+["I'm heading for Milan.","我要去米兰。","I'm heading for London.","我要去伦敦。"],
+["What's the best way to get to Milan?","去米兰最好的走法是什么？","What's the best way to get to the nearest restaurant?","去最近的餐厅怎么走最好？"]],
+tip:["It's best to use the highway.","最好走高速。"]},
+{t:"加油",e:"GAS STATION",rows:[
+["I've run out of gas.","车没油了。","I've run out of fuel.","燃料用完了。"],
+["Fill it up with regular unleaded, please.","请加满普通无铅汽油。","Fill it up with premium gas, please.","请加满高级汽油。"]],
+tip:["How many liters, sir?","加几升？"]},
+{t:"付款",e:"PAYING",rows:[
+["Can you show me how to operate the pump?","能演示一下怎么用加油泵吗？","Can you show me where the bathroom is?","能告诉我洗手间在哪吗？"],
+["How can I pay for this?","这个怎么付款？","How can I pay you?","我怎么付给您？"]],
+tip:["You can pay by cash or by credit card.","可以付现金或刷卡。"]},
+{t:"车子抛锚",e:"BREAKDOWN",rows:[
+["The car broke down.","车坏了。","The car has good wheels.","这辆车轮胎不错。"],
+["The engine won't start.","发动机启动不了。","The engine is brand new.","这台发动机是全新的。"]],
+tip:["I'll check your car and see what we can do.","我检查一下看看怎么修。"]},
+{t:"交通事故",e:"ACCIDENT",rows:[
+["There has been an accident.","这里发生事故了。","There has been a problem.","这里出问题了。"],
+["There was a rear-end collision.","发生了追尾碰撞。","There was an injured person.","有人受伤了。"]],
+tip:["We will be there in a rush.","我们尽快赶到。"]}
+]},
+{code:"I", title:"意外应急", theme:"遗失挂失 · 被盗抢劫 · 报警求助", units:[
+{t:"东西丢了",e:"LOSING ITEMS",rows:[
+["I couldn't find my wallet.","我找不到钱包了。","I couldn't find my watch.","我找不到手表了。"],
+["I don't know where I lost it.","我不知道丢哪儿了。","I don't know where I put it.","我不知道放哪儿了。"]],
+tip:["Where did you lose it?","您丢在哪儿了？"]},
+{t:"留下联系方式",e:"CONTACT ME",rows:[
+["I had a credit card in my wallet.","我钱包里有一张信用卡。","I had $500 in my wallet.","我钱包里有500美元。"],
+["Please contact me here if it is found.","如果找到了请联系我。","Please contact me for more information.","需要更多信息请联系我。"]],
+tip:["I will inform you as soon as it is found.","一找到就通知您。"]},
+{t:"失物招领处",e:"LOST & FOUND",rows:[
+["What is the lost and found office?","失物招领处是做什么的？","What is the safety and security office?","警卫处是做什么的？"],
+["Where is the lost and found office?","失物招领处在哪里？","Where is the safety and security office?","警卫处在哪里？"]],
+tip:["It is where you report your lost items.","是挂失物品的地方。"]},
+{t:"描述失物",e:"DESCRIBING",rows:[
+["Has anyone turned it over?","有人上交它吗？","Has anyone found my wallet?","有人捡到我的钱包吗？"],
+["It's made of leather.","它是皮的。","It's made of plastic.","它是塑料的。"]],
+tip:["Can you describe your wallet?","能描述一下您的钱包吗？"]},
+{t:"保险证明",e:"INSURANCE CERTIFICATE",rows:[
+["How can I get an insurance certificate?","我怎么才能拿到保险证明？","How can I get a temporary license?","我怎么才能拿到临时许可？"],
+["Could you give me an endorsement letter?","能给我一份证明信吗？","Could you give me an insurance certificate?","能给我一份保险证明吗？"]],
+tip:["You have to go to the police station.","您得去警察局。"]},
+{t:"有小偷",e:"THIEF!",rows:[
+["Thief! Help me!","有小偷！救命！","Thief! Catch him!","小偷！抓住他！"],
+["Call the police!","快叫警察！","Call the security guard!","快叫保安！"]],
+tip:["I'll run after him. You call the police.","我去追他，你报警。"]},
+{t:"被偷报案",e:"STOLEN",rows:[
+["My passport has been stolen.","我的护照被偷了。","My wallet has been stolen.","我的钱包被偷了。"],
+["A thief grabbed my bag and ran off.","小偷抢了我的包跑了。","A thief grabbed my wallet.","小偷抢走了我的钱包。"]],
+tip:["Describe in detail what happened.","请详细描述经过。"]},
+{t:"抢劫经过",e:"ROBBERY",rows:[
+["Someone grabbed my bag.","有人抢了我的包。","Someone grabbed my cellphone.","有人抢走了我的手机。"],
+["They took everything.","他们全拿走了。","They took my wallet.","他们拿走了我的钱包。"]],
+tip:["What do they look like?","他们长什么样？"]},
+{t:"目击与威胁",e:"WITNESS",rows:[
+["I saw the criminal.","我看到了罪犯。","I saw the suspect.","我看到了嫌疑人。"],
+["I was threatened with a gun.","我被人用枪威胁。","I was threatened with a knife.","我被人用刀威胁。"]],
+tip:["Are you okay? Do you need to go to the hospital?","您还好吗？需要去医院吗？"]},
+{t:"联系使馆",e:"EMBASSY",rows:[
+["Please contact the Chinese embassy.","请联系中国大使馆。","Please contact the company for more details.","详情请联系公司。"],
+["My contact number is 123456789.","我的联系电话是123456789。","My mobile number is 123456789.","我的手机号是123456789。"]],
+tip:["I'll let you know as soon as we have found some information.","一有消息就通知您。"]}
+]},
+{code:"J", title:"看病就医", theme:"就诊 · 药房 · 描述症状", units:[
+{t:"找医院",e:"FINDING A HOSPITAL",rows:[
+["Is there an emergency treatment hospital near here?","这附近有急诊医院吗？","Is there a hospital near here?","这附近有医院吗？"],
+["I'd like to see a doctor.","我想看医生。","I'd like to see a dentist.","我想看牙医。"]],
+tip:["Are you not feeling well?","您不舒服吗？"]},
+{t:"指引与语言",e:"DIRECTION & LANGUAGE",rows:[
+["Could you direct me to a good hospital?","能给我指一家好医院吗？","Could you direct me to the Internal Medicine Department?","能带我去内科吗？"],
+["Is there anyone who speaks Chinese?","这里有会说中文的人吗？","Is there anyone who can understand Chinese?","这里有懂中文的人吗？"]],
+tip:["The hospital can help you.","医院会帮助您的。"]},
+{t:"沟通求助",e:"COMMUNICATION",rows:[
+["Please speak slowly.","请说慢一点。","Please speak Chinese.","请说中文。"],
+["Could you write it down in English?","能用英语写下来吗？","Could you write it down in Chinese?","能用中文写下来吗？"]],
+tip:["Take this medicine for three days after every meal.","这药服三天，每次饭后服。"]},
+{t:"药房保险",e:"PHARMACY & INSURANCE",rows:[
+["I have a prescription.","我有处方。","I have a medication.","我有药单。"],
+["Will my insurance cover it?","我的保险涵盖这个吗？","Will my insurance pay for it?","我的保险会付这笔钱吗？"]],
+tip:["Can I see it?","我能看一下吗？"]},
+{t:"用药咨询",e:"MEDICATION",rows:[
+["What's this medication?","这是什么药？","What's this medicine?","这是什么药？"],
+["How do I take this medicine?","这药怎么服用？","How do I take this pill?","这药片怎么服用？"]],
+tip:["It is written on the doctor's prescription.","医生处方上写着。"]},
+{t:"症状·我有",e:"I HAVE A …",rows:[
+["I have a fever.","我发烧了。","I have a headache.","我头痛。"],
+["I have a stomachache.","我胃痛。","I have diarrhea.","我腹泻了。"],
+["I have constipation.","我便秘了。","I have a cough.","我咳嗽。"]],
+tip:["I think you should see a doctor.","我觉得您应该去看医生。"]},
+{t:"症状·我感觉",e:"I FEEL …",rows:[
+["I feel uncomfortable.","我觉得不舒服。","I feel cold.","我觉得冷。"],
+["I feel nauseous.","我觉得恶心。","I feel like fainting.","我觉得要晕倒。"]],
+tip:["I feel like vomiting. / I feel queasy.","我觉得想吐。/ 我觉得反胃。"]},
+{t:"疼痛程度",e:"PAIN TYPES",rows:[
+["I have a bad headache.","我头痛得厉害。","I have a splitting headache.","我有剧烈的头痛。"],
+["I have a prickly pain in my stomach.","我胃里有刺痛感。","I have a squeezing pain in my stomach.","我胃里有挤压般的疼痛。"]],
+tip:["I have a pounding/gripping pain.","我有撞击般的头痛/胃部揪着疼。"]},
+{t:"疼痛位置",e:"WHERE IT HURTS",rows:[
+["It hurts here.","这里疼。","It doesn't hurt there.","不是那里疼。"],
+["It hurts when I touch it.","一碰就疼。","It hurts every five minutes.","每五分钟疼一次。"]],
+tip:["It hurts to cough. / It hurts around here.","一咳嗽就疼。/ 这附近都疼。"]},
+{t:"外伤与特殊情况",e:"INJURIES",rows:[
+["I sprained my leg.","我扭伤了腿。","I hit my head badly.","我的头撞得很严重。"],
+["I have a burn.","我烫伤了。","I was bitten by a dog.","我被狗咬了。"]],
+tip:["I'm having my period. / I am pregnant.","我正值月经期。/ 我怀孕了。"]}
+]}
+];
+
+/* ── 渲染 ── */
+const KEY = "travelStd-v1";
+let store = {};
+try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) { store = {}; }
+
+const daysEl = document.getElementById("days");
+let gi = 0;
+BOOKS.forEach(b => {
+  const art = document.createElement("article");
+  art.className = "day"; art.id = "book" + b.code;
+  let unitsHtml = b.units.map((u, ui) => {
+    let rows = u.rows.map(r => {
+      gi++;
+      const id = `bk${b.code}-u${ui + 1}-g${gi}`;
+      return `<tr class="grp" data-id="${id}">
+        <td class="ck"><input type="checkbox" ${store[id] ? "checked" : ""}></td>
+        <td class="num">${gi}</td>
+        <td><span class="en">${r[0]}</span><span class="sub zh">${r[1]}</span></td>
+        <td><span class="en">${r[2]}</span><span class="sub zh">${r[3]}</span></td>
+      </tr>`;
+    }).join("");
+    const tip = u.tip ? `<p class="tip"><b>对话精华</b>　<span class="en">${u.tip[0]}</span><span class="zh">　${u.tip[1]}</span></p>` : "";
+    return `<section class="lesson"><h3>${b.code}${ui + 1} · ${u.t}<span class="ue">${u.e}</span></h3>
+      <table class="sent"><thead><tr><th></th><th></th><th>主句 Main</th><th>替换句 Variant</th></tr></thead>
+      <tbody>${rows}</tbody></table>${tip}</section>`;
+  }).join("");
+  art.innerHTML = `<header><span class="no">${b.code}</span><h2>${b.title}</h2><span class="theme">${b.theme}</span></header>${unitsHtml}`;
+  daysEl.appendChild(art);
+});
+
+/* ── 速览路线图与统计 ── */
+document.getElementById("route").innerHTML = BOOKS.map(b =>
+  `<div class="stop"><b>册 ${b.code} · ${b.title}</b><span>${b.theme}</span></div>`).join("");
+const totalGroups = gi;
+const totalSents = BOOKS.reduce((n, b) => n + b.units.reduce((m, u) => m + u.rows.length * 2, 0), 0)
+  + BOOKS.reduce((n, b) => n + b.units.filter(u => u.tip).length, 0);
+document.getElementById("stGroups").textContent = totalGroups;
+document.getElementById("stSents").textContent = totalSents;
+
+/* ── 目录 ── */
+const toc = document.getElementById("toc");
+toc.innerHTML = `<div class="g">总览</div>
+  <a href="#overview">课程速览</a>
+  <div class="g">分册句型</div>` +
+  BOOKS.map(b => `<a href="#book${b.code}">册 ${b.code} · ${b.title}</a>`).join("") +
+  `<div class="g">总结</div><a href="#patterns">高频万能句型</a><a href="#notes">使用说明</a>`;
+
+/* ── 勾选进度 ── */
+function refresh() {
+  const done = Object.values(store).filter(Boolean).length;
+  document.getElementById("ptext").textContent = `${done} / ${totalGroups} 组`;
+  document.getElementById("pfill").style.width = (done / totalGroups * 100) + "%";
+}
+daysEl.addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  const tr = e.target.closest("tr");
+  store[tr.dataset.id] = e.target.checked;
+  tr.classList.toggle("done", e.target.checked);
+  localStorage.setItem(KEY, JSON.stringify(store));
+  refresh();
+});
+daysEl.querySelectorAll("tr.grp").forEach(tr => tr.classList.toggle("done", !!store[tr.dataset.id]));
+refresh();
+
+/* ── 隐藏中文自测 ── */
+const btnZh = document.getElementById("btnZh");
+btnZh.onclick = () => {
+  document.body.classList.toggle("hide-zh");
+  btnZh.classList.toggle("on");
+  btnZh.textContent = document.body.classList.contains("hide-zh") ? "显示中文" : "隐藏中文（自测）";
+};
+
+/* ── 重置 ── */
+document.getElementById("btnReset").onclick = () => {
+  if (!confirm("确定清空全部学习进度吗？")) return;
+  store = {};
+  localStorage.removeItem(KEY);
+  daysEl.querySelectorAll("tr.grp").forEach(tr => { tr.classList.remove("done"); tr.querySelector("input").checked = false; });
+  refresh();
+};
+</script>
+</body>
+</html>
