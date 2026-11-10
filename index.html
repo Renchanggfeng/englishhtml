@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语学习页面 · 导航首页</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#24292f; --muted:#6a737d;
+  --line:#e4e7eb; --accent:#0e7a5f; --accent-soft:#e6f4ef;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+     background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7;
+     display:flex;min-height:100vh;flex-direction:column;align-items:center}
+
+header{width:100%;background:#fff;border-bottom:1px solid var(--line);
+  padding:26px 20px 22px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+header h1{margin:0;font-size:22px}
+header h1 .leaf{color:var(--accent)}
+header p{margin:6px 0 0;color:var(--muted);font-size:13.5px}
+
+main{width:100%;max-width:960px;padding:26px 20px 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+
+a.card{display:flex;flex-direction:column;gap:6px;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;padding:18px 20px 14px;
+  text-decoration:none;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.05);
+  transition:border-color .15s, box-shadow .15s, transform .15s}
+a.card:hover{border-color:var(--accent);box-shadow:0 4px 14px rgba(14,122,95,.13);
+  transform:translateY(-2px)}
+a.card .tag{align-self:flex-start;font-size:11.5px;color:var(--accent);
+  background:var(--accent-soft);border-radius:20px;padding:1px 10px}
+a.card h2{margin:2px 0 0;font-size:16.5px}
+a.card p{margin:0;color:var(--muted);font-size:13px;flex:1}
+a.card .go{font-size:12.5px;color:var(--accent);border-top:1px dashed var(--line);
+  padding-top:8px;margin-top:6px}
+
+footer{color:var(--muted);font-size:12.5px;padding:22px 20px 30px;text-align:center}
+footer code{background:#eef0f3;border-radius:4px;padding:0 5px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="leaf">❦</span> 英语学习 · 页面导航</h1>
+  <p>同文件夹下所有学习页面入口 · 点击卡片在新标签页打开</p>
+</header>
+
+<main>
+  <div class="grid">
+<!-- CARDS:BEGIN —— 此区域由 update_index.py 自动生成，手工修改会被覆盖 -->
+    <a class="card" href="全部话题总汇.html" target="_blank">
+      <span class="tag">课程总览</span>
+      <h2>英语学习 · 全话题总汇</h2>
+      <p>日常会话 / 商务英语等全部课程的话题与句式大合集，一页纵览所学内容。</p>
+      <span class="go">打开 → 全部话题总汇.html</span>
+    </a>
+    <a class="card" href="背诵文章_话题串联.html" target="_blank">
+      <span class="tag">背诵 · 串联</span>
+      <h2>英语背诵 · 六篇话题串联文章（覆盖30话题）</h2>
+      <p>六篇串联文章覆盖 30 个话题，把散点句式织成可以整段背诵的语料。</p>
+      <span class="go">打开 → 背诵文章_话题串联.html</span>
+    </a>
+    <a class="card" href="课外文章背诵.html" target="_blank">
+      <span class="tag">背诵 · 课外</span>
+      <h2>英语背诵 · 自选课外文章（持续更新）</h2>
+      <p>持续更新的课外背诵篇目，附背诵方法与进度标记。</p>
+      <span class="go">打开 → 课外文章背诵.html</span>
+    </a>
+    <a class="card" href="旅游英语-6天精华版_汇总.html" target="_blank">
+      <span class="tag">旅游英语</span>
+      <h2>旅游英语 · 6天精华版 汇总</h2>
+      <p>6 天 × 2 课 × 60 组句型共 120 句，按旅行时间线编排，带高频句型总结、进度勾选与中文自测。</p>
+      <span class="go">打开 → 旅游英语-6天精华版_汇总.html</span>
+    </a>
+<!-- CARDS:END -->
+  </div>
+</main>
+
+<footer>
+  新增页面后：运行同目录下的 <code>update_index.py</code> 即自动更新本导航。<br>
+  新页面请在 <code>&lt;head&gt;</code> 里带上 <code>&lt;meta name="page-tag" content="分类标签"&gt;</code>、
+  <code>&lt;meta name="page-desc" content="一句话简介"&gt;</code>、
+  <code>&lt;meta name="page-order" content="排序号"&gt;</code>（都有默认值，可省略）。
+</footer>
+
+</body>
+</html>
